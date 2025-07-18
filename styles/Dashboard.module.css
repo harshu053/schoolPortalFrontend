@@ -1,0 +1,154 @@
+.container {
+    min-height: 100vh;
+    background-color: #f3f4f6;
+}
+
+.main {
+    padding: 2.5rem 0;
+}
+
+.content {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .content {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .content {
+        padding: 0 2rem;
+    }
+}
+
+.card {
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+}
+
+.cardHeader {
+    padding: 1.5rem;
+    background-color: white;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.cardBody {
+    margin-top: 1.5rem;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .statsGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.statsCard {
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+}
+
+.statsCard.blue {
+    background-color: #eff6ff;
+}
+
+.statsCard.green {
+    background-color: #ecfdf5;
+}
+
+.statsCard.yellow {
+    background-color: #fefce8;
+}
+
+.statsContent {
+    display: flex;
+    align-items: center;
+}
+
+.statsIcon {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.statsIcon.blue {
+    color: #2563eb;
+}
+
+.statsIcon.green {
+    color: #059669;
+}
+
+.statsIcon.yellow {
+    color: #ca8a04;
+}
+
+.statsInfo {
+    margin-left: 1.25rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.statsLabel {
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.statsLabel.blue {
+    color: #1e40af;
+}
+
+.statsLabel.green {
+    color: #065f46;
+}
+
+.statsLabel.yellow {
+    color: #854d0e;
+}
+
+.statsValue {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.statsValue.blue {
+    color: #1e40af;
+}
+
+.statsValue.green {
+    color: #065f46;
+}
+
+.statsValue.yellow {
+    color: #854d0e;
+}

@@ -1,0 +1,45 @@
+.nav {
+    background-color: #1f2937;
+    color: white;
+    padding: 1rem;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navLinks {
+    display: flex;
+    gap: 1rem;
+}
+
+.navLink {
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.navLink:hover {
+    color: #d1d5db;
+}
+
+.actionsContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logoutButton {
+    background-color: #dc2626;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+}
+
+.logoutButton:hover {
+    background-color: #b91c1c;
+}
