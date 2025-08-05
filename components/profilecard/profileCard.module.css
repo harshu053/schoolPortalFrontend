@@ -1,0 +1,59 @@
+.card {
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 1rem; /* p-4 */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profileImage {
+  width: 4rem; /* w-16 */
+  height: 4rem; /* h-16 */
+  border-radius: 9999px; /* rounded-full */
+  object-fit: cover;
+  border: 1px solid #d1d5db; /* border-gray-300 */
+}
+
+.info {
+  flex: 1;
+}
+
+.name {
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 600;
+}
+
+.className {
+  font-size: 0.875rem; /* text-sm */
+  color: #4b5563; /* text-gray-600 */
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.iconButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.edit {
+  color: #2563eb; /* text-blue-600 */
+}
+
+.edit:hover {
+  color: #1e40af; /* text-blue-800 */
+}
+
+.delete {
+  color: #dc2626; /* text-red-600 */
+}
+
+.delete:hover {
+  color: #991b1b; /* text-red-800 */
+}

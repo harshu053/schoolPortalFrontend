@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { apibaseUrl } from '@/utils/utils';
 
 // Create the authentication context
 export const AuthContext = createContext();
@@ -18,32 +19,45 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Check if there's a token in localStorage
-        const token = localStorage.getItem('token');
-        if (token) {
-            // Fetch user data from the backend
-            fetch('http://localhost:5000/api/auth/profile', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.error) {
+        const validateToken = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                setLoading(false);
+                return;
+            }
+
+            console.log('Validating token:', token);
+
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/validate/profile', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                console.log('Token validation response:', response);
+
+                const data = await response.json();
+                console.log('Token validation data:', data);
+
+                if (!response.ok || data.error) {
+                    console.error('Token validation failed:', data.error || 'Unknown error');
                     localStorage.removeItem('token');
                     setUser(null);
                 } else {
+                    console.log('Token is valid, setting user:', data);
                     setUser(data);
                 }
-            })
-            .catch(() => {
+            } catch (error) {
+                console.error('Token validation error:', error);
                 localStorage.removeItem('token');
                 setUser(null);
-            })
-            .finally(() => setLoading(false));
-        } else {
-            setLoading(false);
-        }
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        validateToken();
     }, []);
 
     // Login function
@@ -51,7 +65,7 @@ export function AuthProvider({ children }) {
 
         try {
         
-            const response = await fetch('http://localhost:5000/api/schools/login', {
+            const response = await fetch(`${apibaseUrl}auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -59,16 +73,32 @@ export function AuthProvider({ children }) {
                 body: JSON.stringify({ schoolEmail, password })
             });
 
-            const data = await response.json();
+            const result = await response.json();
 
-            if (response.ok) {
-                localStorage.setItem('token', data.token);
-                setUser(data);
-                return data;
+            if (response.ok && result.success) {
+                if (!result.data || !result.data.token) {
+                    throw new Error('Invalid response format: Missing token');
+                }
+                localStorage.setItem('token', result.data.token);
+                setUser(result.data);
+                return result.data;
             } else {
-                throw new Error(data.message || 'Login failed');
+                // Handle specific error messages from the backend
+                const errorMessage = result.message || 'Login failed';
+                console.error('Login error:', errorMessage);
+                throw new Error(errorMessage);
             }
         } catch (error) {
+            // Handle network errors or JSON parsing errors
+            if (error instanceof SyntaxError) {
+                console.error('Invalid response format:', error);
+                throw new Error('Server returned an invalid response');
+            }
+            if (error instanceof TypeError) {
+                console.error('Network error:', error);
+                throw new Error('Unable to connect to the server');
+            }
+            // Throw the original error if it's already an Error instance
             throw error;
         }
     };

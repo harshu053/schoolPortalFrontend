@@ -19,7 +19,8 @@ export default function Register() {
         schoolPhone: '',
         principalName: '',
         adminEmail: '',
-        adminPhone: ''
+        adminPhone: '',
+        password: '',
     });
 
     const handleChange = (e) => {
@@ -48,6 +49,7 @@ export default function Register() {
                 schoolEmail: formData.schoolEmail,
                 schoolPhone: formData.schoolPhone
             },
+            password: formData.password,
             adminInfo: {
                 principalName: formData.principalName,
                 schoolEmail: formData.adminEmail,
@@ -234,6 +236,19 @@ export default function Register() {
                             title="Please enter a valid 10-digit phone number"
                             className={styles.formInput}
                             value={formData.adminPhone}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="password" className={styles.formLabel}>Password</label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            required
+                            className={styles.formInput}
+                            value={formData.password}
                             onChange={handleChange}
                         />
                     </div>

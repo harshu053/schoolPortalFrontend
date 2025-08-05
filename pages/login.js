@@ -18,7 +18,7 @@ export default function LoginPage() {
         setLoading(true);
 
         try {
-            console.log("Attempting to login with email:", email);
+        
             const userData = await login(schoolEmail, password);
             console.log("User data:", userData);
             
@@ -32,11 +32,10 @@ export default function LoginPage() {
                 router.push('/school/dashboard');
             } else if (userData.role === 'teacher') {
                 router.push('/teacher/dashboard');
-            } else {
-                router.push('/dashboard');
             }
         } catch (error) {
-            setError('Invalid email or password');
+            console.error('Login error:', error);
+            setError(error.message || 'Invalid email or password');
         } finally {
             setLoading(false);
         }

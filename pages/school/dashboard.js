@@ -1,104 +1,183 @@
-import { useAuth } from '../../contexts/AuthContext';
-import Navigation from '../../components/Navigation';
-import ProtectedRoute from '../../components/ProtectedRoute';
+import { useAuth } from "../../contexts/AuthContext";
+import ProtectedRoute from "../../components/ProtectedRoute";
+import Navigation from "../../components/Navigation";
+import Sidebar from "@/components/sidebar/sideBar";
+import styles from "./dashboard.module.css"; // CSS module
+import ProfileCard from "@/components/profilecard/profileCard";
+import { apibaseUrl } from "@/utils/utils";
+import TeacherDetail from "@/components/teacherdetail/teacherDetail";
 
 export default function SchoolDashboard() {
-    const { user } = useAuth();
+  const { user } = useAuth();
+  console.log("User in dashboard:", user);
 
-    return (
-        <ProtectedRoute permissions={['manage_school_settings']}>
-            <div className="min-h-screen bg-gray-100">
-                <Navigation />
-                
-                <main className="py-10">
-                    <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                        <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                            <div className="p-6 bg-white border-b border-gray-200">
-                                <h1 className="text-2xl font-semibold text-gray-900">
-                                    School Management Dashboard
-                                </h1>
-                                
-                                <div className="mt-6">
-                                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                                        {/* School Stats */}
-                                        <div className="bg-blue-50 overflow-hidden shadow rounded-lg">
-                                            <div className="p-5">
-                                                <div className="flex items-center">
-                                                    <div className="flex-shrink-0">
-                                                        <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div className="ml-5 w-0 flex-1">
-                                                        <dl>
-                                                            <dt className="text-sm font-medium text-blue-900 truncate">
-                                                                Total Students
-                                                            </dt>
-                                                            <dd className="flex items-baseline">
-                                                                <div className="text-2xl font-semibold text-blue-900">
-                                                                    --
-                                                                </div>
-                                                            </dd>
-                                                        </dl>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+  const totoalStudents = user?.students?.length || "--";
+  const totalTeachers = user?.teachers?.length || "--";
 
-                                        <div className="bg-green-50 overflow-hidden shadow rounded-lg">
-                                            <div className="p-5">
-                                                <div className="flex items-center">
-                                                    <div className="flex-shrink-0">
-                                                        <svg className="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div className="ml-5 w-0 flex-1">
-                                                        <dl>
-                                                            <dt className="text-sm font-medium text-green-900 truncate">
-                                                                Total Teachers
-                                                            </dt>
-                                                            <dd className="flex items-baseline">
-                                                                <div className="text-2xl font-semibold text-green-900">
-                                                                    --
-                                                                </div>
-                                                            </dd>
-                                                        </dl>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="bg-yellow-50 overflow-hidden shadow rounded-lg">
-                                            <div className="p-5">
-                                                <div className="flex items-center">
-                                                    <div className="flex-shrink-0">
-                                                        <svg className="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div className="ml-5 w-0 flex-1">
-                                                        <dl>
-                                                            <dt className="text-sm font-medium text-yellow-900 truncate">
-                                                                Today's Attendance
-                                                            </dt>
-                                                            <dd className="flex items-baseline">
-                                                                <div className="text-2xl font-semibold text-yellow-900">
-                                                                    --
-                                                                </div>
-                                                            </dd>
-                                                        </dl>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
+  const handleEdit = async (id, cardType) => {
+
+    const schoolId = user?.schoolId; 
+
+    console.log(`Edit ${cardType} with ID:`, id);
+
+    try {
+      let response =
+        cardType === "teacherCard"
+          ? await fetch(
+              `${apibaseUrl}teacher/allteachers/${schoolId}?employeeId=${id}`
+            )
+          : await fetch(
+              `${apibaseUrl}students/allstudents/${schoolId}?studentId=${id}`
+            );
+      const userData = await response.json();
+      console.log("Fetched student data:", userData);
+
+      // Now you can proceed to open edit modal or whatever next
+    } catch (error) {
+      console.error("Error fetching student data:", error);
+    }
+  };
+
+  const handleDelete = (id, cardType) => {
+    console.log(`Delete ${cardType} with ID:`, id);
+  };
+
+  return (
+    <ProtectedRoute>
+      {/* Navigation at the very top, spanning full width */}
+      <Navigation schoolName={user?.schoolName} />
+
+      {/* Below Navigation: sidebar + main layout */}
+      <div className={styles.dashboardContainer}>
+        <Sidebar />
+
+        <div className={styles.mainContent}>
+          <main className={styles.dashboardMain}> 
+
+            {/* <div className={styles.cardGrid}>
+              <div className={`${styles.dashboardCard} ${styles.blue}`}>
+                <div className={styles.icon}>👨‍🎓</div>
+                <div>
+                  <p className={styles.cardLabel}>Total Students</p>
+                  <p className={styles.cardValue}>{totoalStudents}</p>
+                </div>
+              </div>
+
+              <div className={`${styles.dashboardCard} ${styles.green}`}>
+                <div className={styles.icon}>👩‍🏫</div>
+                <div>
+                  <p className={styles.cardLabel}>Total Teachers</p>
+                  <p className={styles.cardValue}>{totalTeachers}</p>
+                </div>
+              </div>
+
+              <div className={`${styles.dashboardCard} ${styles.yellow}`}>
+                <div className={styles.icon}>📅</div>
+                <div>
+                  <p className={styles.cardLabel}>Today's Attendance</p>
+                  <p className={styles.cardValue}>--</p>
+                </div>
+              </div>
+            </div> */}
+{/* 
+            <div className={styles.studentsSection}>
+              Students Section
+              <div className={styles.cardGrid}>
+                {user?.students?.map((student, index) => (
+                  <ProfileCard
+                    key={index}
+                    user={student}
+                    onEdit={handleEdit}
+                    onDelete={handleDelete}
+                    cardTtype="studentCard"
+                  />
+                ))}
+              </div>
             </div>
-        </ProtectedRoute>
-    );
+
+            <div className={styles.studentsSection}>
+              Teachers Section
+              <div className={styles.cardGrid}>
+                {user?.teachers?.map((teacher, index) => (
+                  <ProfileCard
+                    key={index}
+                    user={teacher}
+                    cardTtype="teacherCard"
+                    onEdit={handleEdit}
+                    onDelete={handleDelete}
+                  />
+                ))}
+              </div>
+            </div> */}
+
+            <div><TeacherDetail teacher={user?.teachers?.[0]}/></div>
+          </main>
+        </div>
+      </div>
+    </ProtectedRoute>
+  );
 }
+
+// // pages/school/dashboard.js
+
+// import { useAuth } from '../../contexts/AuthContext';
+// import Navigation from '../../components/Navigation';
+// import ProtectedRoute from '../../components/ProtectedRoute';
+// import styles from './dashboard.module.css';
+// import Sidebar from '@/components/sidebar/sideBar';
+
+// export default function SchoolDashboard() {
+//     const { user } = useAuth();
+
+//     return (
+//         <ProtectedRoute>
+//             <div className={styles.dashboard}>
+//                 <Navigation />
+
+//                 <main className={styles.main}>
+//                     <div className={styles.container}>
+//                         <Sidebar/>
+//                         <div className={styles.card}>
+//                             <div className={styles.cardBody}>
+//                                 <h1 className={styles.dashboardTitle}> Dashboard</h1>
+
+//                                 <div className={styles.stats}>
+//                                     <div className={`${styles.statBox} ${styles.blue}`}>
+//                                         <div className={styles.statContent}>
+//                                             <div className={styles.statIcon}>👨‍🎓</div>
+//                                             <div>
+//                                                 <p className={styles.label}>Total Students</p>
+//                                                 <p className={styles.value}>--</p>
+//                                             </div>
+//                                         </div>
+//                                     </div>
+
+//                                     <div className={`${styles.statBox} ${styles.green}`}>
+//                                         <div className={styles.statContent}>
+//                                             <div className={styles.statIcon}>👩‍🏫</div>
+//                                             <div>
+//                                                 <p className={styles.label}>Total Teachers</p>
+//                                                 <p className={styles.value}>--</p>
+//                                             </div>
+//                                         </div>
+//                                     </div>
+
+//                                     <div className={`${styles.statBox} ${styles.yellow}`}>
+//                                         <div className={styles.statContent}>
+//                                             <div className={styles.statIcon}>📅</div>
+//                                             <div>
+//                                                 <p className={styles.label}>Today's Attendance</p>
+//                                                 <p className={styles.value}>--</p>
+//                                             </div>
+//                                         </div>
+//                                     </div>
+//                                 </div>
+
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </main>
+//             </div>
+//         </ProtectedRoute>
+//     );
+// }

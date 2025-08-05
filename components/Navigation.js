@@ -2,7 +2,7 @@ import { useAuth } from '../contexts/AuthContext';
 import Link from 'next/link';
 import styles from '../styles/Navigation.module.css';
 
-export default function Navigation() {
+export default function Navigation({schoolName}) {
     const { user, hasPermission, logout } = useAuth();
 
     if (!user) return null;
@@ -12,7 +12,7 @@ export default function Navigation() {
             <div className={styles.container}>
                 <div className={styles.navLinks}>
                     <Link href="/dashboard">
-                        <span className={styles.navLink}>Dashboard</span>
+                        <span className={styles.navLink}>{schoolName.toUpperCase()}</span>
                     </Link>
 
                     {/* Student Management */}

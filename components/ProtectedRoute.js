@@ -2,43 +2,22 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../contexts/AuthContext';
 
-export default function ProtectedRoute({ children, permissions = [] }) {
-    const { user, loading, hasPermission } = useAuth();
+export default function ProtectedRoute({ children }) {
+    const { user, loading } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
         if (!loading && !user) {
             router.push('/login');
-            return;
         }
-
-        if (!loading && permissions.length > 0) {
-            const hasRequiredPermission = permissions.some(permission => 
-                hasPermission(permission)
-            );
-
-            if (!hasRequiredPermission) {
-                router.push('/unauthorized');
-            }
-        }
-    }, [user, loading, permissions]);
+    }, [user, loading]);
 
     if (loading) {
         return <div>Loading...</div>;
     }
 
     if (!user) {
-        return null;
-    }
-
-    if (permissions.length > 0) {
-        const hasRequiredPermission = permissions.some(permission => 
-            hasPermission(permission)
-        );
-
-        if (!hasRequiredPermission) {
-            return null;
-        }
+        return null; // Prevent flashing content
     }
 
     return children;
