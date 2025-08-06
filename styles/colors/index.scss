@@ -1,0 +1,15 @@
+@import 'theming';
+
+$theme: 'sky', 'sky-midnight', 'mint';
+
+$navi-theme: 'navi', 'navi-midnight', 'mint';
+$green-theme: 'green', 'green-midnight', 'mint';
+$crimson-theme: 'crimson', 'crimson-midnight', 'mint';
+$purple-theme: 'purple', 'purple-midnight', 'mint';
+
+
+@include createDefaultTheme($navi-theme);
+@include addExtraTheme('Navi-Theme', $navi-theme);
+@include addExtraTheme('Green-Theme', $green-theme);
+@include addExtraTheme('Crimson-Theme', $crimson-theme);
+@include addExtraTheme('Purple-Theme', $purple-theme);

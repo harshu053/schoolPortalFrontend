@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../contexts/AuthContext';
 import Link from 'next/link';
-import styles from '../styles/Login.module.css';
+import styles from '../styles/Login.module.scss';
 
 export default function LoginPage() {
     const [schoolEmail, setSchoolEmail] = useState('');
@@ -26,13 +26,14 @@ export default function LoginPage() {
             setError('');
             
             // Redirect based on user role
-            if (userData.role === 'superadmin') {
-                router.push('/admin/dashboard');
-            } else if (userData.role === 'schoolAdmin' || userData.role === 'principal') {
-                router.push('/school/dashboard');
-            } else if (userData.role === 'teacher') {
-                router.push('/teacher/dashboard');
-            }
+            // if (userData.role === 'superadmin') {
+            //     router.push('/admin/dashboard');
+            // } else if (userData.role === 'schoolAdmin' || userData.role === 'principal') {
+            //     router.push('/school/dashboard');
+            // } else if (userData.role === 'teacher') {
+            //     router.push('/teacher/dashboard');
+            // }
+            router.push('/dashboard');
         } catch (error) {
             console.error('Login error:', error);
             setError(error.message || 'Invalid email or password');

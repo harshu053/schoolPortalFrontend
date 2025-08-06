@@ -1,0 +1,167 @@
+@use "./palette.scss" as palette;
+@use "sass:list";
+@use "sass:map";
+
+// $DEFAULT_THEME_SCHEME: 'navi', 'marigold', 'mint';
+$DEFAULT_THEME_SCHEME: 'navi', 'green', 'red';
+
+
+$_classLight: '.data-mode-light';
+$_dataLight: "[data-mode='light']";
+$_classDark: '.data-mode-dark';
+$_dataDark: "[data-mode='dark']";
+$_classBold: '.data-mode-bold';
+$_dataBold: "[data-mode='bold']";
+
+$themeLightRoot: $_classLight ', ' $_dataLight;
+$themeDarkRoot: $_classDark ', ' $_dataDark;
+$themeBoldRoot: $_classBold ', ' $_dataBold;
+
+$themeLightParent: $_classLight ' &, ' $_dataLight ' &';
+$themeDarkParent: $_classDark ' &, ' $_dataDark ' &';
+$themeBoldParent: $_classBold ' &, ' $_dataBold ' &';
+
+$themeLightSelf: '&' $_classLight ', &' $_dataLight '';
+$themeDarkSelf: '&' $_classDark ', &' $_dataDark '';
+$themeBoldSelf: '&' $_classBold ', &' $_dataBold '';
+
+$themeLightChild: '& ' $_classLight ', & ' $_dataLight;
+$themeDarkChild: '& ' $_classDark ', & ' $_dataDark '';
+$themeBoldChild: '& ' $_classBold ', & ' $_dataBold '';
+
+$themeLightGlobal: $themeLightSelf ', ' $themeLightChild;
+$themeDarkGlobal: $themeDarkSelf ', ' $themeDarkChild;
+$themeBoldGlobal: $themeBoldSelf ', ' $themeBoldChild;
+
+/**
+
+ */
+@mixin themeDark($hierarchy: 'parent') {
+  #{$themeDarkParent} {
+    @content;
+  }
+}
+
+@mixin themeBold($hierarchy: 'parent') {
+  #{$themeBoldParent} {
+    @content;
+  }
+}
+
+/**
+ Also adds a `&` so light themes are applied to current default selector too.
+ */
+@mixin themeLight($overwriteCurrent: true) {
+  $prepend: '';
+  @if ($overwriteCurrent) {
+    $prepend: '&,';
+  }
+  #{$prepend$themeLightParent} {
+    @content;
+  }
+}
+
+$color-schemes: map.get(map.get(palette.$tokens-palettes, 'color'), 'palette');
+
+@mixin _spreadThemeCSSVars($schemes: $DEFAULT_THEME_SCHEME) {
+  $hierarchy-map: (
+    'primary': #{nth($schemes, 1)},
+    'secondary': #{nth($schemes, 2)},
+    'sparkle': #{nth($schemes, 3)}
+  );
+  $mode-map: (
+    'light': #{'&, ' $themeLightGlobal},
+    'dark': #{$themeDarkGlobal},
+    'bold': #{$themeBoldGlobal}
+  );
+  @each $mode, $mode-class in $mode-map {
+    #{$mode-class} {
+      @each $hierarchy, $scheme-picked in $hierarchy-map {
+        $scheme: map.get($color-schemes, $scheme-picked);
+        @each $color, $value in map.get($scheme, $mode) {
+          --color-#{$hierarchy}-#{$color}: #{$value};
+        }
+      }
+      color: var(--color-primary-grey-100);
+    }
+  }
+}
+
+/**
+In addition to base theme, use this to add extra themes with 
+provided name, scheme: [primary, secondary, sparkle]
+ */
+@mixin addExtraTheme($name, $schemes: $DEFAULT_THEME_SCHEME) {
+  @if ($name == null) {
+    @error "name is required";
+  }
+
+  .theme--#{$name}.theme--#{$name} {
+    @include _spreadThemeCSSVars($schemes);
+  }
+}
+
+/**
+Use this to create base theme with scheme: [primary, secondary, sparkle]
+ */
+@mixin createDefaultTheme($schemes: $DEFAULT_THEME_SCHEME) {
+  $name: 'Default';
+
+  body,
+  .theme--#{$name}.theme--#{$name} {
+    @include _spreadThemeCSSVars($schemes);
+  }
+}
+
+/**
+  If you have scss files with placeholders like %root-vars-theme-light--MyProduct,
+  you can use this method instead of createDefaultTheme() with primary, secondary, sparkle colors.
+ */
+@mixin createBaseThemeFromSCSSFiles($name) {
+  @if ($name == null) {
+    @error "name is required";
+  }
+
+  body,
+  .theme--#{$name}.theme--#{$name} {
+    $mode-map: (
+      'light': #{'&, ' $themeLightGlobal},
+      'dark': #{$themeDarkGlobal},
+      'bold': #{$themeBoldGlobal}
+    );
+
+    @each $mode, $mode-class in $mode-map {
+      #{$mode-class} {
+        $placeholder: '%root-vars-theme-#{$mode}--#{$name}';
+        @extend #{$placeholder} !optional;
+        color: var(--color-primary-grey-100);
+      }
+    }
+  }
+}
+
+/**
+If you have scss files with placeholders like %root-vars-theme-light--MyProduct,
+  you can use this method instead of addExtraTheme() with primary, secondary, sparkle colors.
+ */
+@mixin createExtraThemeFromSCSSFiles($name) {
+  @if ($name == null) {
+    @error "name is required";
+  }
+
+  .theme--#{$name}.theme--#{$name} {
+    $mode-map: (
+      'light': #{'&, ' $themeLightGlobal},
+      'dark': #{$themeDarkGlobal},
+      'bold': #{$themeBoldGlobal}
+    );
+
+    @each $mode, $mode-class in $mode-map {
+      #{$mode-class} {
+        $placeholder: '%root-vars-theme-#{$mode}--#{$name}';
+        @extend #{$placeholder} !optional;
+        color: var(--color-primary-grey-100);
+      }
+    }
+  }
+}

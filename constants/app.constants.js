@@ -1,0 +1,1 @@
+export const informationTypeList = ["All Students", "Class Wise Students"];

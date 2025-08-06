@@ -1,6 +1,6 @@
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import Link from 'next/link';
-import styles from '../styles/Navigation.module.css';
+import styles from './Navigation.module.scss';
 
 export default function Navigation({schoolName}) {
     const { user, hasPermission, logout } = useAuth();

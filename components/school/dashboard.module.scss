@@ -1,0 +1,109 @@
+@use '../../styles/layout/scrollbar' as *;
+.dashboardContainer {
+  display: flex;  
+  margin-bottom: 1rem; 
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column; 
+  overflow-y: scroll; 
+  @include scrollbar-type-2;
+  height: 90vh;
+}
+
+.event_distibution_Container{
+  display: flex;
+  gap: var(--spacing-m); 
+  height: 380px;
+}
+.eventContainer{ 
+  overflow-y: hidden;
+  box-shadow: var(--shadow-s);
+  border-radius: var(--radius-xl);
+  background-color: #ffffff;
+}
+
+/* Optional: Add this if Navigation is fixed */
+.dashboardMain {
+  padding: 1rem; 
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-l);
+}
+
+.dashboardTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.doughnutConatiner{
+  width: 50%;
+  box-shadow: var(--shadow-s);
+  border-radius: var(--radius-xl);
+  background-color: #ffffff;
+//   height: 50vh;
+}
+
+.barChartContainer{
+  box-shadow: var(--shadow-s);
+  border-radius: var(--radius-xl);
+  background-color: #ffffff;
+  padding: var(--spacing-m);
+}
+
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.studentsSection{
+font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .cardGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.dashboardCard {
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.icon {
+  font-size: 1.875rem;
+}
+
+.cardLabel {
+  font-size: 0.875rem;
+}
+
+.cardValue {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.blue {
+  background-color: #3b82f6;
+}
+
+.green {
+  background-color: #10b981;
+}
+
+.yellow {
+  background-color: #facc15;
+  color: #0f172a;
+}

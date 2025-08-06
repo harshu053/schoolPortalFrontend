@@ -1,0 +1,262 @@
+@import '../breakpoints';
+
+.text-heading-xl {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 900;
+  text-transform: none;
+  font-size: 5.5rem;
+  letter-spacing: -2.6399999999999997px;
+  line-height: 1;
+
+  @media #{$screen-mobile} {
+    font-size: 4rem;
+    letter-spacing: -1.92px;
+  }
+}
+
+.text-heading-l {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 900;
+  text-transform: none;
+  font-size: 4rem;
+  letter-spacing: -1.92px;
+  line-height: 1;
+
+  @media #{$screen-mobile} {
+    font-size: 3rem;
+    letter-spacing: -1.44px;
+  }
+}
+
+.text-heading-m {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 900;
+  text-transform: none;
+  font-size: 2.5rem;
+  letter-spacing: -1.2px;
+  line-height: 1;
+}
+
+.text-heading-s {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 900;
+  text-transform: none;
+  font-size: 2rem;
+  letter-spacing: -0.96px;
+  line-height: 1;
+}
+
+.text-heading-xs {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 900;
+  text-transform: none;
+  font-size: 1.5rem;
+  letter-spacing: -0.72px;
+  line-height: 1.1666666666666667;
+
+  /* UPDATE */
+  @media #{$screen-mobile} {
+    font-size: 1rem;
+    letter-spacing: -0.48px;
+    line-height: 1.25;
+  }
+
+}
+
+.text-heading-xxs {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 900;
+  text-transform: none;
+  font-size: 1rem;
+  letter-spacing: -0.48px;
+  line-height: 1.25;
+}
+
+.text-overline {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.06px;
+  line-height: 1.3333333333333333;
+}
+
+.text-body-l {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 500;
+  text-transform: none;
+  font-size: 1.5rem;
+  letter-spacing: -0.12px;
+  line-height: 1.3333333333333333;
+}
+
+.text-body-l-bold {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 1.5rem;
+  letter-spacing: -0.12px;
+  line-height: 1.3333333333333333;
+}
+
+.text-body-l-link {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 1.5rem;
+  letter-spacing: -0.12px;
+  line-height: 1.3333333333333333;
+}
+
+.text-body-m {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 500;
+  text-transform: none;
+  font-size: 1.125rem;
+  letter-spacing: -0.09px;
+  line-height: 1.3333333333333333;
+}
+
+.text-body-m-bold {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 1.125rem;
+  letter-spacing: -0.09px;
+  line-height: 1.3333333333333333;
+}
+
+.text-body-m-link {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 1.125rem;
+  letter-spacing: -0.09px;
+  line-height: 1.3333333333333333;
+}
+
+.text-body-s {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 500;
+  text-transform: none;
+  font-size: 1rem;
+  letter-spacing: -0.08px;
+  line-height: 1.5;
+}
+
+.text-body-s-bold {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 1rem;
+  letter-spacing: -0.08px;
+  line-height: 1.5;
+}
+
+.text-body-s-link {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 1rem;
+  letter-spacing: -0.08px;
+  line-height: 1.5;
+}
+
+.text-body-xs {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 500;
+  text-transform: none;
+  font-size: 0.875rem;
+  letter-spacing: -0.07px;
+  line-height: 1.4285714285714286;
+}
+
+.text-body-xs-bold {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 0.875rem;
+  letter-spacing: -0.07px;
+  line-height: 1.4285714285714286;
+}
+
+.text-body-xs-link {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 0.875rem;
+  letter-spacing: -0.07px;
+  line-height: 1.4285714285714286;
+}
+
+.text-body-xxs {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 0.875rem;
+  letter-spacing: -0.07px;
+  line-height: 1.4285714285714286;
+
+  @media #{$screen-mobile} {
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: -0.06px;
+    line-height: 1.3333333333333333;
+  }
+}
+
+.text-body-xxs-bold {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 500;
+  text-transform: none;
+  font-size: 0.75rem;
+  letter-spacing: -0.06px;
+  line-height: 1.3333333333333333;
+
+  @media #{$screen-mobile} {
+    font-weight: 700;
+  }
+}
+
+.text-body-xxs-link {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 0.75rem;
+  letter-spacing: -0.06px;
+  line-height: 1.3333333333333333;
+}
+
+.text-body-xxxs {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 600;
+  text-transform: none;
+  font-size: 0.8rem;
+  letter-spacing: -0.07px;
+  line-height: 1.333333333333333;
+
+  @media #{$screen-mobile} {
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: -0.06px;
+    line-height: 1.3333333333333333;
+  }
+}
+
+.text-list-title {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 500;
+  text-transform: none;
+  font-size: 1rem;
+  letter-spacing: -0.08px;
+  line-height: 1.25;
+}
+
+.text-button {
+  font-family: 'JioType', helvetica, arial, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 1rem;
+  letter-spacing: -0.08px;
+  line-height: 1.5;
+}

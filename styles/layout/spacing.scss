@@ -1,0 +1,13 @@
+%root-vars {
+    --spacing-base: 1rem;
+    --spacing-xxs: calc(var(--spacing-base) * 0.25);
+    --spacing-xs: calc(var(--spacing-base) * 0.5);
+    --spacing-s: calc(var(--spacing-base) * 0.75);
+    --spacing-m: calc(var(--spacing-base) * 1.5);
+    --spacing-l: calc(var(--spacing-base) * 2);
+    --spacing-xl: calc(var(--spacing-base) * 2.5);
+    --spacing-xxl: calc(var(--spacing-base) * 3);
+    --spacing-huge: calc(var(--spacing-base) * 4);
+    --spacing-massive: calc(var(--spacing-base) * 5);
+  }
+  

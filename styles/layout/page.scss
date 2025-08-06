@@ -1,0 +1,9 @@
+@import "../breakpoints/breakpoints.scss";
+
+#page-container {
+  margin-top: 72px;
+
+  @include mobile {
+    margin-top: 72px;
+  }
+}

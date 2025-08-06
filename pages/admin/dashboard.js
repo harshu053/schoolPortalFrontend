@@ -1,5 +1,5 @@
 import { useAuth } from '../../context/AuthContext';
-import Navigation from '../../components/Navigation';
+import Navigation from '../../components/navigation/Navigation';
 import ProtectedRoute from '../../components/ProtectedRoute';
 
 export default function AdminDashboard() {
