@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { toast } from 'react-hot-toast';
 import Link from 'next/link';
-import styles from '../styles/register.module.scss';
+import styles from './register.module.scss';
 
 export default function Register() {
     const router = useRouter();

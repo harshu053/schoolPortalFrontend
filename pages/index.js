@@ -5,6 +5,7 @@ import styles from '../styles/Landing.module.scss';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Spinner from "@/components/spinner/spinner";
 
 export default function Home() {
     const router = useRouter();
@@ -19,7 +20,7 @@ export default function Home() {
     if (loading) {
         return (
             <div className={styles.loadingContainer}>
-                <div className={styles.spinner}></div>
+                <div className={styles.spinner}><Spinner/></div>
             </div>
         );
     }

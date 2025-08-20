@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import Link from 'next/link';
-import styles from '../styles/Login.module.scss';
+import styles from './Login.module.scss';
 
 export default function LoginPage() {
     const [schoolEmail, setSchoolEmail] = useState('');
@@ -19,8 +19,7 @@ export default function LoginPage() {
 
         try {
         
-            const userData = await login(schoolEmail, password);
-            console.log("User data:", userData);
+            const userData = await login(schoolEmail, password); 
             
             // Clear any previous error
             setError('');

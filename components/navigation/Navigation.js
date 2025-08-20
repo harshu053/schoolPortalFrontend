@@ -1,18 +1,24 @@
 import { useAuth } from '../../contexts/AuthContext';
 import Link from 'next/link';
 import styles from './Navigation.module.scss';
+import Icon from '../icon/icon'; 
 
-export default function Navigation({schoolName}) {
+export default function Navigation({text}) {
     const { user, hasPermission, logout } = useAuth();
 
-    if (!user) return null;
+    if (!user) return null; 
 
     return (
         <nav className={styles.nav}>
             <div className={styles.container}>
                 <div className={styles.navLinks}>
+
                     <Link href="/dashboard">
-                        <span className={styles.navLink}>{schoolName.toUpperCase()}</span>
+                        <span className={styles.backIcon}><Icon iconName='IcArrowback'/></span>
+                    </Link>
+
+                    <Link href="/dashboard">
+                        <span className={styles.navLink}>{text.toUpperCase()}</span>
                     </Link>
 
                     {/* Student Management */}
@@ -76,7 +82,7 @@ export default function Navigation({schoolName}) {
                         onClick={logout}
                         className={styles.logoutButton}
                     >
-                        Logout
+                         <Icon iconName="IcLogout"/>
                     </button>
                 </div>
             </div>

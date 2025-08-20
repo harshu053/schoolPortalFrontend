@@ -32,6 +32,17 @@ const Sidebar = () => {
           <Home className={styles.icon} />
           <span>Dashboard</span>
         </div>
+
+        <div
+          onClick={() => handleNavigation("Enrollments")}
+          className={`${styles.link} ${
+            component === "Enrollments" ? styles.active : ""
+          }`}
+        >
+          <Users className={styles.icon} />
+          <span>Enrollments</span>
+        </div>
+
         <div
           onClick={() => handleNavigation("Students")}
           className={`${styles.link} ${
@@ -49,6 +60,15 @@ const Sidebar = () => {
         >
           <Folder className={styles.icon} />
           <span>Teachers</span>
+        </div>
+        <div
+          onClick={() => handleNavigation("Fee-Sturtures")}
+          className={`${styles.link} ${
+            component === "Fee-Sturtures" ? styles.active : ""
+          }`}
+        >
+          <Folder className={styles.icon} />
+          <span>Fee Sturtures</span>
         </div>
         <div
           onClick={() => handleNavigation("Calendar")}
@@ -74,7 +94,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className={styles.section}>
+      {/* <div className={styles.section}>
         <p className={styles.heading}>Your teams</p>
         {["Heroicons", "Tailwind Labs", "Workcation"].map((team) => (
           <div key={team} className={styles.team}>
@@ -82,7 +102,7 @@ const Sidebar = () => {
             <span>{team}</span>
           </div>
         ))}
-      </div>
+      </div> */}
 
       <div className={styles.section}>
         <div className={styles.link}>

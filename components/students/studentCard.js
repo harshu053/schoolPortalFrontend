@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./studentCard.module.scss";
 
-const StudentCard = ({ student, onDetails }) => {
+const StudentCard = ({ student, onDetails }) => { 
   return (
     <div className={styles.studentCard}>
       <img

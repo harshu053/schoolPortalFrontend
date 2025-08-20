@@ -4,45 +4,18 @@ import Sidebar from "@/components/sidebar/sideBar";
 import styles from "./dashboard.module.scss"; // CSS module
 import ProfileCard from "@/components/profilecard/profileCard";
 import { apibaseUrl } from "@/utils/utils";
-import TeacherDetail from "@/components/teacherdetail/teacherDetail";
+import TeacherDetail from "@/components/teacher/teacherDetail";
 import DoughnutChart from "@/components/chart/doughnut-chart/doughnut-chart";
 import ClassWiseBarChart from "../chart/barChart/barChart";
 import UpcomingEvents from "../event/upcomingEvent";
 import { Container } from "@mui/material";
 
 export default function SchoolDashboard() {
-  const { user } = useAuth();
-  console.log("User in dashboard:", user);
+  const { user } = useAuth(); 
 
   const totoalStudents = user?.students?.length || "--";
   const totalTeachers = user?.teachers?.length || "--";
 
-  const handleEdit = async (id, cardType) => {
-    const schoolId = user?.schoolId;
-
-    console.log(`Edit ${cardType} with ID:`, id);
-
-    try {
-      let response =
-        cardType === "teacherCard"
-          ? await fetch(
-              `${apibaseUrl}teacher/allteachers/${schoolId}?employeeId=${id}`
-            )
-          : await fetch(
-              `${apibaseUrl}students/allstudents/${schoolId}?studentId=${id}`
-            );
-      const userData = await response.json();
-      console.log("Fetched student data:", userData);
-
-      // Now you can proceed to open edit modal or whatever next
-    } catch (error) {
-      console.error("Error fetching student data:", error);
-    }
-  };
-
-  const handleDelete = (id, cardType) => {
-    console.log(`Delete ${cardType} with ID:`, id);
-  };
 
   const events = [
     {
@@ -116,8 +89,7 @@ export default function SchoolDashboard() {
               <div className={styles.eventContainer}>
                 <UpcomingEvents events={events} />
               </div>
-              <div
-                className={styles.doughnutConatiner}>
+              <div className={styles.doughnutConatiner}>
                 <DoughnutChart data={user} />
               </div>
             </div>

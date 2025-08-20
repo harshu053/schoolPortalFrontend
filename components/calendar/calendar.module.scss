@@ -1,0 +1,67 @@
+.container {
+  padding: 2rem;
+}
+
+.heading{
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.day {
+  background: #f3f4f6;
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.day:hover {
+  background: #e0e7ff;
+}
+
+.today {
+  background: #6366f1;
+  color: #fff;
+}
+
+.eventSection {
+  margin-top: 2rem;
+}
+
+.eventSection h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.eventSection ul {
+  list-style: none;
+  padding: 0;
+}
+
+.eventSection li {
+  background: #e0e7ff;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.eventSection button {
+  margin-top: 1rem;
+  padding: 0.5rem 1.2rem;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.eventSection button:hover {
+  background: #4338ca;
+}
