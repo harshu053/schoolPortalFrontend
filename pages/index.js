@@ -83,7 +83,7 @@ export default function Home() {
             <h2 className={styles.cardTitle}>Already Registered?</h2>
             <p className={styles.cardDescription}>
               Sign in to access your school's dashboard and manage your
-              institution.
+              institution data.
             </p>
             <Link href="/login">
               <button className={`${styles.button} ${styles.secondaryButton}`}>
