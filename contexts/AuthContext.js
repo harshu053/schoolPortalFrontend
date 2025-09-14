@@ -28,7 +28,7 @@ export function AuthProvider({ children }) {
                 return;
             }
             try {
-                const response = await fetch('http://localhost:5000/api/auth/validate/profile', {
+                const response = await fetch(`${apibaseUrl}auth/validate/profile`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
