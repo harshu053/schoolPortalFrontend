@@ -1,0 +1,103 @@
+.nav {
+    background-color: var(--color-primary-50);
+    color: white;
+    padding: 1rem;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.backIcon{
+    background-color: transparent;
+    svg{
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+         fill: white;
+    }
+}
+
+.navLinks {
+    display: flex;
+    gap: 1rem;
+}
+
+.navLink {
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s;  
+}
+
+.navLink:hover {
+    color: #d1d5db;
+}
+
+.actionsContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.settings{
+    border: 1px solid var(--color-primary-20);
+    padding: 0.35rem 0.5rem;
+    border-radius: var(--radius-pill);
+    svg{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  margin-left: auto; // pushes both dropdown + logout to right
+  gap: 1rem;
+}
+
+ 
+
+.dropDownContainer{
+    width: 110px;
+    margin-left: auto;
+    label{
+        font-size: 0.7rem;
+        color: white;
+    }
+    _inputContainer{
+        height: 25px;
+    }
+}
+
+ 
+
+.logoutButton {
+    // background-color: #dc2626;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+    background-color: transparent;
+    // background-color: var(--color-primary-40);
+    border: 1px solid var(--color-primary-30);
+    svg{
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+        color: white;
+        fill: white;
+    }
+}
+ 
+
+.logoutButton:hover {
+    background-color: var(--color-primary-40);
+    border-color: black;
+    svg{
+        color:  black;
+    }
+}

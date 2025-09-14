@@ -1,0 +1,2791 @@
+/**
+ * Do not edit directly
+ * Generated on Tue, 08 Mar 2022 10:45:36 GMT
+ */
+
+ $color-palette-crimson-midnight-bold-20: rgba(
+    249,
+    139,
+    161,
+    0.2
+  ) !default; // Backgrounds
+  $color-palette-crimson-midnight-bold-30: rgba(249, 139, 161, 0.4) !default; // -
+  $color-palette-crimson-midnight-bold-40: rgba(249, 139, 161, 0.6) !default; // -
+  $color-palette-crimson-midnight-bold-50: #f98ba1 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-crimson-midnight-bold-60: #fbb7c0 !default; // -
+  $color-palette-crimson-midnight-bold-70: #fdd2d8 !default; // -
+  $color-palette-crimson-midnight-bold-80: #feecef !default; // -
+  $color-palette-crimson-midnight-bold-inverse: #38000c !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-crimson-midnight-bold-background: #700017 !default; // Page background. Component background: Card, Modal.
+  $color-palette-crimson-midnight-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-crimson-midnight-bold-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-crimson-midnight-bold-grey-60: rgba(
+    255,
+    255,
+    255,
+    0.53
+  ) !default; // -
+  $color-palette-crimson-midnight-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-crimson-midnight-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-crimson-midnight-dark-20: #3a0611 !default; // Backgrounds
+  $color-palette-crimson-midnight-dark-30: #600a1c !default; // -
+  $color-palette-crimson-midnight-dark-40: #870f28 !default; // -
+  $color-palette-crimson-midnight-dark-50: #c11539 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-crimson-midnight-dark-60: #d45b74 !default; // -
+  $color-palette-crimson-midnight-dark-70: #e396a6 !default; // -
+  $color-palette-crimson-midnight-dark-80: #f3d0d7 !default; // -
+  $color-palette-crimson-midnight-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-crimson-midnight-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-crimson-midnight-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-crimson-midnight-dark-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-crimson-midnight-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-crimson-midnight-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-crimson-midnight-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-crimson-midnight-light-20: #f7e5e9 !default; // Backgrounds
+  $color-palette-crimson-midnight-light-30: #f98ba1 !default; // -
+  $color-palette-crimson-midnight-light-40: #aa0023 !default; // -
+  $color-palette-crimson-midnight-light-50: #700017 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-crimson-midnight-light-60: #4e0010 !default; // -
+  $color-palette-crimson-midnight-light-70: #38000c !default; // -
+  $color-palette-crimson-midnight-light-80: #220007 !default; // -
+  $color-palette-crimson-midnight-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-crimson-midnight-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-crimson-midnight-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-crimson-midnight-light-grey-80: rgba(
+    0,
+    0,
+    0,
+    0.65
+  ) !default; // Text
+  $color-palette-crimson-midnight-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-crimson-midnight-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-crimson-midnight-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-crimson-bold-20: rgba(
+    249,
+    139,
+    161,
+    0.2
+  ) !default; // Backgrounds
+  $color-palette-crimson-bold-30: rgba(249, 139, 161, 0.4) !default; // -
+  $color-palette-crimson-bold-40: rgba(249, 139, 161, 0.6) !default; // -
+  $color-palette-crimson-bold-50: #f98ba1 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-crimson-bold-60: #fbc0cb !default; // -
+  $color-palette-crimson-bold-70: #fddae1 !default; // -
+  $color-palette-crimson-bold-80: #feedf0 !default; // -
+  $color-palette-crimson-bold-inverse: #4d0010 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-crimson-bold-background: #aa0023 !default; // Page background. Component background: Card, Modal.
+  $color-palette-crimson-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-crimson-bold-grey-80: rgba(255, 255, 255, 0.78) !default; // Text
+  $color-palette-crimson-bold-grey-60: rgba(255, 255, 255, 0.53) !default; // -
+  $color-palette-crimson-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-crimson-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-crimson-dark-20: #3a0611 !default; // Backgrounds
+  $color-palette-crimson-dark-30: #600a1c !default; // -
+  $color-palette-crimson-dark-40: #870f28 !default; // -
+  $color-palette-crimson-dark-50: #c11539 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-crimson-dark-60: #d45b74 !default; // -
+  $color-palette-crimson-dark-70: #e396a6 !default; // -
+  $color-palette-crimson-dark-80: #f3d0d7 !default; // -
+  $color-palette-crimson-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-crimson-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-crimson-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-crimson-dark-grey-80: rgba(255, 255, 255, 0.78) !default; // Text
+  $color-palette-crimson-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-crimson-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-crimson-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-crimson-light-20: #f7e5e9 !default; // Backgrounds
+  $color-palette-crimson-light-30: #f98ba1 !default; // -
+  $color-palette-crimson-light-40: #ed617f !default; // -
+  $color-palette-crimson-light-50: #aa0023 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-crimson-light-60: #700017 !default; // -
+  $color-palette-crimson-light-70: #4d0010 !default; // -
+  $color-palette-crimson-light-80: #2a0009 !default; // -
+  $color-palette-crimson-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-crimson-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-crimson-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-crimson-light-grey-80: rgba(0, 0, 0, 0.65) !default; // Text
+  $color-palette-crimson-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-crimson-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-crimson-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-green-midnight-bold-20: rgba(
+    148,
+    246,
+    197,
+    0.2
+  ) !default; // Backgrounds
+  $color-palette-green-midnight-bold-30: rgba(148, 246, 197, 0.4) !default; // -
+  $color-palette-green-midnight-bold-40: rgba(148, 246, 197, 0.6) !default; // -
+  $color-palette-green-midnight-bold-50: #94f6c5 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-green-midnight-bold-60: #c5fadf !default; // -
+  $color-palette-green-midnight-bold-70: #dcfceb !default; // -
+  $color-palette-green-midnight-bold-80: #f3fef8 !default; // -
+  $color-palette-green-midnight-bold-inverse: #013a1e !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-green-midnight-bold-background: #03753c !default; // Page background. Component background: Card, Modal.
+  $color-palette-green-midnight-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-green-midnight-bold-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.83
+  ) !default; // Text
+  $color-palette-green-midnight-bold-grey-60: rgba(
+    255,
+    255,
+    255,
+    0.53
+  ) !default; // -
+  $color-palette-green-midnight-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-green-midnight-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-green-midnight-dark-20: #06371f !default; // Backgrounds
+  $color-palette-green-midnight-dark-30: #0a5c33 !default; // -
+  $color-palette-green-midnight-dark-40: #0e8147 !default; // -
+  $color-palette-green-midnight-dark-50: #14b866 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-green-midnight-dark-60: #5acd94 !default; // -
+  $color-palette-green-midnight-dark-70: #95dfba !default; // -
+  $color-palette-green-midnight-dark-80: #d0f1e0 !default; // -
+  $color-palette-green-midnight-dark-inverse: #06371f !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-green-midnight-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-green-midnight-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-green-midnight-dark-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-green-midnight-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-green-midnight-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-green-midnight-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-green-midnight-light-20: #e5f7ee !default; // Backgrounds
+  $color-palette-green-midnight-light-30: #94f6c5 !default; // -
+  $color-palette-green-midnight-light-40: #00b259 !default; // -
+  $color-palette-green-midnight-light-50: #03753c !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-green-midnight-light-60: #02522a !default; // -
+  $color-palette-green-midnight-light-70: #013a1e !default; // -
+  $color-palette-green-midnight-light-80: #012312 !default; // -
+  $color-palette-green-midnight-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-green-midnight-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-green-midnight-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-green-midnight-light-grey-80: rgba(
+    0,
+    0,
+    0,
+    0.65
+  ) !default; // Text
+  $color-palette-green-midnight-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-green-midnight-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-green-midnight-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-green-bold-20: rgba(0, 80, 40, 0.2) !default; // Backgrounds
+  $color-palette-green-bold-30: rgba(0, 80, 40, 0.4) !default; // -
+  $color-palette-green-bold-40: rgba(0, 80, 40, 0.6) !default; // -
+  $color-palette-green-bold-50: #005028 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-green-bold-60: #003b1d !default; // -
+  $color-palette-green-bold-70: #002613 !default; // -
+  $color-palette-green-bold-80: #00170c !default; // -
+  $color-palette-green-bold-inverse: #e5f7ee !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-green-bold-background: #00b259 !default; // Page background. Component background: Card, Modal.
+  $color-palette-green-bold-grey-100: #002d16 !default; // Headings and text
+  $color-palette-green-bold-grey-80: rgba(0, 45, 22, 0.89) !default; // Text
+  $color-palette-green-bold-grey-60: rgba(0, 45, 22, 0.53) !default; // -
+  $color-palette-green-bold-grey-40: rgba(
+    0,
+    45,
+    22,
+    0.3
+  ) !default; // Borders: Table; Divider
+  $color-palette-green-bold-grey-20: rgba(
+    0,
+    45,
+    22,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-green-dark-20: #06371f !default; // Backgrounds
+  $color-palette-green-dark-30: #0a5c33 !default; // -
+  $color-palette-green-dark-40: #0e8147 !default; // -
+  $color-palette-green-dark-50: #14b866 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-green-dark-60: #5acd94 !default; // -
+  $color-palette-green-dark-70: #95dfba !default; // -
+  $color-palette-green-dark-80: #d0f1e0 !default; // -
+  $color-palette-green-dark-inverse: #06371f !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-green-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-green-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-green-dark-grey-80: rgba(255, 255, 255, 0.78) !default; // Text
+  $color-palette-green-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-green-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-green-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-green-light-20: #e5f7ee !default; // Backgrounds
+  $color-palette-green-light-30: #94f6c5 !default; // -
+  $color-palette-green-light-40: #10d974 !default; // -
+  $color-palette-green-light-50: #00b259 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-green-light-60: #03753c !default; // -
+  $color-palette-green-light-70: #005028 !default; // -
+  $color-palette-green-light-80: #002d16 !default; // -
+  $color-palette-green-light-inverse: #002d16 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-green-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-green-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-green-light-grey-80: rgba(0, 0, 0, 0.65) !default; // Text
+  $color-palette-green-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-green-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-green-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-marigold-midnight-bold-20: rgba(
+    255,
+    227,
+    174,
+    0.2
+  ) !default; // Backgrounds
+  $color-palette-marigold-midnight-bold-30: rgba(
+    255,
+    227,
+    174,
+    0.4
+  ) !default; // -
+  $color-palette-marigold-midnight-bold-40: rgba(
+    255,
+    227,
+    174,
+    0.6
+  ) !default; // -
+  $color-palette-marigold-midnight-bold-50: #ffe3ae !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-marigold-midnight-bold-60: #ffffff !default; // -
+  $color-palette-marigold-midnight-bold-70: #ffffff !default; // -
+  $color-palette-marigold-midnight-bold-80: #ffffff !default; // -
+  $color-palette-marigold-midnight-bold-inverse: #401d0c !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-marigold-midnight-bold-background: #ac660c !default; // Page background. Component background: Card, Modal.
+  $color-palette-marigold-midnight-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-marigold-midnight-bold-grey-80: #ffffff !default; // Text
+  $color-palette-marigold-midnight-bold-grey-60: rgba(
+    255,
+    255,
+    255,
+    0.53
+  ) !default; // -
+  $color-palette-marigold-midnight-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-marigold-midnight-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-marigold-midnight-dark-20: #3c2e16 !default; // Backgrounds
+  $color-palette-marigold-midnight-dark-30: #675228 !default; // -
+  $color-palette-marigold-midnight-dark-40: #8d713a !default; // -
+  $color-palette-marigold-midnight-dark-50: #f9be53 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-marigold-midnight-dark-60: #fbd187 !default; // -
+  $color-palette-marigold-midnight-dark-70: #fce2b2 !default; // -
+  $color-palette-marigold-midnight-dark-80: #fef2dd !default; // -
+  $color-palette-marigold-midnight-dark-inverse: #3c2e16 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-marigold-midnight-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-marigold-midnight-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-marigold-midnight-dark-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-marigold-midnight-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-marigold-midnight-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-marigold-midnight-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-marigold-midnight-light-20: #fef7e9 !default; // Backgrounds
+  $color-palette-marigold-midnight-light-30: #ffe3ae !default; // -
+  $color-palette-marigold-midnight-light-40: #ffd947 !default; // -
+  $color-palette-marigold-midnight-light-50: #ac660c !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-marigold-midnight-light-60: #7f4b10 !default; // -
+  $color-palette-marigold-midnight-light-70: #401d0c !default; // -
+  $color-palette-marigold-midnight-light-80: #341709 !default; // -
+  $color-palette-marigold-midnight-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-marigold-midnight-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-marigold-midnight-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-marigold-midnight-light-grey-80: rgba(
+    0,
+    0,
+    0,
+    0.65
+  ) !default; // Text
+  $color-palette-marigold-midnight-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-marigold-midnight-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-marigold-midnight-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-marigold-bold-20: rgba(146, 85, 27, 0.2) !default; // Backgrounds
+  $color-palette-marigold-bold-30: rgba(146, 85, 27, 0.4) !default; // -
+  $color-palette-marigold-bold-40: rgba(146, 85, 27, 0.6) !default; // -
+  $color-palette-marigold-bold-50: #8a3200 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-marigold-bold-60: #5e2200 !default; // -
+  $color-palette-marigold-bold-70: #3d1600 !default; // -
+  $color-palette-marigold-bold-80: #2e1100 !default; // -
+  $color-palette-marigold-bold-inverse: #fef7e9 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-marigold-bold-background: #f7ab20 !default; // Page background. Component background: Card, Modal.
+  $color-palette-marigold-bold-grey-100: #401d0c !default; // Headings and text
+  $color-palette-marigold-bold-grey-80: rgba(64, 29, 12, 0.78) !default; // Text
+  $color-palette-marigold-bold-grey-60: rgba(64, 29, 12, 0.53) !default; // -
+  $color-palette-marigold-bold-grey-40: rgba(
+    64,
+    29,
+    12,
+    0.3
+  ) !default; // Borders: Table; Divider
+  $color-palette-marigold-bold-grey-20: rgba(
+    64,
+    29,
+    12,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-marigold-dark-20: #3c2e16 !default; // Backgrounds
+  $color-palette-marigold-dark-30: #675228 !default; // -
+  $color-palette-marigold-dark-40: #8d713a !default; // -
+  $color-palette-marigold-dark-50: #f9be53 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-marigold-dark-60: #fbd187 !default; // -
+  $color-palette-marigold-dark-70: #fce2b2 !default; // -
+  $color-palette-marigold-dark-80: #fef2dd !default; // -
+  $color-palette-marigold-dark-inverse: #3c2e16 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-marigold-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-marigold-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-marigold-dark-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-marigold-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-marigold-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-marigold-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-marigold-light-20: #fef7e9 !default; // Backgrounds
+  $color-palette-marigold-light-30: #ffe3ae !default; // -
+  $color-palette-marigold-light-40: #ffd947 !default; // -
+  $color-palette-marigold-light-50: #f7ab20 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-marigold-light-60: #ac660c !default; // -
+  $color-palette-marigold-light-70: #7f4b10 !default; // -
+  $color-palette-marigold-light-80: #401d0c !default; // -
+  $color-palette-marigold-light-inverse: #401d0c !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-marigold-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-marigold-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-marigold-light-grey-80: rgba(0, 0, 0, 0.65) !default; // Text
+  $color-palette-marigold-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-marigold-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-marigold-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-mint-midnight-bold-20: rgba(
+    167,
+    246,
+    233,
+    0.2
+  ) !default; // Backgrounds
+  $color-palette-mint-midnight-bold-30: rgba(167, 246, 233, 0.4) !default; // -
+  $color-palette-mint-midnight-bold-40: rgba(167, 246, 233, 0.6) !default; // -
+  $color-palette-mint-midnight-bold-50: #a7f6e9 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-mint-midnight-bold-60: #c9f9f1 !default; // -
+  $color-palette-mint-midnight-bold-70: #e0fcf7 !default; // -
+  $color-palette-mint-midnight-bold-80: #f3fefc !default; // -
+  $color-palette-mint-midnight-bold-inverse: #0f3e3a !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-mint-midnight-bold-background: #1e7b74 !default; // Page background. Component background: Card, Modal.
+  $color-palette-mint-midnight-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-mint-midnight-bold-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.91
+  ) !default; // Text
+  $color-palette-mint-midnight-bold-grey-60: rgba(
+    255,
+    255,
+    255,
+    0.53
+  ) !default; // -
+  $color-palette-mint-midnight-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-mint-midnight-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-mint-midnight-dark-20: #1a413b !default; // Backgrounds
+  $color-palette-mint-midnight-dark-30: #245a51 !default; // -
+  $color-palette-mint-midnight-dark-40: #348376 !default; // -
+  $color-palette-mint-midnight-dark-50: #58dac5 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-mint-midnight-dark-60: #8ae5d6 !default; // -
+  $color-palette-mint-midnight-dark-70: #b4eee5 !default; // -
+  $color-palette-mint-midnight-dark-80: #def8f3 !default; // -
+  $color-palette-mint-midnight-dark-inverse: #1a413b !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-mint-midnight-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-mint-midnight-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-mint-midnight-dark-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-mint-midnight-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-mint-midnight-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-mint-midnight-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-mint-midnight-light-20: #e8faf7 !default; // Backgrounds
+  $color-palette-mint-midnight-light-30: #a7f6e9 !default; // -
+  $color-palette-mint-midnight-light-40: #1eccb0 !default; // -
+  $color-palette-mint-midnight-light-50: #1e7b74 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-mint-midnight-light-60: #155651 !default; // -
+  $color-palette-mint-midnight-light-70: #0f3e3a !default; // -
+  $color-palette-mint-midnight-light-80: #092523 !default; // -
+  $color-palette-mint-midnight-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-mint-midnight-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-mint-midnight-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-mint-midnight-light-grey-80: rgba(
+    0,
+    0,
+    0,
+    0.65
+  ) !default; // Text
+  $color-palette-mint-midnight-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-mint-midnight-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-mint-midnight-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-mint-bold-20: rgba(14, 92, 79, 0.2) !default; // Backgrounds
+  $color-palette-mint-bold-30: rgba(14, 92, 79, 0.4) !default; // -
+  $color-palette-mint-bold-40: rgba(14, 92, 79, 0.6) !default; // -
+  $color-palette-mint-bold-50: #0e5c4f !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-mint-bold-60: #0a493f !default; // -
+  $color-palette-mint-bold-70: #07362e !default; // -
+  $color-palette-mint-bold-80: #052923 !default; // -
+  $color-palette-mint-bold-inverse: #e8faf7 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-mint-bold-background: #1eccb0 !default; // Page background. Component background: Card, Modal.
+  $color-palette-mint-bold-grey-100: #08332c !default; // Headings and text
+  $color-palette-mint-bold-grey-80: rgba(8, 51, 44, 0.81) !default; // Text
+  $color-palette-mint-bold-grey-60: rgba(8, 51, 44, 0.53) !default; // -
+  $color-palette-mint-bold-grey-40: rgba(
+    8,
+    51,
+    44,
+    0.3
+  ) !default; // Borders: Table; Divider
+  $color-palette-mint-bold-grey-20: rgba(
+    8,
+    51,
+    44,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-mint-dark-20: #1a413b !default; // Backgrounds
+  $color-palette-mint-dark-30: #245a51 !default; // -
+  $color-palette-mint-dark-40: #348376 !default; // -
+  $color-palette-mint-dark-50: #58dac5 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-mint-dark-60: #8ae5d6 !default; // -
+  $color-palette-mint-dark-70: #b4eee5 !default; // -
+  $color-palette-mint-dark-80: #def8f3 !default; // -
+  $color-palette-mint-dark-inverse: #1a413b !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-mint-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-mint-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-mint-dark-grey-80: rgba(255, 255, 255, 0.78) !default; // Text
+  $color-palette-mint-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-mint-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-mint-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-mint-light-20: #e8faf7 !default; // Backgrounds
+  $color-palette-mint-light-30: #a7f6e9 !default; // -
+  $color-palette-mint-light-40: #7aebd9 !default; // -
+  $color-palette-mint-light-50: #1eccb0 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-mint-light-60: #1e7b74 !default; // -
+  $color-palette-mint-light-70: #0e5c4f !default; // -
+  $color-palette-mint-light-80: #08332c !default; // -
+  $color-palette-mint-light-inverse: #08332c !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-mint-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-mint-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-mint-light-grey-80: rgba(0, 0, 0, 0.65) !default; // Text
+  $color-palette-mint-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-mint-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-mint-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-navi-midnight-bold-20: rgba(
+    153,
+    153,
+    255,
+    0.2
+  ) !default; // Backgrounds
+  $color-palette-navi-midnight-bold-30: rgba(153, 153, 255, 0.4) !default; // -
+  $color-palette-navi-midnight-bold-40: rgba(153, 153, 255, 0.6) !default; // -
+  $color-palette-navi-midnight-bold-50: #9999ff !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-navi-midnight-bold-60: #b9b9ff !default; // -
+  $color-palette-navi-midnight-bold-70: #ddddff !default; // -
+  $color-palette-navi-midnight-bold-80: #ffffff !default; // -
+  $color-palette-navi-midnight-bold-inverse: #00004a !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-navi-midnight-bold-background: #000093 !default; // Page background. Component background: Card, Modal.
+  $color-palette-navi-midnight-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-navi-midnight-bold-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-navi-midnight-bold-grey-60: rgba(
+    255,
+    255,
+    255,
+    0.53
+  ) !default; // -
+  $color-palette-navi-midnight-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-navi-midnight-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-navi-midnight-dark-20: #16164b !default; // Backgrounds
+  $color-palette-navi-midnight-dark-30: #24247d !default; // -
+  $color-palette-navi-midnight-dark-40: #3232ae !default; // -
+  $color-palette-navi-midnight-dark-50: #4848f9 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-navi-midnight-dark-60: #7f7ffb !default; // -
+  $color-palette-navi-midnight-dark-70: #adadfc !default; // -
+  $color-palette-navi-midnight-dark-80: #dadafe !default; // -
+  $color-palette-navi-midnight-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-navi-midnight-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-navi-midnight-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-navi-midnight-dark-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-navi-midnight-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-navi-midnight-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-navi-midnight-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-navi-midnight-light-20: #e8e8fc !default; // Backgrounds
+  $color-palette-navi-midnight-light-30: #9999ff !default; // -
+  $color-palette-navi-midnight-light-40: #3535f3 !default; // -
+  $color-palette-navi-midnight-light-50: #000093 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-navi-midnight-light-60: #000067 !default; // -
+  $color-palette-navi-midnight-light-70: #00004a !default; // -
+  $color-palette-navi-midnight-light-80: #00002c !default; // -
+  $color-palette-navi-midnight-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-navi-midnight-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-navi-midnight-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-navi-midnight-light-grey-80: rgba(
+    0,
+    0,
+    0,
+    0.65
+  ) !default; // Text
+  $color-palette-navi-midnight-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-navi-midnight-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-navi-midnight-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-navi-bold-20: rgba(153, 153, 255, 0.2) !default; // Backgrounds
+  $color-palette-navi-bold-30: rgba(153, 153, 255, 0.4) !default; // -
+  $color-palette-navi-bold-40: rgba(153, 153, 255, 0.6) !default; // -
+  $color-palette-navi-bold-50: #9999ff !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-navi-bold-60: #ceceff !default; // -
+  $color-palette-navi-bold-70: #ddddff !default; // -
+  $color-palette-navi-bold-80: #fafaff !default; // -
+  $color-palette-navi-bold-inverse: #00004c !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-navi-bold-background: #3535f3 !default; // Page background. Component background: Card, Modal.
+  $color-palette-navi-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-navi-bold-grey-80: rgba(255, 255, 255, 0.78) !default; // Text
+  $color-palette-navi-bold-grey-60: rgba(255, 255, 255, 0.53) !default; // -
+  $color-palette-navi-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-navi-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-navi-dark-20: #16164b !default; // Backgrounds
+  $color-palette-navi-dark-30: #24247d !default; // -
+  $color-palette-navi-dark-40: #3232ae !default; // -
+  $color-palette-navi-dark-50: #4848f9 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-navi-dark-60: #7f7ffb !default; // -
+  $color-palette-navi-dark-70: #adadfc !default; // -
+  $color-palette-navi-dark-80: #dadafe !default; // -
+  $color-palette-navi-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-navi-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-navi-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-navi-dark-grey-80: rgba(255, 255, 255, 0.78) !default; // Text
+  $color-palette-navi-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-navi-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-navi-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-navi-light-20: #e8e8fc !default; // Backgrounds
+  $color-palette-navi-light-30: #9999ff !default; // -
+  $color-palette-navi-light-40: #6464ff !default; // -
+  $color-palette-navi-light-50: #3535f3 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-navi-light-60: #000093 !default; // -
+  $color-palette-navi-light-70: #00004c !default; // -
+  $color-palette-navi-light-80: #010029 !default; // -
+  $color-palette-navi-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-navi-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-navi-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-navi-light-grey-80: rgba(0, 0, 0, 0.65) !default; // Text
+  $color-palette-navi-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-navi-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-navi-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-orange-midnight-bold-20: rgba(
+    255,
+    210,
+    173,
+    0.2
+  ) !default; // Backgrounds
+  $color-palette-orange-midnight-bold-30: rgba(255, 210, 173, 0.4) !default; // -
+  $color-palette-orange-midnight-bold-40: rgba(255, 210, 173, 0.6) !default; // -
+  $color-palette-orange-midnight-bold-50: #ffd2ad !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-orange-midnight-bold-60: #ffead9 !default; // -
+  $color-palette-orange-midnight-bold-70: #fff5ee !default; // -
+  $color-palette-orange-midnight-bold-80: #ffffff !default; // -
+  $color-palette-orange-midnight-bold-inverse: #661f00 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-orange-midnight-bold-background: #cd3d00 !default; // Page background. Component background: Card, Modal.
+  $color-palette-orange-midnight-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-orange-midnight-bold-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.99
+  ) !default; // Text
+  $color-palette-orange-midnight-bold-grey-60: rgba(
+    255,
+    255,
+    255,
+    0.53
+  ) !default; // -
+  $color-palette-orange-midnight-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-orange-midnight-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-orange-midnight-dark-20: #492b13 !default; // Backgrounds
+  $color-palette-orange-midnight-dark-30: #7a471f !default; // -
+  $color-palette-orange-midnight-dark-40: #ab642b !default; // -
+  $color-palette-orange-midnight-dark-50: #f48f3e !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-orange-midnight-dark-60: #f7b178 !default; // -
+  $color-palette-orange-midnight-dark-70: #facda8 !default; // -
+  $color-palette-orange-midnight-dark-80: #fde9d8 !default; // -
+  $color-palette-orange-midnight-dark-inverse: #492b13 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-orange-midnight-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-orange-midnight-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-orange-midnight-dark-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-orange-midnight-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-orange-midnight-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-orange-midnight-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-orange-midnight-light-20: #fef2e9 !default; // Backgrounds
+  $color-palette-orange-midnight-light-30: #ffd2ad !default; // -
+  $color-palette-orange-midnight-light-40: #fa7d19 !default; // -
+  $color-palette-orange-midnight-light-50: #cd3d00 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-orange-midnight-light-60: #902b00 !default; // -
+  $color-palette-orange-midnight-light-70: #661f00 !default; // -
+  $color-palette-orange-midnight-light-80: #3d1200 !default; // -
+  $color-palette-orange-midnight-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-orange-midnight-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-orange-midnight-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-orange-midnight-light-grey-80: rgba(
+    0,
+    0,
+    0,
+    0.65
+  ) !default; // Text
+  $color-palette-orange-midnight-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-orange-midnight-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-orange-midnight-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-orange-bold-20: rgba(123, 22, 4, 0.2) !default; // Backgrounds
+  $color-palette-orange-bold-30: rgba(123, 22, 4, 0.4) !default; // -
+  $color-palette-orange-bold-40: rgba(123, 22, 4, 0.6) !default; // -
+  $color-palette-orange-bold-50: #7b1604 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-orange-bold-60: #5c1700 !default; // -
+  $color-palette-orange-bold-70: #3d0f00 !default; // -
+  $color-palette-orange-bold-80: #2e0b00 !default; // -
+  $color-palette-orange-bold-inverse: #fef2e9 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-orange-bold-background: #fa7d19 !default; // Page background. Component background: Card, Modal.
+  $color-palette-orange-bold-grey-100: #46070b !default; // Headings and text
+  $color-palette-orange-bold-grey-80: rgba(70, 7, 11, 0.81) !default; // Text
+  $color-palette-orange-bold-grey-60: rgba(70, 7, 11, 0.53) !default; // -
+  $color-palette-orange-bold-grey-40: rgba(
+    70,
+    7,
+    11,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-orange-bold-grey-20: rgba(
+    70,
+    7,
+    11,
+    0.2
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-orange-dark-20: #492b13 !default; // Backgrounds
+  $color-palette-orange-dark-30: #7a471f !default; // -
+  $color-palette-orange-dark-40: #ab642b !default; // -
+  $color-palette-orange-dark-50: #f48f3e !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-orange-dark-60: #f7b178 !default; // -
+  $color-palette-orange-dark-70: #facda8 !default; // -
+  $color-palette-orange-dark-80: #fde9d8 !default; // -
+  $color-palette-orange-dark-inverse: #492b13 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-orange-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-orange-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-orange-dark-grey-80: rgba(255, 255, 255, 0.78) !default; // Text
+  $color-palette-orange-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-orange-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-orange-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-orange-light-20: #fef2e9 !default; // Backgrounds
+  $color-palette-orange-light-30: #ffd2ad !default; // -
+  $color-palette-orange-light-40: #ffaa66 !default; // -
+  $color-palette-orange-light-50: #fa7d19 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-orange-light-60: #cd3d00 !default; // -
+  $color-palette-orange-light-70: #7b1604 !default; // -
+  $color-palette-orange-light-80: #46070b !default; // -
+  $color-palette-orange-light-inverse: #46070b !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-orange-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-orange-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-orange-light-grey-80: rgba(0, 0, 0, 0.65) !default; // Text
+  $color-palette-orange-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-orange-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-orange-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-pink-midnight-bold-20: rgba(
+    255,
+    153,
+    219,
+    0.2
+  ) !default; // Backgrounds
+  $color-palette-pink-midnight-bold-30: rgba(255, 153, 219, 0.4) !default; // -
+  $color-palette-pink-midnight-bold-40: rgba(255, 153, 219, 0.6) !default; // -
+  $color-palette-pink-midnight-bold-50: #ff99db !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-pink-midnight-bold-60: #ffbfe9 !default; // -
+  $color-palette-pink-midnight-bold-70: #ffeaf8 !default; // -
+  $color-palette-pink-midnight-bold-80: #fff6fc !default; // -
+  $color-palette-pink-midnight-bold-inverse: #47002f !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-pink-midnight-bold-background: #8f005d !default; // Page background. Component background: Card, Modal.
+  $color-palette-pink-midnight-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-pink-midnight-bold-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-pink-midnight-bold-grey-60: rgba(
+    255,
+    255,
+    255,
+    0.53
+  ) !default; // -
+  $color-palette-pink-midnight-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-pink-midnight-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-pink-midnight-dark-20: #360023 !default; // Backgrounds
+  $color-palette-pink-midnight-dark-30: #62003f !default; // -
+  $color-palette-pink-midnight-dark-40: #8f005d !default; // -
+  $color-palette-pink-midnight-dark-50: #d9008d !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-pink-midnight-dark-60: #ff6dcc !default; // -
+  $color-palette-pink-midnight-dark-70: #ff99db !default; // -
+  $color-palette-pink-midnight-dark-80: #fbe5f4 !default; // -
+  $color-palette-pink-midnight-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-pink-midnight-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-pink-midnight-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-pink-midnight-dark-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-pink-midnight-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-pink-midnight-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-pink-midnight-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-pink-midnight-light-20: #fbe5f4 !default; // Backgrounds
+  $color-palette-pink-midnight-light-30: #ff99db !default; // -
+  $color-palette-pink-midnight-light-40: #d9008d !default; // -
+  $color-palette-pink-midnight-light-50: #8f005d !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-pink-midnight-light-60: #640041 !default; // -
+  $color-palette-pink-midnight-light-70: #47002f !default; // -
+  $color-palette-pink-midnight-light-80: #2b001c !default; // -
+  $color-palette-pink-midnight-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-pink-midnight-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-pink-midnight-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-pink-midnight-light-grey-80: rgba(
+    0,
+    0,
+    0,
+    0.65
+  ) !default; // Text
+  $color-palette-pink-midnight-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-pink-midnight-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-pink-midnight-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-pink-bold-20: rgba(255, 153, 219, 0.2) !default; // Backgrounds
+  $color-palette-pink-bold-30: rgba(255, 153, 219, 0.4) !default; // -
+  $color-palette-pink-bold-40: rgba(255, 153, 219, 0.6) !default; // -
+  $color-palette-pink-bold-50: #ff99db !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-pink-bold-60: #fff7fc !default; // -
+  $color-palette-pink-bold-70: #ffffff !default; // -
+  $color-palette-pink-bold-80: #ffffff !default; // -
+  $color-palette-pink-bold-inverse: #62003f !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-pink-bold-background: #d9008d !default; // Page background. Component background: Card, Modal.
+  $color-palette-pink-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-pink-bold-grey-80: rgba(255, 255, 255, 0.96) !default; // Text
+  $color-palette-pink-bold-grey-60: rgba(255, 255, 255, 0.53) !default; // -
+  $color-palette-pink-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-pink-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-pink-dark-20: #360023 !default; // Backgrounds
+  $color-palette-pink-dark-30: #62003f !default; // -
+  $color-palette-pink-dark-40: #8f005d !default; // -
+  $color-palette-pink-dark-50: #d9008d !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-pink-dark-60: #ff6dcc !default; // -
+  $color-palette-pink-dark-70: #ff99db !default; // -
+  $color-palette-pink-dark-80: #fbe5f4 !default; // -
+  $color-palette-pink-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-pink-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-pink-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-pink-dark-grey-80: rgba(255, 255, 255, 0.78) !default; // Text
+  $color-palette-pink-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-pink-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-pink-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-pink-light-20: #fbe5f4 !default; // Backgrounds
+  $color-palette-pink-light-30: #ff99db !default; // -
+  $color-palette-pink-light-40: #ff6dcc !default; // -
+  $color-palette-pink-light-50: #d9008d !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-pink-light-60: #8f005d !default; // -
+  $color-palette-pink-light-70: #62003f !default; // -
+  $color-palette-pink-light-80: #360023 !default; // -
+  $color-palette-pink-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-pink-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-pink-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-pink-light-grey-80: rgba(0, 0, 0, 0.65) !default; // Text
+  $color-palette-pink-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-pink-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-pink-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-purple-midnight-bold-20: rgba(
+    203,
+    162,
+    250,
+    0.2
+  ) !default; // Backgrounds
+  $color-palette-purple-midnight-bold-30: rgba(203, 162, 250, 0.4) !default; // -
+  $color-palette-purple-midnight-bold-40: rgba(203, 162, 250, 0.6) !default; // -
+  $color-palette-purple-midnight-bold-50: #cba2fa !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-purple-midnight-bold-60: #e4cffc !default; // -
+  $color-palette-purple-midnight-bold-70: #eee1fd !default; // -
+  $color-palette-purple-midnight-bold-80: #fbf9ff !default; // -
+  $color-palette-purple-midnight-bold-inverse: #1f0042 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-purple-midnight-bold-background: #3e0084 !default; // Page background. Component background: Card, Modal.
+  $color-palette-purple-midnight-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-purple-midnight-bold-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-purple-midnight-bold-grey-60: rgba(
+    255,
+    255,
+    255,
+    0.53
+  ) !default; // -
+  $color-palette-purple-midnight-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-purple-midnight-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-purple-midnight-dark-20: #281240 !default; // Backgrounds
+  $color-palette-purple-midnight-dark-30: #421f6b !default; // -
+  $color-palette-purple-midnight-dark-40: #5d2b96 !default; // -
+  $color-palette-purple-midnight-dark-50: #853dd6 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-purple-midnight-dark-60: #aa77e2 !default; // -
+  $color-palette-purple-midnight-dark-70: #c8a8ed !default; // -
+  $color-palette-purple-midnight-dark-80: #e7d8f7 !default; // -
+  $color-palette-purple-midnight-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-purple-midnight-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-purple-midnight-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-purple-midnight-dark-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-purple-midnight-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-purple-midnight-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-purple-midnight-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-purple-midnight-light-20: #f0e8fa !default; // Backgrounds
+  $color-palette-purple-midnight-light-30: #cba2fa !default; // -
+  $color-palette-purple-midnight-light-40: #6d17ce !default; // -
+  $color-palette-purple-midnight-light-50: #3e0084 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-purple-midnight-light-60: #2b005c !default; // -
+  $color-palette-purple-midnight-light-70: #1f0042 !default; // -
+  $color-palette-purple-midnight-light-80: #130028 !default; // -
+  $color-palette-purple-midnight-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-purple-midnight-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-purple-midnight-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-purple-midnight-light-grey-80: rgba(
+    0,
+    0,
+    0,
+    0.65
+  ) !default; // Text
+  $color-palette-purple-midnight-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-purple-midnight-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-purple-midnight-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-purple-bold-20: rgba(203, 162, 250, 0.2) !default; // Backgrounds
+  $color-palette-purple-bold-30: rgba(203, 162, 250, 0.4) !default; // -
+  $color-palette-purple-bold-40: rgba(203, 162, 250, 0.6) !default; // -
+  $color-palette-purple-bold-50: #cba2fa !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-purple-bold-60: #dbbefb !default; // -
+  $color-palette-purple-bold-70: #e4cffc !default; // -
+  $color-palette-purple-bold-80: #ecddfd !default; // -
+  $color-palette-purple-bold-inverse: #310a5d !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-purple-bold-background: #6d17ce !default; // Page background. Component background: Card, Modal.
+  $color-palette-purple-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-purple-bold-grey-80: rgba(255, 255, 255, 0.78) !default; // Text
+  $color-palette-purple-bold-grey-60: rgba(255, 255, 255, 0.53) !default; // -
+  $color-palette-purple-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-purple-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-purple-dark-20: #281240 !default; // Backgrounds
+  $color-palette-purple-dark-30: #421f6b !default; // -
+  $color-palette-purple-dark-40: #5d2b96 !default; // -
+  $color-palette-purple-dark-50: #853dd6 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-purple-dark-60: #aa77e2 !default; // -
+  $color-palette-purple-dark-70: #c8a8ed !default; // -
+  $color-palette-purple-dark-80: #e7d8f7 !default; // -
+  $color-palette-purple-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-purple-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-purple-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-purple-dark-grey-80: rgba(255, 255, 255, 0.78) !default; // Text
+  $color-palette-purple-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-purple-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-purple-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-purple-light-20: #f0e8fa !default; // Backgrounds
+  $color-palette-purple-light-30: #cba2fa !default; // -
+  $color-palette-purple-light-40: #a680ff !default; // -
+  $color-palette-purple-light-50: #6d17ce !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-purple-light-60: #3e0084 !default; // -
+  $color-palette-purple-light-70: #310a5d !default; // -
+  $color-palette-purple-light-80: #1b0633 !default; // -
+  $color-palette-purple-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-purple-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-purple-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-purple-light-grey-80: rgba(0, 0, 0, 0.65) !default; // Text
+  $color-palette-purple-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-purple-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-purple-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-red-midnight-bold-20: rgba(
+    255,
+    157,
+    163,
+    0.2
+  ) !default; // Backgrounds
+  $color-palette-red-midnight-bold-30: rgba(255, 157, 163, 0.4) !default; // -
+  $color-palette-red-midnight-bold-40: rgba(255, 157, 163, 0.6) !default; // -
+  $color-palette-red-midnight-bold-50: #ff9da3 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-red-midnight-bold-60: #ffccd1 !default; // -
+  $color-palette-red-midnight-bold-70: #ffe5e8 !default; // -
+  $color-palette-red-midnight-bold-80: #fff4f5 !default; // -
+  $color-palette-red-midnight-bold-inverse: #540000 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-red-midnight-bold-background: #a80000 !default; // Page background. Component background: Card, Modal.
+  $color-palette-red-midnight-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-red-midnight-bold-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-red-midnight-bold-grey-60: rgba(
+    255,
+    255,
+    255,
+    0.53
+  ) !default; // -
+  $color-palette-red-midnight-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-red-midnight-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-red-midnight-dark-20: #430c10 !default; // Backgrounds
+  $color-palette-red-midnight-dark-30: #70141a !default; // -
+  $color-palette-red-midnight-dark-40: #9d1d24 !default; // -
+  $color-palette-red-midnight-dark-50: #e02934 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-red-midnight-dark-60: #e96971 !default; // -
+  $color-palette-red-midnight-dark-70: #f19fa4 !default; // -
+  $color-palette-red-midnight-dark-80: #f9d4d6 !default; // -
+  $color-palette-red-midnight-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-red-midnight-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-red-midnight-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-red-midnight-dark-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-red-midnight-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-red-midnight-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-red-midnight-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-red-midnight-light-20: #fce6e7 !default; // Backgrounds
+  $color-palette-red-midnight-light-30: #ff9da3 !default; // -
+  $color-palette-red-midnight-light-40: #e30513 !default; // -
+  $color-palette-red-midnight-light-50: #a80000 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-red-midnight-light-60: #760000 !default; // -
+  $color-palette-red-midnight-light-70: #540000 !default; // -
+  $color-palette-red-midnight-light-80: #320000 !default; // -
+  $color-palette-red-midnight-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-red-midnight-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-red-midnight-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-red-midnight-light-grey-80: rgba(0, 0, 0, 0.65) !default; // Text
+  $color-palette-red-midnight-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-red-midnight-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-red-midnight-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-red-bold-20: rgba(255, 157, 163, 0.2) !default; // Backgrounds
+  $color-palette-red-bold-30: rgba(255, 157, 163, 0.4) !default; // -
+  $color-palette-red-bold-40: rgba(255, 157, 163, 0.6) !default; // -
+  $color-palette-red-bold-50: #ff9da3 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-red-bold-60: #fff6f7 !default; // -
+  $color-palette-red-bold-70: #ffffff !default; // -
+  $color-palette-red-bold-80: #ffffff !default; // -
+  $color-palette-red-bold-inverse: #660209 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-red-bold-background: #e30513 !default; // Page background. Component background: Card, Modal.
+  $color-palette-red-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-red-bold-grey-80: rgba(255, 255, 255, 0.96) !default; // Text
+  $color-palette-red-bold-grey-60: rgba(255, 255, 255, 0.53) !default; // -
+  $color-palette-red-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-red-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-red-dark-20: #430c10 !default; // Backgrounds
+  $color-palette-red-dark-30: #70141a !default; // -
+  $color-palette-red-dark-40: #9d1d24 !default; // -
+  $color-palette-red-dark-50: #e02934 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-red-dark-60: #e96971 !default; // -
+  $color-palette-red-dark-70: #f19fa4 !default; // -
+  $color-palette-red-dark-80: #f9d4d6 !default; // -
+  $color-palette-red-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-red-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-red-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-red-dark-grey-80: rgba(255, 255, 255, 0.78) !default; // Text
+  $color-palette-red-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-red-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-red-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-red-light-20: #fce6e7 !default; // Backgrounds
+  $color-palette-red-light-30: #ff9da3 !default; // -
+  $color-palette-red-light-40: #fc6770 !default; // -
+  $color-palette-red-light-50: #e30513 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-red-light-60: #a80000 !default; // -
+  $color-palette-red-light-70: #660209 !default; // -
+  $color-palette-red-light-80: #390105 !default; // -
+  $color-palette-red-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-red-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-red-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-red-light-grey-80: rgba(0, 0, 0, 0.65) !default; // Text
+  $color-palette-red-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-red-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-red-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-reliance-midnight-bold-20: rgba(
+    158,
+    181,
+    250,
+    0.2
+  ) !default; // Backgrounds
+  $color-palette-reliance-midnight-bold-30: rgba(
+    158,
+    181,
+    250,
+    0.4
+  ) !default; // -
+  $color-palette-reliance-midnight-bold-40: rgba(
+    158,
+    181,
+    250,
+    0.6
+  ) !default; // -
+  $color-palette-reliance-midnight-bold-50: #9eb5fa !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-reliance-midnight-bold-60: #c7d4fc !default; // -
+  $color-palette-reliance-midnight-bold-70: #dce4fd !default; // -
+  $color-palette-reliance-midnight-bold-80: #f3f5fe !default; // -
+  $color-palette-reliance-midnight-bold-inverse: #051442 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-reliance-midnight-bold-background: #0a2885 !default; // Page background. Component background: Card, Modal.
+  $color-palette-reliance-midnight-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-reliance-midnight-bold-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-reliance-midnight-bold-grey-60: rgba(
+    255,
+    255,
+    255,
+    0.53
+  ) !default; // -
+  $color-palette-reliance-midnight-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-reliance-midnight-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-reliance-midnight-dark-20: #051444 !default; // Backgrounds
+  $color-palette-reliance-midnight-dark-30: #092272 !default; // -
+  $color-palette-reliance-midnight-dark-40: #0c30a0 !default; // -
+  $color-palette-reliance-midnight-dark-50: #1144e4 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-reliance-midnight-dark-60: #587cec !default; // -
+  $color-palette-reliance-midnight-dark-70: #94abf3 !default; // -
+  $color-palette-reliance-midnight-dark-80: #cfdafa !default; // -
+  $color-palette-reliance-midnight-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-reliance-midnight-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-reliance-midnight-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-reliance-midnight-dark-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-reliance-midnight-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-reliance-midnight-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-reliance-midnight-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-reliance-midnight-light-20: #e7ebf8 !default; // Backgrounds
+  $color-palette-reliance-midnight-light-30: #9eb5fa !default; // -
+  $color-palette-reliance-midnight-light-40: #0f3cc9 !default; // -
+  $color-palette-reliance-midnight-light-50: #0a2885 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-reliance-midnight-light-60: #071c5d !default; // -
+  $color-palette-reliance-midnight-light-70: #051442 !default; // -
+  $color-palette-reliance-midnight-light-80: #030c28 !default; // -
+  $color-palette-reliance-midnight-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-reliance-midnight-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-reliance-midnight-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-reliance-midnight-light-grey-80: rgba(
+    0,
+    0,
+    0,
+    0.65
+  ) !default; // Text
+  $color-palette-reliance-midnight-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-reliance-midnight-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-reliance-midnight-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-reliance-bold-20: rgba(
+    158,
+    181,
+    250,
+    0.2
+  ) !default; // Backgrounds
+  $color-palette-reliance-bold-30: rgba(158, 181, 250, 0.4) !default; // -
+  $color-palette-reliance-bold-40: rgba(158, 181, 250, 0.6) !default; // -
+  $color-palette-reliance-bold-50: #9eb5fa !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-reliance-bold-60: #becefb !default; // -
+  $color-palette-reliance-bold-70: #d0dcfd !default; // -
+  $color-palette-reliance-bold-80: #e8eefe !default; // -
+  $color-palette-reliance-bold-inverse: #061951 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-reliance-bold-background: #0f3cc9 !default; // Page background. Component background: Card, Modal.
+  $color-palette-reliance-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-reliance-bold-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-reliance-bold-grey-60: rgba(255, 255, 255, 0.53) !default; // -
+  $color-palette-reliance-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-reliance-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-reliance-dark-20: #051444 !default; // Backgrounds
+  $color-palette-reliance-dark-30: #092272 !default; // -
+  $color-palette-reliance-dark-40: #0c30a0 !default; // -
+  $color-palette-reliance-dark-50: #1144e4 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-reliance-dark-60: #587cec !default; // -
+  $color-palette-reliance-dark-70: #94abf3 !default; // -
+  $color-palette-reliance-dark-80: #cfdafa !default; // -
+  $color-palette-reliance-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-reliance-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-reliance-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-reliance-dark-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-reliance-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-reliance-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-reliance-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-reliance-light-20: #e7ebf8 !default; // Backgrounds
+  $color-palette-reliance-light-30: #9eb5fa !default; // -
+  $color-palette-reliance-light-40: #6789f4 !default; // -
+  $color-palette-reliance-light-50: #0f3cc9 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-reliance-light-60: #0a2885 !default; // -
+  $color-palette-reliance-light-70: #061951 !default; // -
+  $color-palette-reliance-light-80: #070e21 !default; // -
+  $color-palette-reliance-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-reliance-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-reliance-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-reliance-light-grey-80: rgba(0, 0, 0, 0.65) !default; // Text
+  $color-palette-reliance-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-reliance-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-reliance-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-sky-midnight-bold-20: rgba(
+    137,
+    220,
+    255,
+    0.2
+  ) !default; // Backgrounds
+  $color-palette-sky-midnight-bold-30: rgba(137, 220, 255, 0.4) !default; // -
+  $color-palette-sky-midnight-bold-40: rgba(137, 220, 255, 0.6) !default; // -
+  $color-palette-sky-midnight-bold-50: #89dcff !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-sky-midnight-bold-60: #bceaff !default; // -
+  $color-palette-sky-midnight-bold-70: #d4f2ff !default; // -
+  $color-palette-sky-midnight-bold-80: #f2fbff !default; // -
+  $color-palette-sky-midnight-bold-inverse: #062939 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-sky-midnight-bold-background: #0c5273 !default; // Page background. Component background: Card, Modal.
+  $color-palette-sky-midnight-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-sky-midnight-bold-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-sky-midnight-bold-grey-60: rgba(
+    255,
+    255,
+    255,
+    0.53
+  ) !default; // -
+  $color-palette-sky-midnight-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-sky-midnight-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-sky-midnight-dark-20: #002b3d !default; // Backgrounds
+  $color-palette-sky-midnight-dark-30: #004766 !default; // -
+  $color-palette-sky-midnight-dark-40: #00638f !default; // -
+  $color-palette-sky-midnight-dark-50: #007fad !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-sky-midnight-dark-60: #4ca5c6 !default; // -
+  $color-palette-sky-midnight-dark-70: #8cc5da !default; // -
+  $color-palette-sky-midnight-dark-80: #cce5ef !default; // -
+  $color-palette-sky-midnight-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-sky-midnight-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-sky-midnight-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-sky-midnight-dark-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-sky-midnight-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-sky-midnight-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-sky-midnight-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-sky-midnight-light-20: #e5f1f7 !default; // Backgrounds
+  $color-palette-sky-midnight-light-30: #89dcff !default; // -
+  $color-palette-sky-midnight-light-40: #0078ad !default; // -
+  $color-palette-sky-midnight-light-50: #0c5273 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-sky-midnight-light-60: #083950 !default; // -
+  $color-palette-sky-midnight-light-70: #062939 !default; // -
+  $color-palette-sky-midnight-light-80: #041922 !default; // -
+  $color-palette-sky-midnight-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-sky-midnight-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-sky-midnight-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-sky-midnight-light-grey-80: rgba(0, 0, 0, 0.65) !default; // Text
+  $color-palette-sky-midnight-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-sky-midnight-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-sky-midnight-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-sky-bold-20: rgba(137, 220, 255, 0.2) !default; // Backgrounds
+  $color-palette-sky-bold-30: rgba(137, 220, 255, 0.4) !default; // -
+  $color-palette-sky-bold-40: rgba(137, 220, 255, 0.6) !default; // -
+  $color-palette-sky-bold-50: #89dcff !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-sky-bold-60: #eefaff !default; // -
+  $color-palette-sky-bold-70: #ffffff !default; // -
+  $color-palette-sky-bold-80: #ffffff !default; // -
+  $color-palette-sky-bold-inverse: #00364e !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-sky-bold-background: #0078ad !default; // Page background. Component background: Card, Modal.
+  $color-palette-sky-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-sky-bold-grey-80: rgba(255, 255, 255, 0.94) !default; // Text
+  $color-palette-sky-bold-grey-60: rgba(255, 255, 255, 0.53) !default; // -
+  $color-palette-sky-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-sky-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-sky-dark-20: #002b3d !default; // Backgrounds
+  $color-palette-sky-dark-30: #004766 !default; // -
+  $color-palette-sky-dark-40: #00638f !default; // -
+  $color-palette-sky-dark-50: #007fad !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-sky-dark-60: #4ca5c6 !default; // -
+  $color-palette-sky-dark-70: #8cc5da !default; // -
+  $color-palette-sky-dark-80: #cce5ef !default; // -
+  $color-palette-sky-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-sky-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-sky-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-sky-dark-grey-80: rgba(255, 255, 255, 0.78) !default; // Text
+  $color-palette-sky-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-sky-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-sky-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-sky-light-20: #e5f1f7 !default; // Backgrounds
+  $color-palette-sky-light-30: #89dcff !default; // -
+  $color-palette-sky-light-40: #67c3ef !default; // -
+  $color-palette-sky-light-50: #0078ad !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-sky-light-60: #0c5273 !default; // -
+  $color-palette-sky-light-70: #00364e !default; // -
+  $color-palette-sky-light-80: #001e2b !default; // -
+  $color-palette-sky-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-sky-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-sky-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-sky-light-grey-80: rgba(0, 0, 0, 0.65) !default; // Text
+  $color-palette-sky-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-sky-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-sky-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-violet-midnight-bold-20: rgba(
+    247,
+    168,
+    250,
+    0.2
+  ) !default; // Backgrounds
+  $color-palette-violet-midnight-bold-30: rgba(247, 168, 250, 0.4) !default; // -
+  $color-palette-violet-midnight-bold-40: rgba(247, 168, 250, 0.6) !default; // -
+  $color-palette-violet-midnight-bold-50: #f7a8fa !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-violet-midnight-bold-60: #fbd1fc !default; // -
+  $color-palette-violet-midnight-bold-70: #fbd3fc !default; // -
+  $color-palette-violet-midnight-bold-80: #fef3fe !default; // -
+  $color-palette-violet-midnight-bold-inverse: #3d0040 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-violet-midnight-bold-background: #79007f !default; // Page background. Component background: Card, Modal.
+  $color-palette-violet-midnight-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-violet-midnight-bold-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-violet-midnight-bold-grey-60: rgba(
+    255,
+    255,
+    255,
+    0.53
+  ) !default; // -
+  $color-palette-violet-midnight-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-violet-midnight-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-violet-midnight-dark-20: #300d31 !default; // Backgrounds
+  $color-palette-violet-midnight-dark-30: #571859 !default; // -
+  $color-palette-violet-midnight-dark-40: #79007f !default; // -
+  $color-palette-violet-midnight-dark-50: #c135c5 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-violet-midnight-dark-60: #f680f9 !default; // -
+  $color-palette-violet-midnight-dark-70: #f7a8fa !default; // -
+  $color-palette-violet-midnight-dark-80: #f9ebf9 !default; // -
+  $color-palette-violet-midnight-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-violet-midnight-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-violet-midnight-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-violet-midnight-dark-grey-80: rgba(
+    255,
+    255,
+    255,
+    0.78
+  ) !default; // Text
+  $color-palette-violet-midnight-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-violet-midnight-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-violet-midnight-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-violet-midnight-light-20: #f9ebf9 !default; // Backgrounds
+  $color-palette-violet-midnight-light-30: #f7a8fa !default; // -
+  $color-palette-violet-midnight-light-40: #c135c5 !default; // -
+  $color-palette-violet-midnight-light-50: #79007f !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-violet-midnight-light-60: #550059 !default; // -
+  $color-palette-violet-midnight-light-70: #3d0040 !default; // -
+  $color-palette-violet-midnight-light-80: #240026 !default; // -
+  $color-palette-violet-midnight-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-violet-midnight-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-violet-midnight-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-violet-midnight-light-grey-80: rgba(
+    0,
+    0,
+    0,
+    0.65
+  ) !default; // Text
+  $color-palette-violet-midnight-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-violet-midnight-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-violet-midnight-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-violet-bold-20: rgba(247, 168, 250, 0.2) !default; // Backgrounds
+  $color-palette-violet-bold-30: rgba(247, 168, 250, 0.4) !default; // -
+  $color-palette-violet-bold-40: rgba(247, 168, 250, 0.6) !default; // -
+  $color-palette-violet-bold-50: #f7a8fa !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-violet-bold-60: #fefdff !default; // -
+  $color-palette-violet-bold-70: #ffffff !default; // -
+  $color-palette-violet-bold-80: #ffffff !default; // -
+  $color-palette-violet-bold-inverse: #571859 !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-violet-bold-background: #c135c5 !default; // Page background. Component background: Card, Modal.
+  $color-palette-violet-bold-grey-100: #ffffff !default; // Headings and text
+  $color-palette-violet-bold-grey-80: rgba(255, 255, 255, 0.99) !default; // Text
+  $color-palette-violet-bold-grey-60: rgba(255, 255, 255, 0.53) !default; // -
+  $color-palette-violet-bold-grey-40: rgba(
+    255,
+    255,
+    255,
+    0.31
+  ) !default; // Borders: Table; Divider
+  $color-palette-violet-bold-grey-20: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-violet-dark-20: #300d31 !default; // Backgrounds
+  $color-palette-violet-dark-30: #571859 !default; // -
+  $color-palette-violet-dark-40: #79007f !default; // -
+  $color-palette-violet-dark-50: #c135c5 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-violet-dark-60: #f680f9 !default; // -
+  $color-palette-violet-dark-70: #f7a8fa !default; // -
+  $color-palette-violet-dark-80: #f9ebf9 !default; // -
+  $color-palette-violet-dark-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-violet-dark-background: #141414 !default; // Page background. Component background: Card, Modal.
+  $color-palette-violet-dark-grey-100: #ffffff !default; // Headings and text
+  $color-palette-violet-dark-grey-80: rgba(255, 255, 255, 0.78) !default; // Text
+  $color-palette-violet-dark-grey-60: #a1a1a1 !default; // -
+  $color-palette-violet-dark-grey-40: #5a5a5a !default; // Borders: Table; Divider
+  $color-palette-violet-dark-grey-20: #2b2b2b !default; // Backgrounds: Zebra stripes in tables
+  $color-palette-violet-light-20: #f9ebf9 !default; // Backgrounds
+  $color-palette-violet-light-30: #f7a8fa !default; // -
+  $color-palette-violet-light-40: #f680f9 !default; // -
+  $color-palette-violet-light-50: #c135c5 !default; // Core Colour.  Button/Primary background; Top Navigation
+  $color-palette-violet-light-60: #79007f !default; // -
+  $color-palette-violet-light-70: #571859 !default; // -
+  $color-palette-violet-light-80: #300d31 !default; // -
+  $color-palette-violet-light-inverse: #ffffff !default; // To be used on top of Primary-50 only. E.g. Button text, Toggle inner circle, Checkbox tick
+  $color-palette-violet-light-background: #ffffff !default; // Page background. Component background: Card, Modal.
+  $color-palette-violet-light-grey-100: #141414 !default; // Headings and text
+  $color-palette-violet-light-grey-80: rgba(0, 0, 0, 0.65) !default; // Text
+  $color-palette-violet-light-grey-60: #b5b5b5 !default; // -
+  $color-palette-violet-light-grey-40: #e0e0e0 !default; // Borders: Table; Divider
+  $color-palette-violet-light-grey-20: #f5f5f5 !default; // Backgrounds: Zebra stripes in tables
+  
+  $tokens-palettes: (
+    'color': (
+      'palette': (
+        'crimson-midnight': (
+          'bold': (
+            '20': $color-palette-crimson-midnight-bold-20,
+            '30': $color-palette-crimson-midnight-bold-30,
+            '40': $color-palette-crimson-midnight-bold-40,
+            '50': $color-palette-crimson-midnight-bold-50,
+            '60': $color-palette-crimson-midnight-bold-60,
+            '70': $color-palette-crimson-midnight-bold-70,
+            '80': $color-palette-crimson-midnight-bold-80,
+            'inverse': $color-palette-crimson-midnight-bold-inverse,
+            'background': $color-palette-crimson-midnight-bold-background,
+            'grey-100': $color-palette-crimson-midnight-bold-grey-100,
+            'grey-80': $color-palette-crimson-midnight-bold-grey-80,
+            'grey-60': $color-palette-crimson-midnight-bold-grey-60,
+            'grey-40': $color-palette-crimson-midnight-bold-grey-40,
+            'grey-20': $color-palette-crimson-midnight-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-crimson-midnight-dark-20,
+            '30': $color-palette-crimson-midnight-dark-30,
+            '40': $color-palette-crimson-midnight-dark-40,
+            '50': $color-palette-crimson-midnight-dark-50,
+            '60': $color-palette-crimson-midnight-dark-60,
+            '70': $color-palette-crimson-midnight-dark-70,
+            '80': $color-palette-crimson-midnight-dark-80,
+            'inverse': $color-palette-crimson-midnight-dark-inverse,
+            'background': $color-palette-crimson-midnight-dark-background,
+            'grey-100': $color-palette-crimson-midnight-dark-grey-100,
+            'grey-80': $color-palette-crimson-midnight-dark-grey-80,
+            'grey-60': $color-palette-crimson-midnight-dark-grey-60,
+            'grey-40': $color-palette-crimson-midnight-dark-grey-40,
+            'grey-20': $color-palette-crimson-midnight-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-crimson-midnight-light-20,
+            '30': $color-palette-crimson-midnight-light-30,
+            '40': $color-palette-crimson-midnight-light-40,
+            '50': $color-palette-crimson-midnight-light-50,
+            '60': $color-palette-crimson-midnight-light-60,
+            '70': $color-palette-crimson-midnight-light-70,
+            '80': $color-palette-crimson-midnight-light-80,
+            'inverse': $color-palette-crimson-midnight-light-inverse,
+            'background': $color-palette-crimson-midnight-light-background,
+            'grey-100': $color-palette-crimson-midnight-light-grey-100,
+            'grey-80': $color-palette-crimson-midnight-light-grey-80,
+            'grey-60': $color-palette-crimson-midnight-light-grey-60,
+            'grey-40': $color-palette-crimson-midnight-light-grey-40,
+            'grey-20': $color-palette-crimson-midnight-light-grey-20
+          )
+        ),
+        'crimson': (
+          'bold': (
+            '20': $color-palette-crimson-bold-20,
+            '30': $color-palette-crimson-bold-30,
+            '40': $color-palette-crimson-bold-40,
+            '50': $color-palette-crimson-bold-50,
+            '60': $color-palette-crimson-bold-60,
+            '70': $color-palette-crimson-bold-70,
+            '80': $color-palette-crimson-bold-80,
+            'inverse': $color-palette-crimson-bold-inverse,
+            'background': $color-palette-crimson-bold-background,
+            'grey-100': $color-palette-crimson-bold-grey-100,
+            'grey-80': $color-palette-crimson-bold-grey-80,
+            'grey-60': $color-palette-crimson-bold-grey-60,
+            'grey-40': $color-palette-crimson-bold-grey-40,
+            'grey-20': $color-palette-crimson-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-crimson-dark-20,
+            '30': $color-palette-crimson-dark-30,
+            '40': $color-palette-crimson-dark-40,
+            '50': $color-palette-crimson-dark-50,
+            '60': $color-palette-crimson-dark-60,
+            '70': $color-palette-crimson-dark-70,
+            '80': $color-palette-crimson-dark-80,
+            'inverse': $color-palette-crimson-dark-inverse,
+            'background': $color-palette-crimson-dark-background,
+            'grey-100': $color-palette-crimson-dark-grey-100,
+            'grey-80': $color-palette-crimson-dark-grey-80,
+            'grey-60': $color-palette-crimson-dark-grey-60,
+            'grey-40': $color-palette-crimson-dark-grey-40,
+            'grey-20': $color-palette-crimson-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-crimson-light-20,
+            '30': $color-palette-crimson-light-30,
+            '40': $color-palette-crimson-light-40,
+            '50': $color-palette-crimson-light-50,
+            '60': $color-palette-crimson-light-60,
+            '70': $color-palette-crimson-light-70,
+            '80': $color-palette-crimson-light-80,
+            'inverse': $color-palette-crimson-light-inverse,
+            'background': $color-palette-crimson-light-background,
+            'grey-100': $color-palette-crimson-light-grey-100,
+            'grey-80': $color-palette-crimson-light-grey-80,
+            'grey-60': $color-palette-crimson-light-grey-60,
+            'grey-40': $color-palette-crimson-light-grey-40,
+            'grey-20': $color-palette-crimson-light-grey-20
+          )
+        ),
+        'green-midnight': (
+          'bold': (
+            '20': $color-palette-green-midnight-bold-20,
+            '30': $color-palette-green-midnight-bold-30,
+            '40': $color-palette-green-midnight-bold-40,
+            '50': $color-palette-green-midnight-bold-50,
+            '60': $color-palette-green-midnight-bold-60,
+            '70': $color-palette-green-midnight-bold-70,
+            '80': $color-palette-green-midnight-bold-80,
+            'inverse': $color-palette-green-midnight-bold-inverse,
+            'background': $color-palette-green-midnight-bold-background,
+            'grey-100': $color-palette-green-midnight-bold-grey-100,
+            'grey-80': $color-palette-green-midnight-bold-grey-80,
+            'grey-60': $color-palette-green-midnight-bold-grey-60,
+            'grey-40': $color-palette-green-midnight-bold-grey-40,
+            'grey-20': $color-palette-green-midnight-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-green-midnight-dark-20,
+            '30': $color-palette-green-midnight-dark-30,
+            '40': $color-palette-green-midnight-dark-40,
+            '50': $color-palette-green-midnight-dark-50,
+            '60': $color-palette-green-midnight-dark-60,
+            '70': $color-palette-green-midnight-dark-70,
+            '80': $color-palette-green-midnight-dark-80,
+            'inverse': $color-palette-green-midnight-dark-inverse,
+            'background': $color-palette-green-midnight-dark-background,
+            'grey-100': $color-palette-green-midnight-dark-grey-100,
+            'grey-80': $color-palette-green-midnight-dark-grey-80,
+            'grey-60': $color-palette-green-midnight-dark-grey-60,
+            'grey-40': $color-palette-green-midnight-dark-grey-40,
+            'grey-20': $color-palette-green-midnight-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-green-midnight-light-20,
+            '30': $color-palette-green-midnight-light-30,
+            '40': $color-palette-green-midnight-light-40,
+            '50': $color-palette-green-midnight-light-50,
+            '60': $color-palette-green-midnight-light-60,
+            '70': $color-palette-green-midnight-light-70,
+            '80': $color-palette-green-midnight-light-80,
+            'inverse': $color-palette-green-midnight-light-inverse,
+            'background': $color-palette-green-midnight-light-background,
+            'grey-100': $color-palette-green-midnight-light-grey-100,
+            'grey-80': $color-palette-green-midnight-light-grey-80,
+            'grey-60': $color-palette-green-midnight-light-grey-60,
+            'grey-40': $color-palette-green-midnight-light-grey-40,
+            'grey-20': $color-palette-green-midnight-light-grey-20
+          )
+        ),
+        'green': (
+          'bold': (
+            '20': $color-palette-green-bold-20,
+            '30': $color-palette-green-bold-30,
+            '40': $color-palette-green-bold-40,
+            '50': $color-palette-green-bold-50,
+            '60': $color-palette-green-bold-60,
+            '70': $color-palette-green-bold-70,
+            '80': $color-palette-green-bold-80,
+            'inverse': $color-palette-green-bold-inverse,
+            'background': $color-palette-green-bold-background,
+            'grey-100': $color-palette-green-bold-grey-100,
+            'grey-80': $color-palette-green-bold-grey-80,
+            'grey-60': $color-palette-green-bold-grey-60,
+            'grey-40': $color-palette-green-bold-grey-40,
+            'grey-20': $color-palette-green-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-green-dark-20,
+            '30': $color-palette-green-dark-30,
+            '40': $color-palette-green-dark-40,
+            '50': $color-palette-green-dark-50,
+            '60': $color-palette-green-dark-60,
+            '70': $color-palette-green-dark-70,
+            '80': $color-palette-green-dark-80,
+            'inverse': $color-palette-green-dark-inverse,
+            'background': $color-palette-green-dark-background,
+            'grey-100': $color-palette-green-dark-grey-100,
+            'grey-80': $color-palette-green-dark-grey-80,
+            'grey-60': $color-palette-green-dark-grey-60,
+            'grey-40': $color-palette-green-dark-grey-40,
+            'grey-20': $color-palette-green-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-green-light-20,
+            '30': $color-palette-green-light-30,
+            '40': $color-palette-green-light-40,
+            '50': $color-palette-green-light-50,
+            '60': $color-palette-green-light-60,
+            '70': $color-palette-green-light-70,
+            '80': $color-palette-green-light-80,
+            'inverse': $color-palette-green-light-inverse,
+            'background': $color-palette-green-light-background,
+            'grey-100': $color-palette-green-light-grey-100,
+            'grey-80': $color-palette-green-light-grey-80,
+            'grey-60': $color-palette-green-light-grey-60,
+            'grey-40': $color-palette-green-light-grey-40,
+            'grey-20': $color-palette-green-light-grey-20
+          )
+        ),
+        'marigold-midnight': (
+          'bold': (
+            '20': $color-palette-marigold-midnight-bold-20,
+            '30': $color-palette-marigold-midnight-bold-30,
+            '40': $color-palette-marigold-midnight-bold-40,
+            '50': $color-palette-marigold-midnight-bold-50,
+            '60': $color-palette-marigold-midnight-bold-60,
+            '70': $color-palette-marigold-midnight-bold-70,
+            '80': $color-palette-marigold-midnight-bold-80,
+            'inverse': $color-palette-marigold-midnight-bold-inverse,
+            'background': $color-palette-marigold-midnight-bold-background,
+            'grey-100': $color-palette-marigold-midnight-bold-grey-100,
+            'grey-80': $color-palette-marigold-midnight-bold-grey-80,
+            'grey-60': $color-palette-marigold-midnight-bold-grey-60,
+            'grey-40': $color-palette-marigold-midnight-bold-grey-40,
+            'grey-20': $color-palette-marigold-midnight-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-marigold-midnight-dark-20,
+            '30': $color-palette-marigold-midnight-dark-30,
+            '40': $color-palette-marigold-midnight-dark-40,
+            '50': $color-palette-marigold-midnight-dark-50,
+            '60': $color-palette-marigold-midnight-dark-60,
+            '70': $color-palette-marigold-midnight-dark-70,
+            '80': $color-palette-marigold-midnight-dark-80,
+            'inverse': $color-palette-marigold-midnight-dark-inverse,
+            'background': $color-palette-marigold-midnight-dark-background,
+            'grey-100': $color-palette-marigold-midnight-dark-grey-100,
+            'grey-80': $color-palette-marigold-midnight-dark-grey-80,
+            'grey-60': $color-palette-marigold-midnight-dark-grey-60,
+            'grey-40': $color-palette-marigold-midnight-dark-grey-40,
+            'grey-20': $color-palette-marigold-midnight-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-marigold-midnight-light-20,
+            '30': $color-palette-marigold-midnight-light-30,
+            '40': $color-palette-marigold-midnight-light-40,
+            '50': $color-palette-marigold-midnight-light-50,
+            '60': $color-palette-marigold-midnight-light-60,
+            '70': $color-palette-marigold-midnight-light-70,
+            '80': $color-palette-marigold-midnight-light-80,
+            'inverse': $color-palette-marigold-midnight-light-inverse,
+            'background': $color-palette-marigold-midnight-light-background,
+            'grey-100': $color-palette-marigold-midnight-light-grey-100,
+            'grey-80': $color-palette-marigold-midnight-light-grey-80,
+            'grey-60': $color-palette-marigold-midnight-light-grey-60,
+            'grey-40': $color-palette-marigold-midnight-light-grey-40,
+            'grey-20': $color-palette-marigold-midnight-light-grey-20
+          )
+        ),
+        'marigold': (
+          'bold': (
+            '20': $color-palette-marigold-bold-20,
+            '30': $color-palette-marigold-bold-30,
+            '40': $color-palette-marigold-bold-40,
+            '50': $color-palette-marigold-bold-50,
+            '60': $color-palette-marigold-bold-60,
+            '70': $color-palette-marigold-bold-70,
+            '80': $color-palette-marigold-bold-80,
+            'inverse': $color-palette-marigold-bold-inverse,
+            'background': $color-palette-marigold-bold-background,
+            'grey-100': $color-palette-marigold-bold-grey-100,
+            'grey-80': $color-palette-marigold-bold-grey-80,
+            'grey-60': $color-palette-marigold-bold-grey-60,
+            'grey-40': $color-palette-marigold-bold-grey-40,
+            'grey-20': $color-palette-marigold-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-marigold-dark-20,
+            '30': $color-palette-marigold-dark-30,
+            '40': $color-palette-marigold-dark-40,
+            '50': $color-palette-marigold-dark-50,
+            '60': $color-palette-marigold-dark-60,
+            '70': $color-palette-marigold-dark-70,
+            '80': $color-palette-marigold-dark-80,
+            'inverse': $color-palette-marigold-dark-inverse,
+            'background': $color-palette-marigold-dark-background,
+            'grey-100': $color-palette-marigold-dark-grey-100,
+            'grey-80': $color-palette-marigold-dark-grey-80,
+            'grey-60': $color-palette-marigold-dark-grey-60,
+            'grey-40': $color-palette-marigold-dark-grey-40,
+            'grey-20': $color-palette-marigold-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-marigold-light-20,
+            '30': $color-palette-marigold-light-30,
+            '40': $color-palette-marigold-light-40,
+            '50': $color-palette-marigold-light-50,
+            '60': $color-palette-marigold-light-60,
+            '70': $color-palette-marigold-light-70,
+            '80': $color-palette-marigold-light-80,
+            'inverse': $color-palette-marigold-light-inverse,
+            'background': $color-palette-marigold-light-background,
+            'grey-100': $color-palette-marigold-light-grey-100,
+            'grey-80': $color-palette-marigold-light-grey-80,
+            'grey-60': $color-palette-marigold-light-grey-60,
+            'grey-40': $color-palette-marigold-light-grey-40,
+            'grey-20': $color-palette-marigold-light-grey-20
+          )
+        ),
+        'mint-midnight': (
+          'bold': (
+            '20': $color-palette-mint-midnight-bold-20,
+            '30': $color-palette-mint-midnight-bold-30,
+            '40': $color-palette-mint-midnight-bold-40,
+            '50': $color-palette-mint-midnight-bold-50,
+            '60': $color-palette-mint-midnight-bold-60,
+            '70': $color-palette-mint-midnight-bold-70,
+            '80': $color-palette-mint-midnight-bold-80,
+            'inverse': $color-palette-mint-midnight-bold-inverse,
+            'background': $color-palette-mint-midnight-bold-background,
+            'grey-100': $color-palette-mint-midnight-bold-grey-100,
+            'grey-80': $color-palette-mint-midnight-bold-grey-80,
+            'grey-60': $color-palette-mint-midnight-bold-grey-60,
+            'grey-40': $color-palette-mint-midnight-bold-grey-40,
+            'grey-20': $color-palette-mint-midnight-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-mint-midnight-dark-20,
+            '30': $color-palette-mint-midnight-dark-30,
+            '40': $color-palette-mint-midnight-dark-40,
+            '50': $color-palette-mint-midnight-dark-50,
+            '60': $color-palette-mint-midnight-dark-60,
+            '70': $color-palette-mint-midnight-dark-70,
+            '80': $color-palette-mint-midnight-dark-80,
+            'inverse': $color-palette-mint-midnight-dark-inverse,
+            'background': $color-palette-mint-midnight-dark-background,
+            'grey-100': $color-palette-mint-midnight-dark-grey-100,
+            'grey-80': $color-palette-mint-midnight-dark-grey-80,
+            'grey-60': $color-palette-mint-midnight-dark-grey-60,
+            'grey-40': $color-palette-mint-midnight-dark-grey-40,
+            'grey-20': $color-palette-mint-midnight-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-mint-midnight-light-20,
+            '30': $color-palette-mint-midnight-light-30,
+            '40': $color-palette-mint-midnight-light-40,
+            '50': $color-palette-mint-midnight-light-50,
+            '60': $color-palette-mint-midnight-light-60,
+            '70': $color-palette-mint-midnight-light-70,
+            '80': $color-palette-mint-midnight-light-80,
+            'inverse': $color-palette-mint-midnight-light-inverse,
+            'background': $color-palette-mint-midnight-light-background,
+            'grey-100': $color-palette-mint-midnight-light-grey-100,
+            'grey-80': $color-palette-mint-midnight-light-grey-80,
+            'grey-60': $color-palette-mint-midnight-light-grey-60,
+            'grey-40': $color-palette-mint-midnight-light-grey-40,
+            'grey-20': $color-palette-mint-midnight-light-grey-20
+          )
+        ),
+        'mint': (
+          'bold': (
+            '20': $color-palette-mint-bold-20,
+            '30': $color-palette-mint-bold-30,
+            '40': $color-palette-mint-bold-40,
+            '50': $color-palette-mint-bold-50,
+            '60': $color-palette-mint-bold-60,
+            '70': $color-palette-mint-bold-70,
+            '80': $color-palette-mint-bold-80,
+            'inverse': $color-palette-mint-bold-inverse,
+            'background': $color-palette-mint-bold-background,
+            'grey-100': $color-palette-mint-bold-grey-100,
+            'grey-80': $color-palette-mint-bold-grey-80,
+            'grey-60': $color-palette-mint-bold-grey-60,
+            'grey-40': $color-palette-mint-bold-grey-40,
+            'grey-20': $color-palette-mint-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-mint-dark-20,
+            '30': $color-palette-mint-dark-30,
+            '40': $color-palette-mint-dark-40,
+            '50': $color-palette-mint-dark-50,
+            '60': $color-palette-mint-dark-60,
+            '70': $color-palette-mint-dark-70,
+            '80': $color-palette-mint-dark-80,
+            'inverse': $color-palette-mint-dark-inverse,
+            'background': $color-palette-mint-dark-background,
+            'grey-100': $color-palette-mint-dark-grey-100,
+            'grey-80': $color-palette-mint-dark-grey-80,
+            'grey-60': $color-palette-mint-dark-grey-60,
+            'grey-40': $color-palette-mint-dark-grey-40,
+            'grey-20': $color-palette-mint-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-mint-light-20,
+            '30': $color-palette-mint-light-30,
+            '40': $color-palette-mint-light-40,
+            '50': $color-palette-mint-light-50,
+            '60': $color-palette-mint-light-60,
+            '70': $color-palette-mint-light-70,
+            '80': $color-palette-mint-light-80,
+            'inverse': $color-palette-mint-light-inverse,
+            'background': $color-palette-mint-light-background,
+            'grey-100': $color-palette-mint-light-grey-100,
+            'grey-80': $color-palette-mint-light-grey-80,
+            'grey-60': $color-palette-mint-light-grey-60,
+            'grey-40': $color-palette-mint-light-grey-40,
+            'grey-20': $color-palette-mint-light-grey-20
+          )
+        ),
+        'navi-midnight': (
+          'bold': (
+            '20': $color-palette-navi-midnight-bold-20,
+            '30': $color-palette-navi-midnight-bold-30,
+            '40': $color-palette-navi-midnight-bold-40,
+            '50': $color-palette-navi-midnight-bold-50,
+            '60': $color-palette-navi-midnight-bold-60,
+            '70': $color-palette-navi-midnight-bold-70,
+            '80': $color-palette-navi-midnight-bold-80,
+            'inverse': $color-palette-navi-midnight-bold-inverse,
+            'background': $color-palette-navi-midnight-bold-background,
+            'grey-100': $color-palette-navi-midnight-bold-grey-100,
+            'grey-80': $color-palette-navi-midnight-bold-grey-80,
+            'grey-60': $color-palette-navi-midnight-bold-grey-60,
+            'grey-40': $color-palette-navi-midnight-bold-grey-40,
+            'grey-20': $color-palette-navi-midnight-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-navi-midnight-dark-20,
+            '30': $color-palette-navi-midnight-dark-30,
+            '40': $color-palette-navi-midnight-dark-40,
+            '50': $color-palette-navi-midnight-dark-50,
+            '60': $color-palette-navi-midnight-dark-60,
+            '70': $color-palette-navi-midnight-dark-70,
+            '80': $color-palette-navi-midnight-dark-80,
+            'inverse': $color-palette-navi-midnight-dark-inverse,
+            'background': $color-palette-navi-midnight-dark-background,
+            'grey-100': $color-palette-navi-midnight-dark-grey-100,
+            'grey-80': $color-palette-navi-midnight-dark-grey-80,
+            'grey-60': $color-palette-navi-midnight-dark-grey-60,
+            'grey-40': $color-palette-navi-midnight-dark-grey-40,
+            'grey-20': $color-palette-navi-midnight-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-navi-midnight-light-20,
+            '30': $color-palette-navi-midnight-light-30,
+            '40': $color-palette-navi-midnight-light-40,
+            '50': $color-palette-navi-midnight-light-50,
+            '60': $color-palette-navi-midnight-light-60,
+            '70': $color-palette-navi-midnight-light-70,
+            '80': $color-palette-navi-midnight-light-80,
+            'inverse': $color-palette-navi-midnight-light-inverse,
+            'background': $color-palette-navi-midnight-light-background,
+            'grey-100': $color-palette-navi-midnight-light-grey-100,
+            'grey-80': $color-palette-navi-midnight-light-grey-80,
+            'grey-60': $color-palette-navi-midnight-light-grey-60,
+            'grey-40': $color-palette-navi-midnight-light-grey-40,
+            'grey-20': $color-palette-navi-midnight-light-grey-20
+          )
+        ),
+        'navi': (
+          'bold': (
+            '20': $color-palette-navi-bold-20,
+            '30': $color-palette-navi-bold-30,
+            '40': $color-palette-navi-bold-40,
+            '50': $color-palette-navi-bold-50,
+            '60': $color-palette-navi-bold-60,
+            '70': $color-palette-navi-bold-70,
+            '80': $color-palette-navi-bold-80,
+            'inverse': $color-palette-navi-bold-inverse,
+            'background': $color-palette-navi-bold-background,
+            'grey-100': $color-palette-navi-bold-grey-100,
+            'grey-80': $color-palette-navi-bold-grey-80,
+            'grey-60': $color-palette-navi-bold-grey-60,
+            'grey-40': $color-palette-navi-bold-grey-40,
+            'grey-20': $color-palette-navi-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-navi-dark-20,
+            '30': $color-palette-navi-dark-30,
+            '40': $color-palette-navi-dark-40,
+            '50': $color-palette-navi-dark-50,
+            '60': $color-palette-navi-dark-60,
+            '70': $color-palette-navi-dark-70,
+            '80': $color-palette-navi-dark-80,
+            'inverse': $color-palette-navi-dark-inverse,
+            'background': $color-palette-navi-dark-background,
+            'grey-100': $color-palette-navi-dark-grey-100,
+            'grey-80': $color-palette-navi-dark-grey-80,
+            'grey-60': $color-palette-navi-dark-grey-60,
+            'grey-40': $color-palette-navi-dark-grey-40,
+            'grey-20': $color-palette-navi-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-navi-light-20,
+            '30': $color-palette-navi-light-30,
+            '40': $color-palette-navi-light-40,
+            '50': $color-palette-navi-light-50,
+            '60': $color-palette-navi-light-60,
+            '70': $color-palette-navi-light-70,
+            '80': $color-palette-navi-light-80,
+            'inverse': $color-palette-navi-light-inverse,
+            'background': $color-palette-navi-light-background,
+            'grey-100': $color-palette-navi-light-grey-100,
+            'grey-80': $color-palette-navi-light-grey-80,
+            'grey-60': $color-palette-navi-light-grey-60,
+            'grey-40': $color-palette-navi-light-grey-40,
+            'grey-20': $color-palette-navi-light-grey-20
+          )
+        ),
+        'orange-midnight': (
+          'bold': (
+            '20': $color-palette-orange-midnight-bold-20,
+            '30': $color-palette-orange-midnight-bold-30,
+            '40': $color-palette-orange-midnight-bold-40,
+            '50': $color-palette-orange-midnight-bold-50,
+            '60': $color-palette-orange-midnight-bold-60,
+            '70': $color-palette-orange-midnight-bold-70,
+            '80': $color-palette-orange-midnight-bold-80,
+            'inverse': $color-palette-orange-midnight-bold-inverse,
+            'background': $color-palette-orange-midnight-bold-background,
+            'grey-100': $color-palette-orange-midnight-bold-grey-100,
+            'grey-80': $color-palette-orange-midnight-bold-grey-80,
+            'grey-60': $color-palette-orange-midnight-bold-grey-60,
+            'grey-40': $color-palette-orange-midnight-bold-grey-40,
+            'grey-20': $color-palette-orange-midnight-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-orange-midnight-dark-20,
+            '30': $color-palette-orange-midnight-dark-30,
+            '40': $color-palette-orange-midnight-dark-40,
+            '50': $color-palette-orange-midnight-dark-50,
+            '60': $color-palette-orange-midnight-dark-60,
+            '70': $color-palette-orange-midnight-dark-70,
+            '80': $color-palette-orange-midnight-dark-80,
+            'inverse': $color-palette-orange-midnight-dark-inverse,
+            'background': $color-palette-orange-midnight-dark-background,
+            'grey-100': $color-palette-orange-midnight-dark-grey-100,
+            'grey-80': $color-palette-orange-midnight-dark-grey-80,
+            'grey-60': $color-palette-orange-midnight-dark-grey-60,
+            'grey-40': $color-palette-orange-midnight-dark-grey-40,
+            'grey-20': $color-palette-orange-midnight-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-orange-midnight-light-20,
+            '30': $color-palette-orange-midnight-light-30,
+            '40': $color-palette-orange-midnight-light-40,
+            '50': $color-palette-orange-midnight-light-50,
+            '60': $color-palette-orange-midnight-light-60,
+            '70': $color-palette-orange-midnight-light-70,
+            '80': $color-palette-orange-midnight-light-80,
+            'inverse': $color-palette-orange-midnight-light-inverse,
+            'background': $color-palette-orange-midnight-light-background,
+            'grey-100': $color-palette-orange-midnight-light-grey-100,
+            'grey-80': $color-palette-orange-midnight-light-grey-80,
+            'grey-60': $color-palette-orange-midnight-light-grey-60,
+            'grey-40': $color-palette-orange-midnight-light-grey-40,
+            'grey-20': $color-palette-orange-midnight-light-grey-20
+          )
+        ),
+        'orange': (
+          'bold': (
+            '20': $color-palette-orange-bold-20,
+            '30': $color-palette-orange-bold-30,
+            '40': $color-palette-orange-bold-40,
+            '50': $color-palette-orange-bold-50,
+            '60': $color-palette-orange-bold-60,
+            '70': $color-palette-orange-bold-70,
+            '80': $color-palette-orange-bold-80,
+            'inverse': $color-palette-orange-bold-inverse,
+            'background': $color-palette-orange-bold-background,
+            'grey-100': $color-palette-orange-bold-grey-100,
+            'grey-80': $color-palette-orange-bold-grey-80,
+            'grey-60': $color-palette-orange-bold-grey-60,
+            'grey-40': $color-palette-orange-bold-grey-40,
+            'grey-20': $color-palette-orange-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-orange-dark-20,
+            '30': $color-palette-orange-dark-30,
+            '40': $color-palette-orange-dark-40,
+            '50': $color-palette-orange-dark-50,
+            '60': $color-palette-orange-dark-60,
+            '70': $color-palette-orange-dark-70,
+            '80': $color-palette-orange-dark-80,
+            'inverse': $color-palette-orange-dark-inverse,
+            'background': $color-palette-orange-dark-background,
+            'grey-100': $color-palette-orange-dark-grey-100,
+            'grey-80': $color-palette-orange-dark-grey-80,
+            'grey-60': $color-palette-orange-dark-grey-60,
+            'grey-40': $color-palette-orange-dark-grey-40,
+            'grey-20': $color-palette-orange-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-orange-light-20,
+            '30': $color-palette-orange-light-30,
+            '40': $color-palette-orange-light-40,
+            '50': $color-palette-orange-light-50,
+            '60': $color-palette-orange-light-60,
+            '70': $color-palette-orange-light-70,
+            '80': $color-palette-orange-light-80,
+            'inverse': $color-palette-orange-light-inverse,
+            'background': $color-palette-orange-light-background,
+            'grey-100': $color-palette-orange-light-grey-100,
+            'grey-80': $color-palette-orange-light-grey-80,
+            'grey-60': $color-palette-orange-light-grey-60,
+            'grey-40': $color-palette-orange-light-grey-40,
+            'grey-20': $color-palette-orange-light-grey-20
+          )
+        ),
+        'pink-midnight': (
+          'bold': (
+            '20': $color-palette-pink-midnight-bold-20,
+            '30': $color-palette-pink-midnight-bold-30,
+            '40': $color-palette-pink-midnight-bold-40,
+            '50': $color-palette-pink-midnight-bold-50,
+            '60': $color-palette-pink-midnight-bold-60,
+            '70': $color-palette-pink-midnight-bold-70,
+            '80': $color-palette-pink-midnight-bold-80,
+            'inverse': $color-palette-pink-midnight-bold-inverse,
+            'background': $color-palette-pink-midnight-bold-background,
+            'grey-100': $color-palette-pink-midnight-bold-grey-100,
+            'grey-80': $color-palette-pink-midnight-bold-grey-80,
+            'grey-60': $color-palette-pink-midnight-bold-grey-60,
+            'grey-40': $color-palette-pink-midnight-bold-grey-40,
+            'grey-20': $color-palette-pink-midnight-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-pink-midnight-dark-20,
+            '30': $color-palette-pink-midnight-dark-30,
+            '40': $color-palette-pink-midnight-dark-40,
+            '50': $color-palette-pink-midnight-dark-50,
+            '60': $color-palette-pink-midnight-dark-60,
+            '70': $color-palette-pink-midnight-dark-70,
+            '80': $color-palette-pink-midnight-dark-80,
+            'inverse': $color-palette-pink-midnight-dark-inverse,
+            'background': $color-palette-pink-midnight-dark-background,
+            'grey-100': $color-palette-pink-midnight-dark-grey-100,
+            'grey-80': $color-palette-pink-midnight-dark-grey-80,
+            'grey-60': $color-palette-pink-midnight-dark-grey-60,
+            'grey-40': $color-palette-pink-midnight-dark-grey-40,
+            'grey-20': $color-palette-pink-midnight-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-pink-midnight-light-20,
+            '30': $color-palette-pink-midnight-light-30,
+            '40': $color-palette-pink-midnight-light-40,
+            '50': $color-palette-pink-midnight-light-50,
+            '60': $color-palette-pink-midnight-light-60,
+            '70': $color-palette-pink-midnight-light-70,
+            '80': $color-palette-pink-midnight-light-80,
+            'inverse': $color-palette-pink-midnight-light-inverse,
+            'background': $color-palette-pink-midnight-light-background,
+            'grey-100': $color-palette-pink-midnight-light-grey-100,
+            'grey-80': $color-palette-pink-midnight-light-grey-80,
+            'grey-60': $color-palette-pink-midnight-light-grey-60,
+            'grey-40': $color-palette-pink-midnight-light-grey-40,
+            'grey-20': $color-palette-pink-midnight-light-grey-20
+          )
+        ),
+        'pink': (
+          'bold': (
+            '20': $color-palette-pink-bold-20,
+            '30': $color-palette-pink-bold-30,
+            '40': $color-palette-pink-bold-40,
+            '50': $color-palette-pink-bold-50,
+            '60': $color-palette-pink-bold-60,
+            '70': $color-palette-pink-bold-70,
+            '80': $color-palette-pink-bold-80,
+            'inverse': $color-palette-pink-bold-inverse,
+            'background': $color-palette-pink-bold-background,
+            'grey-100': $color-palette-pink-bold-grey-100,
+            'grey-80': $color-palette-pink-bold-grey-80,
+            'grey-60': $color-palette-pink-bold-grey-60,
+            'grey-40': $color-palette-pink-bold-grey-40,
+            'grey-20': $color-palette-pink-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-pink-dark-20,
+            '30': $color-palette-pink-dark-30,
+            '40': $color-palette-pink-dark-40,
+            '50': $color-palette-pink-dark-50,
+            '60': $color-palette-pink-dark-60,
+            '70': $color-palette-pink-dark-70,
+            '80': $color-palette-pink-dark-80,
+            'inverse': $color-palette-pink-dark-inverse,
+            'background': $color-palette-pink-dark-background,
+            'grey-100': $color-palette-pink-dark-grey-100,
+            'grey-80': $color-palette-pink-dark-grey-80,
+            'grey-60': $color-palette-pink-dark-grey-60,
+            'grey-40': $color-palette-pink-dark-grey-40,
+            'grey-20': $color-palette-pink-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-pink-light-20,
+            '30': $color-palette-pink-light-30,
+            '40': $color-palette-pink-light-40,
+            '50': $color-palette-pink-light-50,
+            '60': $color-palette-pink-light-60,
+            '70': $color-palette-pink-light-70,
+            '80': $color-palette-pink-light-80,
+            'inverse': $color-palette-pink-light-inverse,
+            'background': $color-palette-pink-light-background,
+            'grey-100': $color-palette-pink-light-grey-100,
+            'grey-80': $color-palette-pink-light-grey-80,
+            'grey-60': $color-palette-pink-light-grey-60,
+            'grey-40': $color-palette-pink-light-grey-40,
+            'grey-20': $color-palette-pink-light-grey-20
+          )
+        ),
+        'purple-midnight': (
+          'bold': (
+            '20': $color-palette-purple-midnight-bold-20,
+            '30': $color-palette-purple-midnight-bold-30,
+            '40': $color-palette-purple-midnight-bold-40,
+            '50': $color-palette-purple-midnight-bold-50,
+            '60': $color-palette-purple-midnight-bold-60,
+            '70': $color-palette-purple-midnight-bold-70,
+            '80': $color-palette-purple-midnight-bold-80,
+            'inverse': $color-palette-purple-midnight-bold-inverse,
+            'background': $color-palette-purple-midnight-bold-background,
+            'grey-100': $color-palette-purple-midnight-bold-grey-100,
+            'grey-80': $color-palette-purple-midnight-bold-grey-80,
+            'grey-60': $color-palette-purple-midnight-bold-grey-60,
+            'grey-40': $color-palette-purple-midnight-bold-grey-40,
+            'grey-20': $color-palette-purple-midnight-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-purple-midnight-dark-20,
+            '30': $color-palette-purple-midnight-dark-30,
+            '40': $color-palette-purple-midnight-dark-40,
+            '50': $color-palette-purple-midnight-dark-50,
+            '60': $color-palette-purple-midnight-dark-60,
+            '70': $color-palette-purple-midnight-dark-70,
+            '80': $color-palette-purple-midnight-dark-80,
+            'inverse': $color-palette-purple-midnight-dark-inverse,
+            'background': $color-palette-purple-midnight-dark-background,
+            'grey-100': $color-palette-purple-midnight-dark-grey-100,
+            'grey-80': $color-palette-purple-midnight-dark-grey-80,
+            'grey-60': $color-palette-purple-midnight-dark-grey-60,
+            'grey-40': $color-palette-purple-midnight-dark-grey-40,
+            'grey-20': $color-palette-purple-midnight-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-purple-midnight-light-20,
+            '30': $color-palette-purple-midnight-light-30,
+            '40': $color-palette-purple-midnight-light-40,
+            '50': $color-palette-purple-midnight-light-50,
+            '60': $color-palette-purple-midnight-light-60,
+            '70': $color-palette-purple-midnight-light-70,
+            '80': $color-palette-purple-midnight-light-80,
+            'inverse': $color-palette-purple-midnight-light-inverse,
+            'background': $color-palette-purple-midnight-light-background,
+            'grey-100': $color-palette-purple-midnight-light-grey-100,
+            'grey-80': $color-palette-purple-midnight-light-grey-80,
+            'grey-60': $color-palette-purple-midnight-light-grey-60,
+            'grey-40': $color-palette-purple-midnight-light-grey-40,
+            'grey-20': $color-palette-purple-midnight-light-grey-20
+          )
+        ),
+        'purple': (
+          'bold': (
+            '20': $color-palette-purple-bold-20,
+            '30': $color-palette-purple-bold-30,
+            '40': $color-palette-purple-bold-40,
+            '50': $color-palette-purple-bold-50,
+            '60': $color-palette-purple-bold-60,
+            '70': $color-palette-purple-bold-70,
+            '80': $color-palette-purple-bold-80,
+            'inverse': $color-palette-purple-bold-inverse,
+            'background': $color-palette-purple-bold-background,
+            'grey-100': $color-palette-purple-bold-grey-100,
+            'grey-80': $color-palette-purple-bold-grey-80,
+            'grey-60': $color-palette-purple-bold-grey-60,
+            'grey-40': $color-palette-purple-bold-grey-40,
+            'grey-20': $color-palette-purple-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-purple-dark-20,
+            '30': $color-palette-purple-dark-30,
+            '40': $color-palette-purple-dark-40,
+            '50': $color-palette-purple-dark-50,
+            '60': $color-palette-purple-dark-60,
+            '70': $color-palette-purple-dark-70,
+            '80': $color-palette-purple-dark-80,
+            'inverse': $color-palette-purple-dark-inverse,
+            'background': $color-palette-purple-dark-background,
+            'grey-100': $color-palette-purple-dark-grey-100,
+            'grey-80': $color-palette-purple-dark-grey-80,
+            'grey-60': $color-palette-purple-dark-grey-60,
+            'grey-40': $color-palette-purple-dark-grey-40,
+            'grey-20': $color-palette-purple-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-purple-light-20,
+            '30': $color-palette-purple-light-30,
+            '40': $color-palette-purple-light-40,
+            '50': $color-palette-purple-light-50,
+            '60': $color-palette-purple-light-60,
+            '70': $color-palette-purple-light-70,
+            '80': $color-palette-purple-light-80,
+            'inverse': $color-palette-purple-light-inverse,
+            'background': $color-palette-purple-light-background,
+            'grey-100': $color-palette-purple-light-grey-100,
+            'grey-80': $color-palette-purple-light-grey-80,
+            'grey-60': $color-palette-purple-light-grey-60,
+            'grey-40': $color-palette-purple-light-grey-40,
+            'grey-20': $color-palette-purple-light-grey-20
+          )
+        ),
+        'red-midnight': (
+          'bold': (
+            '20': $color-palette-red-midnight-bold-20,
+            '30': $color-palette-red-midnight-bold-30,
+            '40': $color-palette-red-midnight-bold-40,
+            '50': $color-palette-red-midnight-bold-50,
+            '60': $color-palette-red-midnight-bold-60,
+            '70': $color-palette-red-midnight-bold-70,
+            '80': $color-palette-red-midnight-bold-80,
+            'inverse': $color-palette-red-midnight-bold-inverse,
+            'background': $color-palette-red-midnight-bold-background,
+            'grey-100': $color-palette-red-midnight-bold-grey-100,
+            'grey-80': $color-palette-red-midnight-bold-grey-80,
+            'grey-60': $color-palette-red-midnight-bold-grey-60,
+            'grey-40': $color-palette-red-midnight-bold-grey-40,
+            'grey-20': $color-palette-red-midnight-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-red-midnight-dark-20,
+            '30': $color-palette-red-midnight-dark-30,
+            '40': $color-palette-red-midnight-dark-40,
+            '50': $color-palette-red-midnight-dark-50,
+            '60': $color-palette-red-midnight-dark-60,
+            '70': $color-palette-red-midnight-dark-70,
+            '80': $color-palette-red-midnight-dark-80,
+            'inverse': $color-palette-red-midnight-dark-inverse,
+            'background': $color-palette-red-midnight-dark-background,
+            'grey-100': $color-palette-red-midnight-dark-grey-100,
+            'grey-80': $color-palette-red-midnight-dark-grey-80,
+            'grey-60': $color-palette-red-midnight-dark-grey-60,
+            'grey-40': $color-palette-red-midnight-dark-grey-40,
+            'grey-20': $color-palette-red-midnight-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-red-midnight-light-20,
+            '30': $color-palette-red-midnight-light-30,
+            '40': $color-palette-red-midnight-light-40,
+            '50': $color-palette-red-midnight-light-50,
+            '60': $color-palette-red-midnight-light-60,
+            '70': $color-palette-red-midnight-light-70,
+            '80': $color-palette-red-midnight-light-80,
+            'inverse': $color-palette-red-midnight-light-inverse,
+            'background': $color-palette-red-midnight-light-background,
+            'grey-100': $color-palette-red-midnight-light-grey-100,
+            'grey-80': $color-palette-red-midnight-light-grey-80,
+            'grey-60': $color-palette-red-midnight-light-grey-60,
+            'grey-40': $color-palette-red-midnight-light-grey-40,
+            'grey-20': $color-palette-red-midnight-light-grey-20
+          )
+        ),
+        'red': (
+          'bold': (
+            '20': $color-palette-red-bold-20,
+            '30': $color-palette-red-bold-30,
+            '40': $color-palette-red-bold-40,
+            '50': $color-palette-red-bold-50,
+            '60': $color-palette-red-bold-60,
+            '70': $color-palette-red-bold-70,
+            '80': $color-palette-red-bold-80,
+            'inverse': $color-palette-red-bold-inverse,
+            'background': $color-palette-red-bold-background,
+            'grey-100': $color-palette-red-bold-grey-100,
+            'grey-80': $color-palette-red-bold-grey-80,
+            'grey-60': $color-palette-red-bold-grey-60,
+            'grey-40': $color-palette-red-bold-grey-40,
+            'grey-20': $color-palette-red-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-red-dark-20,
+            '30': $color-palette-red-dark-30,
+            '40': $color-palette-red-dark-40,
+            '50': $color-palette-red-dark-50,
+            '60': $color-palette-red-dark-60,
+            '70': $color-palette-red-dark-70,
+            '80': $color-palette-red-dark-80,
+            'inverse': $color-palette-red-dark-inverse,
+            'background': $color-palette-red-dark-background,
+            'grey-100': $color-palette-red-dark-grey-100,
+            'grey-80': $color-palette-red-dark-grey-80,
+            'grey-60': $color-palette-red-dark-grey-60,
+            'grey-40': $color-palette-red-dark-grey-40,
+            'grey-20': $color-palette-red-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-red-light-20,
+            '30': $color-palette-red-light-30,
+            '40': $color-palette-red-light-40,
+            '50': $color-palette-red-light-50,
+            '60': $color-palette-red-light-60,
+            '70': $color-palette-red-light-70,
+            '80': $color-palette-red-light-80,
+            'inverse': $color-palette-red-light-inverse,
+            'background': $color-palette-red-light-background,
+            'grey-100': $color-palette-red-light-grey-100,
+            'grey-80': $color-palette-red-light-grey-80,
+            'grey-60': $color-palette-red-light-grey-60,
+            'grey-40': $color-palette-red-light-grey-40,
+            'grey-20': $color-palette-red-light-grey-20
+          )
+        ),
+        'reliance-midnight': (
+          'bold': (
+            '20': $color-palette-reliance-midnight-bold-20,
+            '30': $color-palette-reliance-midnight-bold-30,
+            '40': $color-palette-reliance-midnight-bold-40,
+            '50': $color-palette-reliance-midnight-bold-50,
+            '60': $color-palette-reliance-midnight-bold-60,
+            '70': $color-palette-reliance-midnight-bold-70,
+            '80': $color-palette-reliance-midnight-bold-80,
+            'inverse': $color-palette-reliance-midnight-bold-inverse,
+            'background': $color-palette-reliance-midnight-bold-background,
+            'grey-100': $color-palette-reliance-midnight-bold-grey-100,
+            'grey-80': $color-palette-reliance-midnight-bold-grey-80,
+            'grey-60': $color-palette-reliance-midnight-bold-grey-60,
+            'grey-40': $color-palette-reliance-midnight-bold-grey-40,
+            'grey-20': $color-palette-reliance-midnight-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-reliance-midnight-dark-20,
+            '30': $color-palette-reliance-midnight-dark-30,
+            '40': $color-palette-reliance-midnight-dark-40,
+            '50': $color-palette-reliance-midnight-dark-50,
+            '60': $color-palette-reliance-midnight-dark-60,
+            '70': $color-palette-reliance-midnight-dark-70,
+            '80': $color-palette-reliance-midnight-dark-80,
+            'inverse': $color-palette-reliance-midnight-dark-inverse,
+            'background': $color-palette-reliance-midnight-dark-background,
+            'grey-100': $color-palette-reliance-midnight-dark-grey-100,
+            'grey-80': $color-palette-reliance-midnight-dark-grey-80,
+            'grey-60': $color-palette-reliance-midnight-dark-grey-60,
+            'grey-40': $color-palette-reliance-midnight-dark-grey-40,
+            'grey-20': $color-palette-reliance-midnight-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-reliance-midnight-light-20,
+            '30': $color-palette-reliance-midnight-light-30,
+            '40': $color-palette-reliance-midnight-light-40,
+            '50': $color-palette-reliance-midnight-light-50,
+            '60': $color-palette-reliance-midnight-light-60,
+            '70': $color-palette-reliance-midnight-light-70,
+            '80': $color-palette-reliance-midnight-light-80,
+            'inverse': $color-palette-reliance-midnight-light-inverse,
+            'background': $color-palette-reliance-midnight-light-background,
+            'grey-100': $color-palette-reliance-midnight-light-grey-100,
+            'grey-80': $color-palette-reliance-midnight-light-grey-80,
+            'grey-60': $color-palette-reliance-midnight-light-grey-60,
+            'grey-40': $color-palette-reliance-midnight-light-grey-40,
+            'grey-20': $color-palette-reliance-midnight-light-grey-20
+          )
+        ),
+        'reliance': (
+          'bold': (
+            '20': $color-palette-reliance-bold-20,
+            '30': $color-palette-reliance-bold-30,
+            '40': $color-palette-reliance-bold-40,
+            '50': $color-palette-reliance-bold-50,
+            '60': $color-palette-reliance-bold-60,
+            '70': $color-palette-reliance-bold-70,
+            '80': $color-palette-reliance-bold-80,
+            'inverse': $color-palette-reliance-bold-inverse,
+            'background': $color-palette-reliance-bold-background,
+            'grey-100': $color-palette-reliance-bold-grey-100,
+            'grey-80': $color-palette-reliance-bold-grey-80,
+            'grey-60': $color-palette-reliance-bold-grey-60,
+            'grey-40': $color-palette-reliance-bold-grey-40,
+            'grey-20': $color-palette-reliance-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-reliance-dark-20,
+            '30': $color-palette-reliance-dark-30,
+            '40': $color-palette-reliance-dark-40,
+            '50': $color-palette-reliance-dark-50,
+            '60': $color-palette-reliance-dark-60,
+            '70': $color-palette-reliance-dark-70,
+            '80': $color-palette-reliance-dark-80,
+            'inverse': $color-palette-reliance-dark-inverse,
+            'background': $color-palette-reliance-dark-background,
+            'grey-100': $color-palette-reliance-dark-grey-100,
+            'grey-80': $color-palette-reliance-dark-grey-80,
+            'grey-60': $color-palette-reliance-dark-grey-60,
+            'grey-40': $color-palette-reliance-dark-grey-40,
+            'grey-20': $color-palette-reliance-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-reliance-light-20,
+            '30': $color-palette-reliance-light-30,
+            '40': $color-palette-reliance-light-40,
+            '50': $color-palette-reliance-light-50,
+            '60': $color-palette-reliance-light-60,
+            '70': $color-palette-reliance-light-70,
+            '80': $color-palette-reliance-light-80,
+            'inverse': $color-palette-reliance-light-inverse,
+            'background': $color-palette-reliance-light-background,
+            'grey-100': $color-palette-reliance-light-grey-100,
+            'grey-80': $color-palette-reliance-light-grey-80,
+            'grey-60': $color-palette-reliance-light-grey-60,
+            'grey-40': $color-palette-reliance-light-grey-40,
+            'grey-20': $color-palette-reliance-light-grey-20
+          )
+        ),
+        'sky-midnight': (
+          'bold': (
+            '20': $color-palette-sky-midnight-bold-20,
+            '30': $color-palette-sky-midnight-bold-30,
+            '40': $color-palette-sky-midnight-bold-40,
+            '50': $color-palette-sky-midnight-bold-50,
+            '60': $color-palette-sky-midnight-bold-60,
+            '70': $color-palette-sky-midnight-bold-70,
+            '80': $color-palette-sky-midnight-bold-80,
+            'inverse': $color-palette-sky-midnight-bold-inverse,
+            'background': $color-palette-sky-midnight-bold-background,
+            'grey-100': $color-palette-sky-midnight-bold-grey-100,
+            'grey-80': $color-palette-sky-midnight-bold-grey-80,
+            'grey-60': $color-palette-sky-midnight-bold-grey-60,
+            'grey-40': $color-palette-sky-midnight-bold-grey-40,
+            'grey-20': $color-palette-sky-midnight-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-sky-midnight-dark-20,
+            '30': $color-palette-sky-midnight-dark-30,
+            '40': $color-palette-sky-midnight-dark-40,
+            '50': $color-palette-sky-midnight-dark-50,
+            '60': $color-palette-sky-midnight-dark-60,
+            '70': $color-palette-sky-midnight-dark-70,
+            '80': $color-palette-sky-midnight-dark-80,
+            'inverse': $color-palette-sky-midnight-dark-inverse,
+            'background': $color-palette-sky-midnight-dark-background,
+            'grey-100': $color-palette-sky-midnight-dark-grey-100,
+            'grey-80': $color-palette-sky-midnight-dark-grey-80,
+            'grey-60': $color-palette-sky-midnight-dark-grey-60,
+            'grey-40': $color-palette-sky-midnight-dark-grey-40,
+            'grey-20': $color-palette-sky-midnight-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-sky-midnight-light-20,
+            '30': $color-palette-sky-midnight-light-30,
+            '40': $color-palette-sky-midnight-light-40,
+            '50': $color-palette-sky-midnight-light-50,
+            '60': $color-palette-sky-midnight-light-60,
+            '70': $color-palette-sky-midnight-light-70,
+            '80': $color-palette-sky-midnight-light-80,
+            'inverse': $color-palette-sky-midnight-light-inverse,
+            'background': $color-palette-sky-midnight-light-background,
+            'grey-100': $color-palette-sky-midnight-light-grey-100,
+            'grey-80': $color-palette-sky-midnight-light-grey-80,
+            'grey-60': $color-palette-sky-midnight-light-grey-60,
+            'grey-40': $color-palette-sky-midnight-light-grey-40,
+            'grey-20': $color-palette-sky-midnight-light-grey-20
+          )
+        ),
+        'sky': (
+          'bold': (
+            '20': $color-palette-sky-bold-20,
+            '30': $color-palette-sky-bold-30,
+            '40': $color-palette-sky-bold-40,
+            '50': $color-palette-sky-bold-50,
+            '60': $color-palette-sky-bold-60,
+            '70': $color-palette-sky-bold-70,
+            '80': $color-palette-sky-bold-80,
+            'inverse': $color-palette-sky-bold-inverse,
+            'background': $color-palette-sky-bold-background,
+            'grey-100': $color-palette-sky-bold-grey-100,
+            'grey-80': $color-palette-sky-bold-grey-80,
+            'grey-60': $color-palette-sky-bold-grey-60,
+            'grey-40': $color-palette-sky-bold-grey-40,
+            'grey-20': $color-palette-sky-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-sky-dark-20,
+            '30': $color-palette-sky-dark-30,
+            '40': $color-palette-sky-dark-40,
+            '50': $color-palette-sky-dark-50,
+            '60': $color-palette-sky-dark-60,
+            '70': $color-palette-sky-dark-70,
+            '80': $color-palette-sky-dark-80,
+            'inverse': $color-palette-sky-dark-inverse,
+            'background': $color-palette-sky-dark-background,
+            'grey-100': $color-palette-sky-dark-grey-100,
+            'grey-80': $color-palette-sky-dark-grey-80,
+            'grey-60': $color-palette-sky-dark-grey-60,
+            'grey-40': $color-palette-sky-dark-grey-40,
+            'grey-20': $color-palette-sky-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-sky-light-20,
+            '30': $color-palette-sky-light-30,
+            '40': $color-palette-sky-light-40,
+            '50': $color-palette-sky-light-50,
+            '60': $color-palette-sky-light-60,
+            '70': $color-palette-sky-light-70,
+            '80': $color-palette-sky-light-80,
+            'inverse': $color-palette-sky-light-inverse,
+            'background': $color-palette-sky-light-background,
+            'grey-100': $color-palette-sky-light-grey-100,
+            'grey-80': $color-palette-sky-light-grey-80,
+            'grey-60': $color-palette-sky-light-grey-60,
+            'grey-40': $color-palette-sky-light-grey-40,
+            'grey-20': $color-palette-sky-light-grey-20
+          )
+        ),
+        'violet-midnight': (
+          'bold': (
+            '20': $color-palette-violet-midnight-bold-20,
+            '30': $color-palette-violet-midnight-bold-30,
+            '40': $color-palette-violet-midnight-bold-40,
+            '50': $color-palette-violet-midnight-bold-50,
+            '60': $color-palette-violet-midnight-bold-60,
+            '70': $color-palette-violet-midnight-bold-70,
+            '80': $color-palette-violet-midnight-bold-80,
+            'inverse': $color-palette-violet-midnight-bold-inverse,
+            'background': $color-palette-violet-midnight-bold-background,
+            'grey-100': $color-palette-violet-midnight-bold-grey-100,
+            'grey-80': $color-palette-violet-midnight-bold-grey-80,
+            'grey-60': $color-palette-violet-midnight-bold-grey-60,
+            'grey-40': $color-palette-violet-midnight-bold-grey-40,
+            'grey-20': $color-palette-violet-midnight-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-violet-midnight-dark-20,
+            '30': $color-palette-violet-midnight-dark-30,
+            '40': $color-palette-violet-midnight-dark-40,
+            '50': $color-palette-violet-midnight-dark-50,
+            '60': $color-palette-violet-midnight-dark-60,
+            '70': $color-palette-violet-midnight-dark-70,
+            '80': $color-palette-violet-midnight-dark-80,
+            'inverse': $color-palette-violet-midnight-dark-inverse,
+            'background': $color-palette-violet-midnight-dark-background,
+            'grey-100': $color-palette-violet-midnight-dark-grey-100,
+            'grey-80': $color-palette-violet-midnight-dark-grey-80,
+            'grey-60': $color-palette-violet-midnight-dark-grey-60,
+            'grey-40': $color-palette-violet-midnight-dark-grey-40,
+            'grey-20': $color-palette-violet-midnight-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-violet-midnight-light-20,
+            '30': $color-palette-violet-midnight-light-30,
+            '40': $color-palette-violet-midnight-light-40,
+            '50': $color-palette-violet-midnight-light-50,
+            '60': $color-palette-violet-midnight-light-60,
+            '70': $color-palette-violet-midnight-light-70,
+            '80': $color-palette-violet-midnight-light-80,
+            'inverse': $color-palette-violet-midnight-light-inverse,
+            'background': $color-palette-violet-midnight-light-background,
+            'grey-100': $color-palette-violet-midnight-light-grey-100,
+            'grey-80': $color-palette-violet-midnight-light-grey-80,
+            'grey-60': $color-palette-violet-midnight-light-grey-60,
+            'grey-40': $color-palette-violet-midnight-light-grey-40,
+            'grey-20': $color-palette-violet-midnight-light-grey-20
+          )
+        ),
+        'violet': (
+          'bold': (
+            '20': $color-palette-violet-bold-20,
+            '30': $color-palette-violet-bold-30,
+            '40': $color-palette-violet-bold-40,
+            '50': $color-palette-violet-bold-50,
+            '60': $color-palette-violet-bold-60,
+            '70': $color-palette-violet-bold-70,
+            '80': $color-palette-violet-bold-80,
+            'inverse': $color-palette-violet-bold-inverse,
+            'background': $color-palette-violet-bold-background,
+            'grey-100': $color-palette-violet-bold-grey-100,
+            'grey-80': $color-palette-violet-bold-grey-80,
+            'grey-60': $color-palette-violet-bold-grey-60,
+            'grey-40': $color-palette-violet-bold-grey-40,
+            'grey-20': $color-palette-violet-bold-grey-20
+          ),
+          'dark': (
+            '20': $color-palette-violet-dark-20,
+            '30': $color-palette-violet-dark-30,
+            '40': $color-palette-violet-dark-40,
+            '50': $color-palette-violet-dark-50,
+            '60': $color-palette-violet-dark-60,
+            '70': $color-palette-violet-dark-70,
+            '80': $color-palette-violet-dark-80,
+            'inverse': $color-palette-violet-dark-inverse,
+            'background': $color-palette-violet-dark-background,
+            'grey-100': $color-palette-violet-dark-grey-100,
+            'grey-80': $color-palette-violet-dark-grey-80,
+            'grey-60': $color-palette-violet-dark-grey-60,
+            'grey-40': $color-palette-violet-dark-grey-40,
+            'grey-20': $color-palette-violet-dark-grey-20
+          ),
+          'light': (
+            '20': $color-palette-violet-light-20,
+            '30': $color-palette-violet-light-30,
+            '40': $color-palette-violet-light-40,
+            '50': $color-palette-violet-light-50,
+            '60': $color-palette-violet-light-60,
+            '70': $color-palette-violet-light-70,
+            '80': $color-palette-violet-light-80,
+            'inverse': $color-palette-violet-light-inverse,
+            'background': $color-palette-violet-light-background,
+            'grey-100': $color-palette-violet-light-grey-100,
+            'grey-80': $color-palette-violet-light-grey-80,
+            'grey-60': $color-palette-violet-light-grey-60,
+            'grey-40': $color-palette-violet-light-grey-40,
+            'grey-20': $color-palette-violet-light-grey-20
+          )
+        )
+      )
+    )
+  );
+  

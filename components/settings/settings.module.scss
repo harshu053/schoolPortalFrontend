@@ -1,0 +1,198 @@
+@use "../../styles/layout//scrollbar.scss" as *;
+@import "../../styles/breakpoints";
+
+.settingsContainer { 
+  margin: auto;
+  background: #fff;
+  border-radius: 12px;
+//   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.topRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  // height: 35px;
+}
+
+.informationType {
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary-20);
+  width: fit-content;
+  height: 35px;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+}
+
+.buttons {
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary-20);
+  color: var(--color-primary-50);
+  // color: red;
+  cursor: pointer;
+  padding: 4px 16px;
+}
+
+.active {
+  background-color: var(--color-primary-50);
+  color: #ffffff;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-primary-40);
+}
+
+ 
+
+.panel {
+  padding-bottom: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem; 
+}
+
+.form {
+  display: flex;
+//   flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  input {
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 250px;
+    margin-top: 0.5rem;
+  }
+}
+
+
+
+.primaryBtn {
+  width: fit-content; 
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: #0070f3;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background: #005ac1;
+  }
+}
+
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--color-primary-20);
+  z-index: 1;
+}
+
+// .label{
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+// }
+
+.tableContainer {
+  margin-top: 1rem;
+  height: 69vh;
+  overflow-y: scroll;
+  @include scrollbar-type-2;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;   // important for border-radius
+  border-spacing: 0;   
+  text-align:  center;
+  
+  thead th:first-child {
+    border-top-left-radius: 2rem; 
+    border-bottom-left-radius: 2rem; 
+  }
+
+  thead th:last-child {
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+  }
+  
+  
+/* Apply rounded corners only on hover */
+tbody tr:hover td:first-child {
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+}
+
+tbody tr:hover td:last-child {
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+     
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 0.8rem;
+}
+
+
+.table th {
+  background:  var(--color-primary-20);
+  font-weight: 600;
+  color: #444;
+}
+
+.table tr:hover {
+  background: var(--color-primary-20);
+}
+
+.pending {
+  font-weight: bold;
+  color: #d9534f; // red
+}
+
+.editBtn,
+.deleteBtn {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 8px;
+  transition: 0.2s;
+  background-color: transparent;
+  svg{
+    width: 20px;
+    height: 20px;
+  }
+}
+
+ 
+
+.editBtn:hover {
+  color: #0069d9;
+}
+
+
+.deleteBtn:hover {
+  color: #c82333;
+}
+
+.noData {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+}

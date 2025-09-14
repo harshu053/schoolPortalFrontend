@@ -1,0 +1,90 @@
+.container {
+    // max-width: 500px; 
+    border: 2px solid var(--color-primary-20);
+    border-radius: 16px;
+    background: #fff;
+    // box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 32px 24px; 
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.schoolname {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-primary-80);
+}
+
+.schooladdress {
+    font-size: 0.7rem;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.title {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 18px;
+    color: var(--color-primary-60);
+    letter-spacing: 1px;
+}
+
+.cardbody {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.left {
+    flex: 0 0 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.studentphoto {
+    width: 100px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #f7f7f7;
+}
+
+.right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 1rem;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+}
+
+.signatureBlock {
+    text-align: center;
+    flex: 1;
+}
+
+.signatureLine {
+    margin: 8px auto 0 auto;
+    width: 120px;
+    height: 2px;
+    background: #222;
+    border-radius: 2px;
+}

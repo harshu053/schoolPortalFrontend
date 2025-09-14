@@ -1,0 +1,282 @@
+
+@use "../../../styles/layout/scrollbar.scss" as *;
+@import "../../../styles/breakpoints";
+.container {
+  // display: flex;
+  // justify-content: center;
+//   padding: 2rem;
+}
+
+.form {
+  padding-bottom: 2rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  background: #fff; 
+  border-radius: 12px; 
+  width: 100%; 
+  overflow-y: auto;
+  height: 70vh;
+  @include scrollbar-type-2;
+}
+
+.heading {
+  color: var(--color-primary-40);
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.subheading {
+   color: var(--color-primary-30);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.section {
+  margin-bottom: 1.8rem;
+
+  h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #333;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.dropdownHeader {
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropdownList {
+  position: absolute;
+  top: 100%;  /* dropdown always below input */
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  @include scrollbar-type-2;
+}
+
+.dropdownItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background: #f5f5f5;
+}
+
+.arrow {
+  margin-left: 8px;
+}
+
+
+.inputGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  input,
+  select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+  }
+}
+
+.outstanding {
+  font-size: 1rem;
+  margin: 1rem 0;
+  color: #222;
+}
+
+.viewBreakdown {
+  background: none;
+  border: none;
+  color: #0070f3;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.cancelBtn {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.submitBtn {
+  background: var(--color-primary-40);
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+
+  &:hover {
+    background: #005bb5;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cancelBtn,
+  .submitBtn {
+    width: 100%;
+  }
+}
+ .pageWrapper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ //   min-height: 100vh;
+ //   background: #f3f4f6;
+ //   padding: 1rem;
+ }
+ .card {
+   background: #fff;
+   padding-top: 1rem;
+   padding-bottom: 2rem;
+   padding-left: 2rem;
+   padding-right: 2rem;
+   border-radius: 16px;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+   max-width: 420px;
+   width: 100%;
+   text-align: center;
+ }
+ .title {
+   font-size: 1.8rem;
+   font-weight: bold;
+   color: #16a34a; // green
+   margin-bottom: 0.5rem;
+ }
+ .subtitle {
+   color: #4b5563;
+   margin-bottom: 1.5rem;
+ }
+ .details {
+   text-align: left;
+   margin-bottom: 1.5rem;
+   p {
+     margin: 0.4rem 0;
+     span {
+       font-weight: 600;
+       color: #374151;
+     }
+   }
+ }
+ .paid {
+   color: #16a34a;
+   font-weight: bold;
+ }
+ .pending {
+   color: #dc2626;
+   font-weight: bold;
+ }
+
+ .disabled{
+  background:   var(--color-primary-40);
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+
+  &:hover {
+    background: #005bb5;
+  }
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+ }
+
+ .errorMessage{
+  color: red;
+  font-size: 0.5rem;
+ }
+
+ .buttons{
+  display: flex;
+  justify-content: space-around;
+ }
+ .downloadBtn {
+   margin-top: 1rem;
+   background: #2563eb;
+   color: white;
+   padding: 0.6rem 1.5rem;
+   border: none;
+   border-radius: 12px;
+   font-size: 0.7rem;
+   font-weight: 500;
+   cursor: pointer;
+   transition: background 0.2s ease;
+   &:hover {
+     background: #1d4ed8;
+   }
+ }
+
+ .backBtn{
+   margin-top: 1rem;
+   background: #2563eb;
+   color: white;
+   padding: 0.6rem 1.5rem;
+   border: none;
+   border-radius: 12px;
+   font-size: 0.7rem;
+   font-weight: 500;
+   cursor: pointer;
+   transition: background 0.2s ease;
+   &:hover {
+     background: #1d4ed8;
+   }
+ }

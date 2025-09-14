@@ -1,0 +1,39 @@
+@use '../../styles/layout/scrollbar' as *;
+
+.container { 
+  padding-top: 1rem;
+  // padding-bottom: 3rem;
+  padding-left: 1rem;
+  padding-right: .5rem;
+ 
+}
+
+.eventList {
+  list-style: none; 
+  overflow-y: scroll;
+  @include scrollbar-type-2;
+  height: 320px;
+}
+
+.eventCard {
+  display: flex;
+  gap: 1rem;
+  padding: 0.8rem;
+  border-bottom: 1px solid #eee;
+}
+
+.date {
+  font-weight: bold;
+  color: #007bff;
+  min-width: 90px;
+}
+
+.details h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.details p {
+  margin: 0.2rem 0 0;
+  color: #555;
+}

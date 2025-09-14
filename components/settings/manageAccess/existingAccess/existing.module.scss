@@ -1,0 +1,121 @@
+@use "../../../../styles/layout/scrollbar.scss" as *;
+@import "../../../../styles/breakpoints";
+
+.panel {
+  max-height: 69vh;
+  overflow-y: scroll;
+  @include scrollbar-type-2;
+}
+
+.heading {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate; // important for border-radius
+  border-spacing: 0;
+  text-align: center;
+
+  thead th:first-child {
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+  }
+
+  thead th:last-child {
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+  }
+
+  /* Apply rounded corners only on hover */
+  tbody tr:hover td:first-child {
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+  }
+
+  tbody tr:hover td:last-child {
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+  }
+
+  th,
+  td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px; 
+  }
+
+  th {
+    background: #f4f6f8;
+    font-weight: bold;
+  }
+}
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--color-primary-20);
+  z-index: 1;
+}
+
+.role {
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+
+  &.teacher {
+    background: #e3f2fd;
+    color: #1976d2;
+  }
+
+  &.administration {
+    background: #fbe9e7;
+    color: #d84315;
+  }
+
+  &.principal {
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
+}
+
+.select {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: #fff;
+  outline: none;
+  transition: border 0.2s;
+
+  &:hover, &:focus {
+    border-color: #1976d2;
+  }
+}
+
+.removeBtn {
+  padding: 0.4rem 0.9rem;
+  background: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #c62828;
+  }
+}
+
+.loader {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  padding: 2rem;
+}

@@ -1,0 +1,201 @@
+@use "../../../styles/layout/scrollbar.scss" as *;
+@import "../../../styles/breakpoints";
+ 
+.container {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+  overflow-y: scroll;
+  @include scrollbar-type-2;
+  height: 70vh;
+//   background: #fff;
+  border-radius: 12px; 
+}
+
+.header {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section {
+  margin-bottom: 25px;
+  padding: 18px;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+//   background: #fafafa;
+}
+
+.sectionTitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #34495e;
+}
+
+.inputGroup {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #2f3640;
+}
+
+/* Scoped input styles */
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="date"],
+.form input[type="number"],
+.form select,
+.form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #dcdde1;
+  outline: none;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  border-color: #3498db;
+}
+
+.form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.buttonRow {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.addBtn,
+.removeBtn {
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addBtn {
+  background-color: #27ae60;
+  color: white;
+}
+
+.addBtn:hover {
+  background-color: #219150;
+}
+
+.removeBtn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.removeBtn:hover {
+  background-color: #c0392b;
+}
+
+.list {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.listItem {
+  padding: 10px;
+  border-radius: 6px;
+  background: #f1f2f6;
+  border: 1px solid #dfe4ea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.submitBtn {
+  background: #2980b9;
+  color: white;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  align-self: flex-end;
+  transition: background 0.2s;
+}
+
+.submitBtn:hover {
+  background: #21618c;
+}
+
+ 
+.subjectList {
+  margin-top: 10px;
+  list-style: none;
+  padding: 0;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f5f5f5;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+  }
+}
+
+.addSubjectBtn{
+  width: fit-content;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #27ae60;
+  color: white;
+  margin-top: var(--spacing-s);
+}
+
+ 
+.addSubjectBtn:hover {
+  background-color: #219150;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+.actions button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  background: var(--color-primary-50);
+  cursor: pointer;
+  color: white;
+}
+.actions button:hover { filter: brightness(0.98); }

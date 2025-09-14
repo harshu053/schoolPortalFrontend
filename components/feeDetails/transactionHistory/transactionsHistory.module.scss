@@ -1,0 +1,119 @@
+@use "../../../styles/layout//scrollbar.scss" as *;
+@import "../../../styles/breakpoints";
+
+.tableContainer {
+    // background-color: red;
+    padding-bottom: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-radius: 2rem; 
+  height: 69vh;
+  overflow-y: scroll;
+  @include scrollbar-type-2;
+}
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--color-primary-20);
+  z-index: 1;
+}
+.table thead{
+    border-radius: 1rem;
+}
+
+ 
+.heading {
+  padding-top: var(--spacing-m);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.table {
+    width: 100%;
+  border-collapse: separate;   // important for border-radius
+  border-spacing: 0;   
+  text-align:  center;
+  
+  thead th:first-child {
+    border-top-left-radius: 2rem; 
+    border-bottom-left-radius: 2rem; 
+  }
+
+  thead th:last-child {
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+  }
+
+/* Apply rounded corners only on hover */
+tbody tr:hover td:first-child {
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+}
+
+tbody tr:hover td:last-child {
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+     
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 0.8rem;
+}
+
+
+.table th {
+  background:  var(--color-primary-20);
+  font-weight: 600;
+  color: #444;
+}
+
+.table tr:hover {
+  background: var(--color-primary-20);
+  // background-color: whitesmoke;
+}
+
+.pending {
+  font-weight: bold;
+  color: #d9534f; // red
+}
+
+.editBtn,
+.printBtn {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 8px;
+  transition: 0.2s;
+  background-color:  var(--color-primary-40);
+  color: white;
+  svg{
+    width: 20px;
+    height: 20px;
+  }
+}
+
+ 
+
+.editBtn:hover {
+  color: #0069d9;
+}
+
+
+.printBtn:hover {
+   background-color: #0069d9;
+}
+
+.noData {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+}

@@ -1,0 +1,52 @@
+$font-main: "JioType";
+
+//overwrite me if using local fonts.
+$font-loc: "https://dev-jiostatic.azurewebsites.net/static/fonts/" !default;
+
+@mixin get-font-all($name, $weight) {
+  font-family: $name;
+  src: url("#{$font-loc}#{$name}/#{$name}-#{$weight}.woff2") format("woff2"), url("#{$font-loc}#{$name}/#{$name}-#{$weight}.woff") format("woff"),
+    url("#{$font-loc}#{$name}/#{$name}-#{$weight}.ttf") format("truetype");
+}
+
+@font-face {
+  @include get-font-all($font-main, "Light");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  @include get-font-all($font-main, "Black");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  @include get-font-all($font-main, "LightItalic");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  @include get-font-all($font-main, "Bold");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  @include get-font-all($font-main, "MediumItalic");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  @include get-font-all($font-main, "Medium");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
