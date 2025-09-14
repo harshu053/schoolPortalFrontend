@@ -74,7 +74,7 @@ export default function Home() {
               className={`${styles.button} ${styles.primaryButton}`}
               onClick={() => setIsFormVisible(true)}
             >
-              Contact Us
+              Contact Us / Try Demo
             </button>
           </div>
 
