@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import {
@@ -8,94 +9,82 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import styles from "./barChart.module.scss";
+import { getAllStudentsService } from "@/services/studentsServices";
+import { useAuth } from "@/contexts/AuthContext";
+import { useAcademicYear } from "@/contexts/academicYearContext";
 
-// Register required components
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-const ClassWiseBarChart = ({ studentsData }) => {
-  console.log("Students Data in ClassWiseBarChart:", studentsData);
-  const labels = studentsData.map((item) => `Class ${item.class}`);
-  const removeDuplicateLabels = [...new Set(labels)];
+const ClassWiseBarChart = () => {
+  const [studentsData, setStudentsData] = useState([]);
+  const { user } = useAuth();
+  const {academicYearId}=useAcademicYear();
 
-  const sortedLabels = removeDuplicateLabels.sort((a, b) => {
-  const numA = parseInt(a.split(" ")[1], 10);
-  const numB = parseInt(b.split(" ")[1], 10);
-  return numA - numB;
-  });
+  useEffect(() => {
+    if (!user?.schoolId ||!academicYearId) return;
+    const fetchData = async () => {
+      const payload={academicYearId,schoolId:user?.schoolId};
+      const response = await getAllStudentsService(payload);
+      setStudentsData(response);
+    };
+    fetchData();
+  }, [user?.schoolId,academicYearId]);
 
-  console.log("Unique Labels:", removeDuplicateLabels);
+  // Helper: suffix (1st, 2nd, 3rd, etc.)
+  const getSuffix = (num) => {
+    if (num === 1) return "st";
+    if (num === 2) return "nd";
+    if (num === 3) return "rd";
+    return "th";
+  };
 
-  const countOfAllStudentClassWise = new Map();
-  studentsData.forEach((item) => {
-    if (countOfAllStudentClassWise.has(item.class)) {
-      countOfAllStudentClassWise.set(
-        item.class,
-        countOfAllStudentClassWise.get(item.class) + 1
-      );
-    } else {
-      countOfAllStudentClassWise.set(item.class, 1);
+  // Count students per class
+  const classCounts = {};
+  studentsData.length>0 && studentsData?.forEach((item) => {
+    const classNum = parseInt(item.className, 10);
+    if (!isNaN(classNum)) {
+      classCounts[classNum] = (classCounts[classNum] || 0) + 1;
     }
   });
-  const arr = new Array(12);
-  countOfAllStudentClassWise.forEach((value, key) => {
-    arr[key - 1] = value;
-  });
-  console.log("arr", arr);
-  console.log("countOfAllStudentClassWise", countOfAllStudentClassWise);
 
-  const [data, setData] = useState({
+  // Sort class numbers
+  const sortedClasses = Object.keys(classCounts)
+    .map(Number)
+    .sort((a, b) => a - b);
+
+  // Labels and Data
+  const labels = sortedClasses.map((num) => `Class ${num}${getSuffix(num)}`);
+  const counts = sortedClasses.map((num) => classCounts[num]);
+
+  const data = {
     labels,
     datasets: [
       {
         label: "Students",
+        data: counts,
         backgroundColor: "#36A2EB",
         borderRadius: 6,
         barThickness: 40,
       },
     ],
-  });
-
-  useEffect(() => {
-    setData({
-      labels:  sortedLabels,
-      datasets: [
-        {
-          label: "Students",
-          // data: studentsData.map((item) => item.totalStudents || 0),
-          data:  arr,
-          backgroundColor: "#36A2EB",
-          borderRadius: 6,
-          barThickness: 40,
-        },
-      ],
-    });
-  }, [studentsData]);
+  };
 
   const options = {
-    responsive:  true,
+    responsive: true,
     scales: {
       x: {
-        grid: {
-          display: false,
-        },
+        grid: { display: false },
         ticks: {
-          font: {
-            size: 9,
-            weight: "bold",  
-          },
+          font: { size: 9, weight: "bold" },
         },
       },
       y: {
-         grid: {
-          display: false,
-        },
+        grid: { display: false },
+        beginAtZero: true,
       },
     },
     plugins: {
-      legend: {
-        display: false,
-      },
+      legend: { display: false },
     },
   };
 

@@ -1,0 +1,122 @@
+@import "../../styles/breakpoints";
+
+.filters-container {
+  display: flex;
+  gap: 16px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 0 1 calc(20% - 16px);
+  position: relative;
+  flex-wrap: wrap;
+
+  &__label {
+    font-size: 14px;
+    font-family: "JioType Medium";
+    font-weight: 500;
+    color: var(--color-primary-grey-80);
+
+    span {
+      color: red;
+    }
+  }
+
+  @include tablet-only {
+    flex: 0 1 calc(50% - 8px);
+  }
+  @include mobile {
+    flex: 0 1 100%;
+  }
+}
+
+.inputContainer {
+  display: flex;
+  height: 33px;
+  align-items: center;
+  flex-direction: row;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: solid 1px var(--color-primary-grey-60);
+  padding: 7px 7px;
+  gap: 0 8px;
+  background-color: #ffffff;
+
+  &:hover {
+    // border-color: var(--color-primary-50);
+    border-color: #3535f3ff;
+  }
+
+  .input {
+    width: 100%;
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 500;
+    flex: 1;
+    font-family: "JioType Medium";
+    pointer-events: none;
+    background: inherit;
+  }
+
+  .dropdownIcon {
+    height: 24px;
+    width: 24px;
+    display: flex;
+    place-items: center;
+    cursor: pointer;
+  }
+}
+
+.menublockContainer {
+  display: flex;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  flex-direction: column;
+  background: white;
+  border-radius: 8px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 16px 0px #00000014;
+  max-height: 300px;
+  overflow-y: scroll;
+
+  @include mobile {
+    max-height: 200px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #8582828f;
+  }
+
+  &.hideMenuBlock {
+    height: 0;
+  }
+}
+
+.menublockItem {
+  display: flex;
+  padding: 8px 16px;
+  font-family: "JioType Medium";
+  font-weight: 500;
+
+  align-items: center;
+  background: transparent;
+  justify-content: space-between;
+  cursor: pointer;
+  color: var(--color-primary-grey-80);
+
+  &:hover {
+    background: #f5f5f5ff;
+  }
+}

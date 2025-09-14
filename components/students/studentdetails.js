@@ -4,57 +4,45 @@ import Spinner from "../spinner/spinner";
 import { apibaseUrl } from "@/utils/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { updateStudentService } from "@/services/studentsServices";
+import { useAcademicYear } from "@/contexts/academicYearContext";
 
-const StudentDetails = ({ student, onSave }) => {
+const StudentDetails = ({ student, onSave }) => { 
+
+  const {academicYearId}=useAcademicYear();
   const [section, setSection] = useState("contactInfo");
   const [detail, setDetail] = useState("parentInfo");
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
-  const {user}=useAuth();
-  const schoolId=user?.schoolId;
+  const { user } = useAuth();
+  const schoolId = user?.schoolId;
   // Local state for editable fields
   const [formData, setFormData] = useState({});
 
-  useEffect(() => { 
+  useEffect(() => {
     setFormData(student);
     setLoading(false);
   }, [student]);
 
-  // Handle input changes
-  const handleChange = (e, path) => {
-    const value = e.target.value;
-    // Deep update for nested fields
-    setFormData((prev) => {
-      const newData = { ...prev };
-      if (path.length === 1) {
-        newData[path[0]] = value;
-      } else if (path[0] === "professionalInfo") {
-        if (path[1] === "experience") {
-          newData.professionalInfo.experience[0][path[2]] = value;
-        } else if (path[1] === "qualification") {
-          newData.professionalInfo.qualification[0][path[2]] = value;
-        } else {
-          newData.professionalInfo[path[1]] = value;
-        }
-      } else if (path[0] === "contactInfo") {
-        if (path[1] === "address") {
-          newData.contactInfo.address[path[2]] = value;
-        } else {
-          newData.contactInfo[path[1]] = value;
-        }
-      }
-      return newData;
-    });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
-
   // Save handler
   const handleSave = () => {
-    setIsEditing(false); 
-    if(schoolId && student.studentId) updateStudentService(schoolId, student.studentId, formData);
-    
+    setIsEditing(false);
+    if (schoolId && student.studentId && academicYearId){
+      const payload = { 
+          academicYearId, 
+          schoolId, 
+          studentId: student?.studentId, 
+          data:formData 
+        };
+      updateStudentService(payload);
+    }
+
     if (onSave) {
       onSave(formData);
-    } 
+    }
   };
 
   return (
@@ -70,54 +58,64 @@ const StudentDetails = ({ student, onSave }) => {
                 <label>Name</label>
                 <input
                   type="text"
-                  value={formData?.name || ""}
+                  name="studentName"
+                  value={formData?.studentName || ""}
                   readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["name"])}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div className={styles.inputGroup}>
                 <label>Student ID</label>
                 <input
                   type="text"
+                  name="studentId"
                   value={formData?.studentId || ""}
-                  readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["studentId"])}
+                  readOnly={true}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div className={styles.inputGroup}>
                 <label>Roll Number</label>
                 <input
                   type="text"
+                  name="rollNumber"
                   value={formData?.rollNumber || ""}
                   readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["rollNumber"])}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div className={styles.inputGroup}>
                 <label>Class</label>
                 <input
                   type="text"
-                  value={formData?.class || ""}
+                  name="className"
+                  value={formData?.className || ""}
                   readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["class"])}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div className={styles.inputGroup}>
                 <label>Section</label>
                 <input
                   type="text"
+                  name="section"
                   value={formData?.section || ""}
                   readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["section"])}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div className={styles.inputGroup}>
                 <label>Date of Birth</label>
                 <input
                   type="date"
-                  value={formData?.dateOfBirth ? formData.dateOfBirth.slice(0,10) : ""}
+                  name="dob"
+                  value={
+                    formData?.dob
+                      ? formData.dob.slice(0, 10)
+                      : ""
+                  }
                   readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["dateOfBirth"])}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div className={styles.inputGroup}>
@@ -125,18 +123,14 @@ const StudentDetails = ({ student, onSave }) => {
                 {isEditing ? (
                   <select
                     value={formData?.gender || ""}
-                    onChange={(e) => handleChange(e, ["gender"])}
+                    onChange={(e) => handleChange(e)}
                   >
                     <option value="">Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                   </select>
                 ) : (
-                  <input
-                    type="text"
-                    value={formData?.gender || ""}
-                    readOnly
-                  />
+                  <input name="gender" type="text" value={formData?.gender || ""} readOnly />
                 )}
               </div>
             </div>
@@ -157,128 +151,284 @@ const StudentDetails = ({ student, onSave }) => {
             </div>
           </div>
 
-          <div className={styles.card}>
-            <h2 className={styles.title}>Contact Information</h2>
-            <div className={styles.grid}>
-              <div className={styles.inputGroup}>
-                <label>Email</label>
-                <input
-                  type="text"
-                  value={formData?.contactInfo?.email || ""}
-                  readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["contactInfo", "email"])}
-                />
-              </div>
-              <div className={styles.inputGroup}>
-                <label>Phone</label>
-                <input
-                  type="text"
-                  value={formData?.contactInfo?.phone || ""}
-                  readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["contactInfo", "phone"])}
-                />
-              </div>
-              <div className={styles.inputGroup}>
-                <label>Street</label>
-                <input
-                  type="text"
-                  value={formData?.contactInfo?.address?.street || ""}
-                  readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["contactInfo", "address", "street"])}
-                />
-              </div>
-              <div className={styles.inputGroup}>
-                <label>City</label>
-                <input
-                  type="text"
-                  value={formData?.contactInfo?.address?.city || ""}
-                  readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["contactInfo", "address", "city"])}
-                />
-              </div>
-              <div className={styles.inputGroup}>
-                <label>State</label>
-                <input
-                  type="text"
-                  value={formData?.contactInfo?.address?.state || ""}
-                  readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["contactInfo", "address", "state"])}
-                />
-              </div>
-              <div className={styles.inputGroup}>
-                <label>Pincode</label>
-                <input
-                  type="text"
-                  value={formData?.contactInfo?.address?.pinCode || ""}
-                  readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["contactInfo", "address", "pinCode"])}
-                />
+           
+          <div className={styles.deatilsConatiner}>
+            <div className={styles.card}>
+
+              {/* Identification */}
+              <h2 className={styles.title}>Identification</h2>
+              <div className={styles.grid}>
+                <div className={styles.inputGroup}>
+                  <label>Caste</label>
+                  <input
+                    type="text"
+                    name="caste"
+                    value={formData?.caste || ""}
+                    readOnly={!isEditing}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Sub Caste</label>
+                  <input
+                    type="text"
+                    name="subCaste"
+                    value={formData?.subCaste || ""}
+                    readOnly={!isEditing}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Religion</label>
+                  <input
+                    type="text"
+                    name="religion"
+                    value={formData?.religion|| ""}
+                    readOnly={!isEditing}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Aadhar No.</label>
+                  <input
+                    type="text"
+                    name="aadhar"
+                    value={formData?.aadhar || ""}
+                    readOnly={!isEditing}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Pan Card No.</label>
+                  <input
+                    type="text"
+                    name="panCard"
+                    value={formData?.panCard || ""}
+                    readOnly={!isEditing}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Aapar Id</label>
+                  <input
+                    type="text"
+                    name="aaparId"
+                    value={formData?.aaparId|| ""}
+                    readOnly={!isEditing}
+                    onChange={(e) =>
+                      handleChange(e)
+                    }
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>sssm.F.Id</label>
+                  <input
+                    type="text"
+                    name="sssmFid"
+                    value={formData?.sssmFid|| ""}
+                    readOnly={!isEditing}
+                    onChange={(e) =>
+                      handleChange(e)
+                    }
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>sssm.C.Id</label>
+                  <input
+                    type="text"
+                    name="sssmCid"
+                    value={formData?.sssmCid|| ""}
+                    readOnly={!isEditing}
+                    onChange={(e) =>
+                      handleChange(e)
+                    }
+                  />
+                </div>
               </div>
             </div>
-          </div>
+            {/* Parent Information */}
+            <div className={styles.card}>
+              <h2 className={styles.title}>Parent Information</h2>
+              <div className={styles.grid}>
+                <div className={styles.inputGroup}>
+                  <label>Father's Name</label>
+                  <input
+                    type="text"
+                    name="fatherName"
+                    value={formData?.fatherName || ""}
+                    readOnly={!isEditing}
+                    onChange={(e) =>
+                      handleChange(e)
+                    }
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Father's Occupation</label>
+                  <input
+                    type="text"
+                    name="fatherOccupation"
+                    value={formData?.fatherOccupation || ""}
+                    readOnly={!isEditing}
+                    onChange={(e) =>
+                      handleChange(e)
+                    }
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Father's Education</label>
+                  <input
+                    type="text"
+                    name="fatherEducation"
+                    value={formData?.fatherEducation || ""}
+                    readOnly={!isEditing}
+                    onChange={(e) =>
+                      handleChange(e)
+                    }
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Mother's Name</label>
+                  <input
+                    type="text"
+                    name="motherName"
+                    value={formData?.motherName || ""}
+                    readOnly={!isEditing}
+                    onChange={(e) =>
+                      handleChange(e)
+                    }
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Mother's Occupation</label>
+                  <input
+                    type="text"
+                    name="motherOccupation"
+                    value={formData?.motherOccupation|| ""}
+                    readOnly={!isEditing}
+                    onChange={(e) =>
+                      handleChange(e)
+                    }
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Guardian Contact</label>
+                  <input
+                    type="text"
+                    name="fatherMobile"
+                    value={formData?.fatherMobile|| ""}
+                    readOnly={!isEditing}
+                    onChange={(e) =>
+                      handleChange(e)
+                    }
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Mother's Education</label>
+                  <input
+                    type="text"
+                    name="motherEducation"
+                    value={formData?.motherEducation|| ""}
+                    readOnly={!isEditing}
+                    onChange={(e) =>
+                      handleChange(e)
+                    }
+                  />
+                </div>
 
-          <div className={styles.card}>
-            <h2 className={styles.title}>Parent Information</h2>
-            <div className={styles.grid}>
-              <div className={styles.inputGroup}>
-                <label>Father's Name</label>
-                <input
-                  type="text"
-                  value={formData?.parentInfo?.fatherName || ""}
-                  readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["parentInfo", "fatherName"])}
-                />
-              </div>
-              <div className={styles.inputGroup}>
-                <label>Mother's Name</label>
-                <input
-                  type="text"
-                  value={formData?.parentInfo?.motherName || ""}
-                  readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["parentInfo", "motherName"])}
-                />
-              </div>
-              <div className={styles.inputGroup}>
-                <label>Guardian Contact</label>
-                <input
-                  type="text"
-                  value={formData?.parentInfo?.guardianContact || ""}
-                  readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["parentInfo", "guardianContact"])}
-                />
+                <div className={styles.inputGroup}>
+                  <label>Home Contact</label>
+                  <input
+                    type="text"
+                    name="homeContact"
+                    value={formData?.homeContact|| ""}
+                    readOnly={!isEditing}
+                    onChange={(e) =>
+                      handleChange(e)
+                    }
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className={styles.card}>
-            <h2 className={styles.title}>Academic Information</h2>
-            <div className={styles.grid}>
-              <div className={styles.inputGroup}>
-                <label>Previous School</label>
-                <input
-                  type="text"
-                  value={formData?.academicInfo?.previousSchool || ""}
-                  readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["academicInfo", "previousSchool"])}
-                />
+
+            {/* Academic Information */}
+            <div className={styles.card}>
+              <h2 className={styles.title}>Academic Information</h2>
+              <div className={styles.grid}>
+                <div className={styles.inputGroup}>
+                  <label>Previous School</label>
+                  <input
+                    type="text"
+                    value={""}
+                    readOnly={!isEditing}
+                    onChange={(e) =>
+                      handleChange(e)
+                    }
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Academic Year</label>
+                  <input
+                    type="text"
+                    value={""}
+                    readOnly={!isEditing}
+                    onChange={(e) =>
+                      handleChange(e)
+                    }
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Admission Date</label>
+                  <input
+                    type="date"
+                    value={ ""
+                    }
+                    readOnly={!isEditing}
+                    onChange={(e) =>
+                      handleChange(e)
+                    }
+                  />
+                </div>
               </div>
-              <div className={styles.inputGroup}>
-                <label>Academic Year</label>
-                <input
-                  type="text"
-                  value={formData?.academicInfo?.academicYear || ""}
-                  readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["academicInfo", "academicYear"])}
-                />
-              </div>
-              <div className={styles.inputGroup}>
-                <label>Admission Date</label>
-                <input
-                  type="date"
-                  value={formData?.academicInfo?.admissionDate ? formData.academicInfo.admissionDate.slice(0,10) : ""}
-                  readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["academicInfo", "admissionDate"])}
-                />
+            </div>
+            
+            {/* Fee Details */}
+            <div className={styles.card}>
+              <h2 className={styles.title}>Fee Details</h2>
+              <div className={styles.grid}>
+                <div className={styles.inputGroup}>
+                  <label>Total amount</label>
+                  <input
+                    type="text"
+                    value={formData?.fee?.[0].totalFee}
+                    readOnly={true}
+                    // onChange={(e) =>
+                    //   handleChange(e)
+                    // }
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Paid Amount</label>
+                  <input
+                    type="text"
+                    value= {formData?.fee?.[0].paidFee}
+                    readOnly={true}
+                    // onChange={(e) =>
+                    //   handleChange(e)
+                    // }
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Pending Amount</label>
+                  <input
+                    type="text"
+                    value={formData?.fee?.[0].pendingFee}
+                    readOnly={true}
+                    // onChange={(e) =>
+                    //   handleChange(e)
+                    // }
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -287,7 +437,6 @@ const StudentDetails = ({ student, onSave }) => {
         <Spinner showSpinner={loading} />
       )}
     </div>
-
   );
 };
 

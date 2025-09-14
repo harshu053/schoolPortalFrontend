@@ -1,5 +1,6 @@
 import React, { use, useState } from "react";
 import styles from "./sideBar.module.scss";
+import Link from "next/link";
 import {
   Home,
   Users,
@@ -9,20 +10,21 @@ import {
   PieChart,
   Settings,
 } from "react-feather";
-import { Router,useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 
 const Sidebar = () => {
   const [component, setComponent] = useState("Dashboard");
-  const router=useRouter();
+  const router = useRouter();
 
-  const handleNavigation = (componentName) => {
-    setComponent(componentName);
-    router.push(`/${componentName.toLowerCase()}`);
-  };
+  // const handleNavigation = (componentName) => {
+  //   setComponent(componentName);
+  //   // router.push(`/${componentName.toLowerCase()}`);
+  // };
 
   return (
     <div className={styles.sidebar}>
       <div className={styles.section}>
+        <Link href={`/${"dashboard"}`}>
         <div
           onClick={() => handleNavigation("Dashboard")}
           className={`${styles.link} ${
@@ -32,9 +34,11 @@ const Sidebar = () => {
           <Home className={styles.icon} />
           <span>Dashboard</span>
         </div>
-
+        </Link>
+        
+        <Link href="/enrollments">
         <div
-          onClick={() => handleNavigation("Enrollments")}
+          // onClick={() => handleNavigation("Enrollments")}
           className={`${styles.link} ${
             component === "Enrollments" ? styles.active : ""
           }`}
@@ -42,9 +46,11 @@ const Sidebar = () => {
           <Users className={styles.icon} />
           <span>Enrollments</span>
         </div>
-
+        </Link>
+        
+        <Link href="/students"> 
         <div
-          onClick={() => handleNavigation("Students")}
+          onClick={() => setComponent("Students")}
           className={`${styles.link} ${
             component === "Students" ? styles.active : ""
           }`}
@@ -52,8 +58,11 @@ const Sidebar = () => {
           <Users className={styles.icon} />
           <span>Students</span>
         </div>
+        </Link>
+
+        <Link href={`/${"teachers"}`}>
         <div
-          onClick={() => handleNavigation("Teachers")}
+          onClick={() => setComponent("Teachers")}
           className={`${styles.link} ${
             component === "Teachers" ? styles.active : ""
           }`}
@@ -61,17 +70,23 @@ const Sidebar = () => {
           <Folder className={styles.icon} />
           <span>Teachers</span>
         </div>
+        </Link>
+
+        <Link href={`/${"fee-details"}`}>
         <div
-          onClick={() => handleNavigation("Fee-Sturtures")}
+          onClick={() => setComponent("Fee-Details")}
           className={`${styles.link} ${
-            component === "Fee-Sturtures" ? styles.active : ""
+            component === "Fee-Details" ? styles.active : ""
           }`}
         >
           <Folder className={styles.icon} />
-          <span>Fee Sturtures</span>
+          <span>Fee Details</span>
         </div>
+        </Link>
+
+        <Link href={`/${"calendar"}`}> 
         <div
-          onClick={() => handleNavigation("Calendar")}
+          onClick={() => setComponent("Calendar")}
           className={`${styles.link} ${
             component === "Calendar" ? styles.active : ""
           }`}
@@ -79,12 +94,15 @@ const Sidebar = () => {
           <Calendar className={styles.icon} />
           <span>Calendar</span>
         </div>
+        </Link>
         {/* <div className={styles.link}>
           <FileText className={styles.icon} />
           <span>Documents</span>
         </div> */}
+
+        <Link href={`/${"payrolls"}`}>  
         <div
-          onClick={() => handleNavigation("Payrolls")}
+          onClick={() => setComponent("Payrolls")}
           className={`${styles.link} ${
             component === "Payrolls" ? styles.active : ""
           }`}
@@ -92,6 +110,7 @@ const Sidebar = () => {
           <PieChart className={styles.icon} />
           <span>Payrolls</span>
         </div>
+        </Link>
       </div>
 
       {/* <div className={styles.section}>
@@ -104,12 +123,20 @@ const Sidebar = () => {
         ))}
       </div> */}
 
+
+      <Link href={`/${"settings"}`}>
       <div className={styles.section}>
-        <div className={styles.link}>
+        <div
+          onClick={() => setComponent("settings")}
+          className={`${styles.link} ${
+            component === "settings" ? styles.active : ""
+          }`}
+        >
           <Settings className={styles.icon} />
           <span>Settings</span>
         </div>
       </div>
+      </Link>
     </div>
   );
 };

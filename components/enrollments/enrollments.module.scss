@@ -21,10 +21,10 @@
 }
 
 .buttonsFilter{
-  display: flex;
-  justify-content: center;
+  display: flex; 
   align-items: center;
-  gap: var(--spacing-s);
+  gap: var(--spacing-s); 
+  // justify-content: space-between;
 }
 
 .informationType {
@@ -51,50 +51,17 @@
   color: #ffffff;
 }
 
-.search {
-  display: flex;
-  flex-direction: row;
-  border: 1px solid var(--color-primary-grey-60);
-  border-radius: var(--radius-pill);
-  background-color: #ffffff;
-  height: 35px; 
-  margin-top: auto;
-  margin-bottom: auto;
+.heading{
+  color: var(--color-primary-40);
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 10rem;
 }
 
-.icon {
-  color: #000000;
-  margin-top: auto;
-  margin-bottom: auto;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+ 
+ 
 
-  svg {
-    width: 20px;
-    height: 20px;
-  }
-}
-
-.classDropdown {
-  position: relative;
-  display: inline-block;
-  width: 200px;
-}
-
-.dropdownSelect {
-  width: 100%;
-   height: 35px;
-  border-color: var(--color-primary-30);
-  padding: 8px 36px 8px 12px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: var(--radius-pill);
-  appearance: none; /* Hide default arrow */
-  background: white;
-  cursor: pointer; 
-}
-
-.form {
+.studentContainer {
   padding-left: 2rem;
   padding-right: 2rem;
   padding-bottom: 2rem;

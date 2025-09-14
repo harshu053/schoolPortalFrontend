@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../../contexts/AuthContext';
 import Link from 'next/link';
 import styles from './Login.module.scss';
+import Spinner from '@/components/spinner/spinner';
 
 export default function LoginPage() {
     const [schoolEmail, setSchoolEmail] = useState('');
@@ -19,20 +20,16 @@ export default function LoginPage() {
 
         try {
         
-            const userData = await login(schoolEmail, password); 
+            const userData = await login(schoolEmail, password);  
             
             // Clear any previous error
             setError('');
-            
+            if(!userData)return <Spinner/>;
             // Redirect based on user role
-            // if (userData.role === 'superadmin') {
-            //     router.push('/admin/dashboard');
-            // } else if (userData.role === 'schoolAdmin' || userData.role === 'principal') {
-            //     router.push('/school/dashboard');
-            // } else if (userData.role === 'teacher') {
-            //     router.push('/teacher/dashboard');
-            // }
-            router.push('/dashboard');
+            if (userData.role === 'admin') {
+                router.push('/superAdmin');
+            } else router.push('/dashboard'); 
+            
         } catch (error) {
             console.error('Login error:', error);
             setError(error.message || 'Invalid email or password');

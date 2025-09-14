@@ -1,5 +1,5 @@
 .sidebar {
-  width: 240px;
+  width: 185px;
 //   height: 100vh;
   /* background-color: white; */
   border-right: 1px solid black;
@@ -37,11 +37,12 @@
 }
 
 .link:hover {
-  background-color: var(--color-primary-40);
+  background-color: var(--color-primary-50);
+  color: white;
 }
 
 .active {
-  background-color: var(--color-primary-40);;
+  background-color: var(--color-primary-50);
   color: #f5f5f5;
 }
 

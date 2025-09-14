@@ -80,6 +80,7 @@ font-size: 1.5rem;
   justify-content: space-between;
   align-items: center;
   color: white;
+  // background-color: var(--color-primary-50);
 }
 
 .icon {
@@ -96,11 +97,11 @@ font-size: 1.5rem;
 }
 
 .blue {
-  background-color: #3b82f6;
+  background-color: var(--color-primary-50);
 }
 
 .green {
-  background-color: #10b981;
+  background-color: #FC6770;
 }
 
 .yellow {

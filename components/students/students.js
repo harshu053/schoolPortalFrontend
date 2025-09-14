@@ -6,75 +6,110 @@ import Icon from "../icon/icon";
 import { useRef } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { apibaseUrl } from "@/utils/utils";
-import { Router,useRouter } from "next/router";  
+import { Router, useRouter } from "next/router";
+import {
+  getAllStudentsService,
+  searchStudentsService,
+} from "@/services/studentsServices";
+import AdmitCard from "./admitcard/admitCard";
+import { useAcademicYear } from "@/contexts/academicYearContext";
+import { useReactToPrint } from "react-to-print";
 
-const StudentsMain = ({ studentData }) => {
+const StudentsMain = () => {
   const { user } = useAuth();
+  const { academicYearId } = useAcademicYear();
+  const schoolId = user?.schoolId;
   const [activeButton, setActiveButton] = useState("All Students");
-  const [data, setData] = useState(studentData);
+  const [data, setData] = useState([]);
   const [showBtn, setShowBtn] = useState(false);
   const [showClassList, setShowClassList] = useState(false);
-  const [selectedClass, setSelectedClass] = useState(1);
-  const [selectedClassData, setSelectedClassData] = useState(
-    data?.filter((student) => student.class === selectedClass)
-  );
+  const [selectedClass, setSelectedClass] = useState(null);
+  const [selectedClassData, setSelectedClassData] = useState([]);
+  const [studentData, setStudentData] = useState();
   const inputRef = useRef();
-  const router=useRouter();
+  const printRef = useRef();
+  const router = useRouter();
 
   const handleMoreDetails = (student) => {
-      router.push(`/students/${student.studentId}`);
+    router.push(`/students/${student.studentId}`);
   };
 
   const handleSearch = (searchText) => {
-    if (searchText.length == 0) setData(studentData);
-    const filterdData = fetch(
-      `${apibaseUrl}students/search?searchQuery=${searchText}&schoolId=${user?.schoolId}`
-    );
-    filterdData
-      .then((response) => response.json())
-      .then((data) => {  
-        setData(data.results);
-      })
-      .catch((error) => {
-        console.error("Error fetching search results:", error);
-      });
+    if (!searchText || searchText.trim() === "") {
+      setData(studentData);
+      return;
+    }
+    const getsearchData = async () => {
+      const payload = { schoolId, searchQuery: searchText, academicYearId };
+      const response = await searchStudentsService(payload);
+      setData(response);
+    };
+    getsearchData();
   };
 
   const handleInformationSection = (value) => {
     setActiveButton(value);
-    if (value === "Class Wise Students") {
-      setShowClassList(true);
-    } else {
+    if (value === "All Students") {
       setShowClassList(false);
+    } else {
+      setShowClassList(true);
     }
   };
 
-  useEffect(() => {
-  if (activeButton === "Class Wise Students") { 
-    const filterData = data?.filter(
-      (student) => student.class == selectedClass
-    );
-    setSelectedClassData(filterData); 
-  }
-}, [selectedClass, data, activeButton]);
+  const handlePrint = useReactToPrint({
+    contentRef: printRef,
+    documentTitle: "AdmitCards",
+    pageStyle: `
+      @page {
+        size: A4 portrait;
+        margin: 10mm;
+      }
+      body {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    `,
+  });
 
+  useEffect(() => {
+    if (!schoolId || !academicYearId) return;
+    const fetchStudents = async () => {
+      const payload = { academicYearId, schoolId };
+      const data = await getAllStudentsService(payload);
+      setData(data);
+      setStudentData(data);
+    };
+    fetchStudents();
+  }, [schoolId, academicYearId]);
+
+  useEffect(() => {
+    if (
+      activeButton === "Class Wise Students" ||
+      activeButton === "Generate Admit Cards"
+    ) {
+      const filterData = data?.filter(
+        (student) => student.className == selectedClass
+      );
+      setSelectedClassData(filterData);
+    }
+  }, [selectedClass, data, activeButton]);
 
   return (
     <div className={styles.container}>
-
       <div className={styles.topRow}>
         <div className={styles.informationType}>
           {informationTypeList.map((value) => (
             <button
               onClick={() => handleInformationSection(value)}
-              className={`${styles.buttons} ${activeButton === value ? styles.active : ""} text-button`}
+              className={`${styles.buttons} ${
+                activeButton === value ? styles.active : ""
+              } text-button`}
             >
               {value}
             </button>
           ))}
         </div>
 
-         
         {showClassList && (
           <div className={styles.classDropdown}>
             <select
@@ -85,16 +120,15 @@ const StudentsMain = ({ studentData }) => {
               <option value="" disabled>
                 Select Class
               </option>
-              {[...new Set(data?.map((student) => student.class))].map(
+              {[...new Set(data?.map((student) => student.className))].map(
                 (className) => (
                   <option key={className} value={className}>
-                    class {className}th
+                    class {className}
                   </option>
                 )
               )}
             </select>
 
-            
             <div className={styles.arrowIcon}>
               <Icon iconName="IcChevronDown" />
             </div>
@@ -143,37 +177,83 @@ const StudentsMain = ({ studentData }) => {
         </div>
       </div>
 
-       
-
-      <div className={styles.studentsContainer}>
+      <div className={styles.Container}>
         {/* Show all students if 'All Students' is selected */}
-        {activeButton === "All Students" &&
-          (data?.length === 0 ? (
-            <div>No students found.</div>
-          ) : (
-            data?.map((student) => (
-              <StudentCard
-                key={student._id || student.name}
-                student={student}
-                onDetails={handleMoreDetails}
-              />
-            ))
-          ))}
+        <div className={styles.studentsContainer}>
+          {activeButton === "All Students" &&
+            (data?.length === 0 ? (
+              <div className={styles.message}>No students found.</div>
+            ) : (
+              data &&
+              data?.map((student) => (
+                <StudentCard
+                  key={student._id || student.name}
+                  student={student}
+                  onDetails={handleMoreDetails}
+                />
+              ))
+            ))}
+        </div>
 
         {/* Show students of selected class if 'Class Wise' is selected and a class is chosen */}
-        {activeButton === "Class Wise Students" &&
-          selectedClass &&
-          (selectedClassData?.length === 0 ? (
-            <div>No students found in class {selectedClass}th.</div>
-          ) : (
-            selectedClassData?.map((student) => (
-              <StudentCard
-                key={student._id || student.name}
-                student={student}
-                onDetails={handleMoreDetails}
-              />
-            ))
-          ))}
+        <div className={styles.studentsContainer}>
+          {activeButton === "Class Wise Students" &&
+            (selectedClass && selectedClassData ? (
+              selectedClassData?.length === 0 ? (
+                <div className={styles.message}>
+                  No students found in class {selectedClass}th.
+                </div>
+              ) : (
+                selectedClassData?.map((student) => (
+                  <StudentCard
+                    key={student._id || student.name}
+                    student={student}
+                    onDetails={handleMoreDetails}
+                  />
+                ))
+              )
+            ) : (
+              <div className={styles.message}>
+                Please select class to see data.
+              </div>
+            ))}
+        </div>
+
+        {/* show admit card of all the student by selecting class */}
+        <div className={styles.admitCardSection}>
+          {activeButton == "Generate Admit Cards" &&
+            (selectedClass && selectedClassData ? (
+              selectedClassData.length > 0 ? (
+                <>
+                  <div className={styles.printBtncontianer}>
+                    <button className={styles.printBtn} onClick={handlePrint}>
+                      Print Admit Cards
+                    </button>
+                  </div>
+                  <div ref={printRef} className={styles.printContainer}>
+                    {selectedClassData?.map((student, index) => (
+                      <div key={index} className={styles.cardWrapper}>
+                        <AdmitCard student={student} />
+                      </div>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <div className={styles.message}>
+                  selected class has no students
+                </div>
+              )
+            ) : (
+              <div className={styles.message}>
+                Please select class to generate admit card.
+              </div>
+            ))}
+        </div>
+
+        {/* Generate Grade Cards of all the selected students */}
+        {activeButton === "Generate Grade Cards" && (
+          <div className={styles.gradeCardSection}>Working in progress</div>
+        )}
       </div>
     </div>
   );

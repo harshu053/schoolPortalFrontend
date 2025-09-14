@@ -11,6 +11,7 @@ import {
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function DoughnutChart({ data }) {
+  
   const [values, setValues] = useState({ students: 0, teachers: 0, staffs: 0 });
   const [totalCount, setTotalCount] = useState(0);
   const [dataCopy, setDataCopy] = useState({
@@ -37,9 +38,9 @@ export default function DoughnutChart({ data }) {
       labels: ["Students", "Teachers", "Staffs"],
       datasets: [
         {
-          data: [values.students, values.teachers, values.staffs],
-          backgroundColor: ["#1ECCB0", "#FC6770", "#FBD187"],
-          hoverBackgroundColor: ["#1ECCB0", "#FC6770", "#FBD187"]
+          data: [values.students, values.teachers, values.staffs || 10],
+          backgroundColor: ["#3535f3", "#FC6770", "#facc15"],
+          hoverBackgroundColor: ["#3535f3", "#FC6770", "#facc15"]
         }
       ]
     });
@@ -47,44 +48,81 @@ export default function DoughnutChart({ data }) {
   }, [values]);
 
   useEffect(()=>{
-    console.log(centerTextPlugin);
     centerTextPlugin;
   },[totalCount])
 
   // Custom plugin to draw text in the center
-  const centerTextPlugin = {
-    id: 'centerText',
-    beforeDraw: (chart) => {
-      const { width, height } = chart;
-      const ctx = chart.ctx;
-      ctx.restore();
+  // const centerTextPlugin = {
+  //   id: 'centerText',
+  //   beforeDraw: (chart) => {
+  //     const { width, height } = chart;
+  //     const ctx = chart.ctx;
+  //     ctx.restore();
 
-      // First line - label
-      ctx.font = `bold ${(height / 250).toFixed(2)}em sans-serif`;
-      ctx.fillStyle = "#000";
-      ctx.textBaseline = "middle";
-      const labelText = "Total Count";
-      const labelX = Math.round((width - ctx.measureText(labelText).width) / 2);
-      const labelY = height / 2 - 10;
-      ctx.fillText(labelText, labelX, labelY);
+  //     // First line - label
+  //     ctx.font = `bold ${(height / 250).toFixed(2)}em sans-serif`;
+  //     ctx.fillStyle = "#000";
+  //     ctx.textBaseline = "middle";
+  //     const labelText = "Total Count";
+  //     const labelX = Math.round((width - ctx.measureText(labelText).width) / 2);
+  //     const labelY = height / 2 - 10;
+  //     ctx.fillText(labelText, labelX, labelY);
 
-      // Second line - value
-      ctx.font = `bold ${(height / 300).toFixed(2)}em sans-serif`;
-      const valueText = totalCount.toString();
-      const valueX = Math.round((width - ctx.measureText(valueText).width) / 2);
-      const valueY = height / 2 + 12;
-      ctx.fillText(valueText, valueX, valueY);
+  //     // Second line - value
+  //     ctx.font = `bold ${(height / 300).toFixed(2)}em sans-serif`;
+  //     const valueText = totalCount.toString();
+  //     const valueX = Math.round((width - ctx.measureText(valueText).width) / 2);
+  //     const valueY = height / 2 + 12;
+  //     ctx.fillText(valueText, valueX, valueY);
 
-      ctx.save();
-    }
-  };
+  //     ctx.save();
+  //   }
+  // };
 
-  const ChartConfig = {
-    responsive: true,
-    plugins: {
-      legend: false,
-    },
-  };
+  // const ChartConfig = {
+  //   responsive: true,
+  //   plugins: {
+  //     legend: false,
+  //   },
+  // };
+
+  // Custom plugin to draw text in the center
+const centerTextPlugin = {
+  id: 'centerText',
+  beforeDraw: (chart) => {
+    const { width, height } = chart;
+    const ctx = chart.ctx;
+    ctx.restore();
+
+    // First line - label
+    ctx.font = `bold ${(height / 250).toFixed(2)}em sans-serif`;
+    ctx.fillStyle = "#000";
+    ctx.textBaseline = "middle";
+    const labelText = "Total Count";
+    const labelX = Math.round((width - ctx.measureText(labelText).width) / 2);
+    const labelY = height / 2 - 10;
+    ctx.fillText(labelText, labelX, labelY);
+
+    // Second line - value (now always latest totalCount)
+    ctx.font = `bold ${(height / 300).toFixed(2)}em sans-serif`;
+    const valueText = chart.config.options.totalCount?.toString() ?? "0";
+    const valueX = Math.round((width - ctx.measureText(valueText).width) / 2);
+    const valueY = height / 2 + 12;
+    ctx.fillText(valueText, valueX, valueY);
+
+    ctx.save();
+  }
+};
+
+const ChartConfig = {
+  responsive: true,
+  plugins: {
+    legend: false,
+  },
+   
+  totalCount,
+};
+
 
   return (
     <div className={styles['container']}>

@@ -9,14 +9,36 @@ import DoughnutChart from "@/components/chart/doughnut-chart/doughnut-chart";
 import ClassWiseBarChart from "../chart/barChart/barChart";
 import UpcomingEvents from "../event/upcomingEvent";
 import { Container } from "@mui/material";
+import { useAcademicYear } from "@/contexts/academicYearContext";
+import { useEffect,useMemo,useState } from "react";
+import { getAllStudentsService } from "@/services/studentsServices";
+import { getAllTeachers } from "@/services/teacherServices";
 
-export default function SchoolDashboard() {
-  const { user } = useAuth(); 
+export default function SchoolDashboard() { 
+  const { user ,schoolDeatils } = useAuth();  
+  const { academicYearId,academicYear, years, switchYear }=useAcademicYear();
+  const [students, setStudents]=useState([]);
+  const [teachers, setTeachers]=useState([]);
 
-  const totoalStudents = user?.students?.length || "--";
-  const totalTeachers = user?.teachers?.length || "--";
+   
+  useEffect(()=>{
+    if(!user?.schoolId || !academicYearId)return;
+    const payload={schoolId:user?.schoolId,academicYearId};
+    const fetchStudents=async()=>{
+      const data=await getAllStudentsService(payload); 
+      setStudents(data);
+    };
+    const fetchTeachers=async()=>{
+      const data=await getAllTeachers(payload); 
+      setTeachers(data.data);
+    };
+    fetchStudents();
+    fetchTeachers();
+  },[user?.schoolId, academicYearId]);
 
-
+  const totalStudents =useMemo(()=>students.length,[students]);
+  const totalTeacher=useMemo(()=>teachers.length,[ teachers ]);
+  
   const events = [
     {
       title: "Science Exhibition",
@@ -60,7 +82,7 @@ export default function SchoolDashboard() {
                 <div className={styles.icon}>👨‍🎓</div>
                 <div>
                   <p className={styles.cardLabel}>Total Students</p>
-                  <p className={styles.cardValue}>{totoalStudents}</p>
+                  <p className={styles.cardValue}>{totalStudents}</p>
                 </div>
               </div>
 
@@ -68,7 +90,7 @@ export default function SchoolDashboard() {
                 <div className={styles.icon}>👩‍🏫</div>
                 <div>
                   <p className={styles.cardLabel}>Total Teachers</p>
-                  <p className={styles.cardValue}>{totalTeachers}</p>
+                  <p className={styles.cardValue}>{totalTeacher}</p>
                 </div>
               </div>
 
@@ -90,12 +112,12 @@ export default function SchoolDashboard() {
                 <UpcomingEvents events={events} />
               </div>
               <div className={styles.doughnutConatiner}>
-                <DoughnutChart data={user} />
+                <DoughnutChart data={{students,teachers}} />
               </div>
             </div>
 
             <div className={styles.barChartContainer}>
-              <ClassWiseBarChart studentsData={user?.students} />
+              <ClassWiseBarChart />
             </div>
           </main>
         </div>

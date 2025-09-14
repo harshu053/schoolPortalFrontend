@@ -1,104 +1,56 @@
 import React, { useEffect, useState } from "react";
 import styles from "./teacherDetail.module.scss";
 import Spinner from "../spinner/spinner";
-import { apibaseUrl } from "@/utils/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { updateTeacherService } from "@/services/teacherServices";
+import { useAcademicYear } from "@/contexts/academicYearContext";
 
 const TeacherDetail = ({ teacher, onClose, onSave }) => {
-  // console.log("TeacherDetail teacher:", teacher);
   const { user } = useAuth();
+  const { academicYearId } = useAcademicYear();
   const [section, setSection] = useState("experience");
-  const [detail, setDetail] = useState("contact-Deatils");
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
   const schoolId = user?.schoolId;
+
   // Local state for editable fields
-  const [formData, setFormData] = useState(() => ({
-    employeeId: teacher?.employeeId || "",
-    gender: teacher?.gender || "",
-    name: teacher?.name || "",
-    dateOfBirth: teacher?.dateOfBirth || "",
-    professionalInfo: {
-      experience: [
-        {
-          fromYear: teacher?.professionalInfo?.experience?.[0]?.fromYear || "",
-          toYear: teacher?.professionalInfo?.experience?.[0]?.toYear || "",
-          institution:
-            teacher?.professionalInfo?.experience?.[0]?.institution || "",
-          position: teacher?.professionalInfo?.experience?.[0]?.position || "",
-        },
-      ],
-      currentPosition: teacher?.professionalInfo?.currentPosition || "",
-      qualification: [
-        {
-          institution:
-            teacher?.professionalInfo?.qualification?.[0]?.institution || "",
-          degree: teacher?.professionalInfo?.qualification?.[0]?.degree || "",
-          specialization:
-            teacher?.professionalInfo?.qualification?.[0]?.specialization || "",
-          yearOfCompletion:
-            teacher?.professionalInfo?.qualification?.[0]?.yearOfCompletion ||
-            "",
-        },
-      ],
-    },
-    contactInfo: {
-      Email: teacher?.contactInfo?.email || "",
-      phone: teacher?.contactInfo?.phone || "",
-      address: {
-        street: teacher?.contactInfo?.address?.street || "",
-        city: teacher?.contactInfo?.address?.city || "",
-        pinCode: teacher?.contactInfo?.address?.pinCode || "",
-        state: teacher?.contactInfo?.address?.state || "",
-        country: teacher?.contactInfo?.address?.country || "",
-      },
-    },
-    salary: {
-      AccountNumber: teacher?.salary?.bankDetails?.accountNumber || "",
-      BankName: teacher?.salary?.bankDetails?.bankName || "",
-      IfscCode: teacher?.salary?.bankDetails?.ifscCode || "",
-      AccountType: teacher?.salary?.bankDetails?.accountType || "",
-    },
-    // Add bank details if needed
-  }));
+  const [formData, setFormData] = useState({});
 
   useEffect(() => {
-    setFormData(teacher);
-    setLoading(false);
+    if (teacher) {
+      setFormData(teacher);
+      setLoading(false);
+    }
   }, [teacher]);
 
   // Handle input changes
-  const handleChange = (e, path) => {
+  const handleChange = (e, field, index, type) => {
     const value = e.target.value;
-    // Deep update for nested fields
     setFormData((prev) => {
-      const newData = { ...prev };
-      if (path.length === 1) {
-        newData[path[0]] = value;
-      } else if (path[0] === "professionalInfo") {
-        if (path[1] === "experience") {
-          newData.professionalInfo.experience[0][path[2]] = value;
-        } else if (path[1] === "qualification") {
-          newData.professionalInfo.qualification[0][path[2]] = value;
-        } else {
-          newData.professionalInfo[path[1]] = value;
-        }
-      } else if (path[0] === "contactInfo") {
-        if (path[1] === "address") {
-          newData.contactInfo.address[path[2]] = value;
-        } else {
-          newData.contactInfo[path[1]] = value;
-        }
+      const updated = { ...prev };
+
+      if (type === "education") {
+        updated.education[index][field] = value;
+      } else if (type === "experience") {
+        updated.experience[index][field] = value;
+      } else {
+        updated[field] = value;
       }
-      return newData;
+      return updated;
     });
   };
 
   const handleSave = () => {
     setIsEditing(false);
-    if (schoolId && teacher?.employeeId)
-      updateTeacherService(schoolId, teacher?.employeeId, formData);
+    if (schoolId && teacher?.employeeId && academicYearId) {
+      const payload = {
+        academicYearId,
+        schoolId,
+        employeeId: teacher?.employeeId,
+        data: formData,
+      };
+      updateTeacherService(payload);
+    }
     if (onSave) {
       onSave(formData);
     }
@@ -108,6 +60,7 @@ const TeacherDetail = ({ teacher, onClose, onSave }) => {
     <div>
       {!loading ? (
         <div className={styles.wrapper}>
+          {/* Top Card */}
           <div className={styles.topCard}>
             <div className={styles.profileImage}>
               <img src="/image.jpg" alt="Profile" />
@@ -116,56 +69,128 @@ const TeacherDetail = ({ teacher, onClose, onSave }) => {
             <div className={styles.infoSection}>
               <div className={styles.inputGroup}>
                 <label>Employee ID</label>
+                <input type="text" value={formData?.employeeId} readOnly />
+              </div>
+
+              <div className={styles.inputGroup}>
+                <label>Name</label>
                 <input
                   type="text"
-                  value={formData?.employeeId}
+                  value={formData?.name || ""}
                   readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["employeeId"])}
+                  onChange={(e) => handleChange(e, "name")}
                 />
               </div>
+
+              <div className={styles.inputGroup}>
+                <label>DOB</label>
+                <input
+                  type={isEditing ? "date" : "text"}
+                  value={
+                    formData?.dob
+                      ? new Date(formData.dob).toISOString().slice(0, 10)
+                      : ""
+                  }
+                  readOnly={!isEditing}
+                  onChange={(e) => handleChange(e, "dob")}
+                />
+              </div>
+
               <div className={styles.inputGroup}>
                 <label>Gender</label>
                 {isEditing ? (
                   <select
                     value={formData?.gender || ""}
-                    onChange={(e) => handleChange(e, ["gender"])}
+                    onChange={(e) => handleChange(e, "gender")}
                   >
                     <option value="">Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
+                    <option value="Other">Other</option>
                   </select>
                 ) : (
                   <input type="text" value={formData?.gender || ""} readOnly />
                 )}
               </div>
+
               <div className={styles.inputGroup}>
-                <label>Name</label>
+                <label>Marital Status</label>
                 <input
                   type="text"
-                  value={formData?.name}
+                  value={formData?.maritalStatus || ""}
                   readOnly={!isEditing}
-                  onChange={(e) => handleChange(e, ["name"])}
+                  onChange={(e) => handleChange(e, "maritalStatus")}
                 />
               </div>
+
               <div className={styles.inputGroup}>
-                <label>DOB</label>
+                <label>Father/Spouse Name</label>
+                <input
+                  type="text"
+                  value={formData?.fatherOrSpouseName || ""}
+                  readOnly={!isEditing}
+                  onChange={(e) => handleChange(e, "fatherOrSpouseName")}
+                />
+              </div>
+
+              <div className={styles.inputGroup}>
+                <label>Occupation</label>
+                <input
+                  type="text"
+                  value={formData?.fatherOrSpouseOccupation || ""}
+                  readOnly={!isEditing}
+                  onChange={(e) => handleChange(e, "fatherOrSpouseOccupation")}
+                />
+              </div>
+
+              <div className={styles.inputGroup}>
+                <label>Category</label>
                 {isEditing ? (
-                  <input
-                    type="date"
-                    value={
-                      formData?.dateOfBirth
-                        ? formData.dateOfBirth.slice(0, 10)
-                        : ""
-                    }
-                    onChange={(e) => handleChange(e, ["dateOfBirth"])}
-                  />
+                  <select
+                    value={formData?.category || ""}
+                    onChange={(e) => handleChange(e, "category")}
+                  >
+                    <option value="">-- Select --</option>
+                    <option value="OBC">OBC</option>
+                    <option value="SC/ST">SC/ST</option>
+                    <option value="General">General</option>
+                  </select>
                 ) : (
                   <input
                     type="text"
-                    value={formData?.dateOfBirth || ""}
+                    value={formData?.category || ""}
                     readOnly
                   />
                 )}
+              </div>
+
+              <div className={styles.inputGroup}>
+                <label>Email</label>
+                <input
+                  type="text"
+                  value={formData?.email || ""}
+                  readOnly={!isEditing}
+                  onChange={(e) => handleChange(e, "email")}
+                />
+              </div>
+
+              <div className={styles.inputGroup}>
+                <label>Phone</label>
+                <input
+                  type="text"
+                  value={formData?.phone || ""}
+                  readOnly={!isEditing}
+                  onChange={(e) => handleChange(e, "phone")}
+                />
+              </div>
+
+              <div className={styles.inputGroup}>
+                <label>Address</label>
+                <textarea
+                  value={formData?.address || ""}
+                  readOnly={!isEditing}
+                  onChange={(e) => handleChange(e, "address")}
+                />
               </div>
             </div>
 
@@ -186,8 +211,9 @@ const TeacherDetail = ({ teacher, onClose, onSave }) => {
             </div>
           </div>
 
+          {/* Tabs for Education & Experience */}
           <div className={styles.card}>
-            <h1 className={styles.title}>Professional Information</h1>
+            <h1 className={styles.title}>Details</h1>
             <div className={styles.tabButtons}>
               <button
                 className={`${styles.tab} ${
@@ -199,354 +225,137 @@ const TeacherDetail = ({ teacher, onClose, onSave }) => {
               </button>
               <button
                 className={`${styles.tab} ${
-                  section === "currentposition" ? styles.activeTab : ""
+                  section === "education" ? styles.activeTab : ""
                 }`}
-                onClick={() => setSection("currentposition")}
+                onClick={() => setSection("education")}
               >
-                Current Position
+                Education
               </button>
               <button
                 className={`${styles.tab} ${
-                  section === "qualification" ? styles.activeTab : ""
+                  section === "subjects" ? styles.activeTab : ""
                 }`}
-                onClick={() => setSection("qualification")}
+                onClick={() => setSection("subjects")}
               >
-                Qualification
+                Subjects
               </button>
             </div>
 
-            {section === "experience" && (
-              <div className={styles.grid}>
-                <div className={styles.inputGroup}>
-                  <label>From Year</label>
-                  {isEditing ? (
-                    <input
-                      type="number"
-                      min="1950"
-                      max="2100"
-                      value={
-                        formData?.professionalInfo?.experience?.[0].fromYear ||
-                        ""
-                      }
-                      onChange={(e) =>
-                        handleChange(e, [
-                          "professionalInfo",
-                          "experience",
-                          "fromYear",
-                        ])
-                      }
-                    />
-                  ) : (
-                    <input
-                      type="text"
-                      value={
-                        formData?.professionalInfo?.experience?.[0].fromYear ||
-                        ""
-                      }
-                      readOnly
-                    />
-                  )}
+            {/* Experience Cards */}
+            {section === "experience" &&
+              formData?.experience?.map((exp, idx) => (
+                <div key={idx} className={styles.entryCard}>
+                  <h3 className={styles.entryTitle}>Experience {idx + 1}</h3>
+                  <div className={styles.grid}>
+                    <div className={styles.inputGroup}>
+                      <label>Organization</label>
+                      <input
+                        type="text"
+                        value={exp.organization}
+                        readOnly={!isEditing}
+                        onChange={(e) =>
+                          handleChange(e, "organization", idx, "experience")
+                        }
+                      />
+                    </div>
+                    <div className={styles.inputGroup}>
+                      <label>Role</label>
+                      <input
+                        type="text"
+                        value={exp.role}
+                        readOnly={!isEditing}
+                        onChange={(e) =>
+                          handleChange(e, "role", idx, "experience")
+                        }
+                      />
+                    </div>
+                    <div className={styles.inputGroup}>
+                      <label>From</label>
+                      <input
+                        type={isEditing ? "date" : "text"}
+                        value={
+                          exp.from
+                            ? new Date(exp.from).toISOString().slice(0, 10)
+                            : ""
+                        }
+                        readOnly={!isEditing}
+                        onChange={(e) =>
+                          handleChange(e, "from", idx, "experience")
+                        }
+                      />
+                    </div>
+                    <div className={styles.inputGroup}>
+                      <label>To</label>
+                      <input
+                        type={isEditing ? "date" : "text"}
+                        value={
+                          exp.to
+                            ? new Date(exp.to).toISOString().slice(0, 10)
+                            : ""
+                        }
+                        readOnly={!isEditing}
+                        onChange={(e) =>
+                          handleChange(e, "to", idx, "experience")
+                        }
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className={styles.inputGroup}>
-                  <label>To Year</label>
-                  {isEditing ? (
-                    <input
-                      type="number"
-                      min="1950"
-                      max="2100"
-                      value={
-                        formData?.professionalInfo?.experience?.[0].toYear || ""
-                      }
-                      onChange={(e) =>
-                        handleChange(e, [
-                          "professionalInfo",
-                          "experience",
-                          "toYear",
-                        ])
-                      }
-                    />
-                  ) : (
-                    <input
-                      type="text"
-                      value={
-                        formData?.professionalInfo?.experience?.[0].toYear || ""
-                      }
-                      readOnly
-                    />
-                  )}
-                </div>
-                <div className={styles.inputGroup}>
-                  <label>Institution Name</label>
-                  <input
-                    readOnly={!isEditing}
-                    value={
-                      formData?.professionalInfo?.experience?.[0].institution
-                    }
-                    onChange={(e) =>
-                      handleChange(e, [
-                        "professionalInfo",
-                        "experience",
-                        "institution",
-                      ])
-                    }
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <label>Position</label>
-                  <input
-                    readOnly={!isEditing}
-                    value={formData?.professionalInfo?.experience?.[0].position}
-                    onChange={(e) =>
-                      handleChange(e, [
-                        "professionalInfo",
-                        "experience",
-                        "position",
-                      ])
-                    }
-                  />
-                </div>
-              </div>
-            )}
+              ))}
 
-            {section === "currentposition" && (
-              <div className={styles.inputGroup}>
-                <label>Current Position</label>
-                <input
-                  readOnly={!isEditing}
-                  value={formData?.professionalInfo?.currentPosition}
-                  onChange={(e) =>
-                    handleChange(e, ["professionalInfo", "currentPosition"])
-                  }
-                />
-              </div>
-            )}
-
-            {section === "qualification" && (
-              <div className={styles.grid}>
-                <div className={styles.inputGroup}>
-                  <label>Institute Name</label>
-                  <input
-                    readOnly={!isEditing}
-                    value={
-                      formData?.professionalInfo?.qualification?.[0].institution
-                    }
-                    onChange={(e) =>
-                      handleChange(e, [
-                        "professionalInfo",
-                        "qualification",
-                        "institution",
-                      ])
-                    }
-                  />
+            {/* Education Cards */}
+            {section === "education" &&
+              formData?.education?.map((edu, idx) => (
+                <div key={idx} className={styles.entryCard}>
+                  <h3 className={styles.entryTitle}>Education {idx + 1}</h3>
+                  <div className={styles.grid}>
+                    <div className={styles.inputGroup}>
+                      <label>School</label>
+                      <input
+                        type="text"
+                        value={edu.school}
+                        readOnly={!isEditing}
+                        onChange={(e) =>
+                          handleChange(e, "school", idx, "education")
+                        }
+                      />
+                    </div>
+                    <div className={styles.inputGroup}>
+                      <label>Degree</label>
+                      <input
+                        type="text"
+                        value={edu.degree}
+                        readOnly={!isEditing}
+                        onChange={(e) =>
+                          handleChange(e, "degree", idx, "education")
+                        }
+                      />
+                    </div>
+                    <div className={styles.inputGroup}>
+                      <label>Year of Passing</label>
+                      <input
+                        type="number"
+                        value={edu.yearOfPassing}
+                        readOnly={!isEditing}
+                        onChange={(e) =>
+                          handleChange(e, "yearOfPassing", idx, "education")
+                        }
+                      />
+                    </div>
+                    <div className={styles.inputGroup}>
+                      <label>Percentage</label>
+                      <input
+                        type="number"
+                        value={edu.percentage}
+                        readOnly={!isEditing}
+                        onChange={(e) =>
+                          handleChange(e, "percentage", idx, "education")
+                        }
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className={styles.inputGroup}>
-                  <label>Degree Name</label>
-                  <input
-                    readOnly={!isEditing}
-                    value={
-                      formData?.professionalInfo?.qualification?.[0].degree
-                    }
-                    onChange={(e) =>
-                      handleChange(e, [
-                        "professionalInfo",
-                        "qualification",
-                        "degree",
-                      ])
-                    }
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <label>Specialization</label>
-                  <input
-                    readOnly={!isEditing}
-                    value={
-                      formData?.professionalInfo?.qualification[0]
-                        .specialization
-                    }
-                    onChange={(e) =>
-                      handleChange(e, [
-                        "professionalInfo",
-                        "qualification",
-                        "specialization",
-                      ])
-                    }
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <label>Year Of Completion</label>
-                  {isEditing ? (
-                    <input
-                      type="number"
-                      min="1950"
-                      max="2100"
-                      value={
-                        formData?.professionalInfo?.qualification[0]
-                          .yearOfCompletion || ""
-                      }
-                      onChange={(e) =>
-                        handleChange(e, [
-                          "professionalInfo",
-                          "qualification",
-                          "yearOfCompletion",
-                        ])
-                      }
-                    />
-                  ) : (
-                    <input
-                      type="text"
-                      value={
-                        formData?.professionalInfo?.qualification[0]
-                          .yearOfCompletion || ""
-                      }
-                      readOnly
-                    />
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div className={styles.card}>
-            <h2 className={styles.title}>Other Information</h2>
-            <div className={styles.tabButtons}>
-              <button
-                className={`${styles.tab} ${
-                  detail === "contact-Deatils" ? styles.activeTab : ""
-                }`}
-                onClick={() => setDetail("contact-Deatils")}
-              >
-                Contact details
-              </button>
-              <button
-                className={`${styles.tab} ${
-                  detail === "bank-details" ? styles.activeTab : ""
-                }`}
-                onClick={() => setDetail("bank-details")}
-              >
-                Bank details
-              </button>
-            </div>
-
-            {detail === "contact-Deatils" && (
-              <div className={styles.grid}>
-                <div className={styles.inputGroup}>
-                  <label>Email</label>
-                  <input
-                    type="text"
-                    readOnly={!isEditing}
-                    value={formData?.professionalInfo?.contactInfo?.Email}
-                    onChange={(e) => handleChange(e, ["contactInfo", "Email"])}
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <label>Phone</label>
-                  <input
-                    type="text"
-                    readOnly={!isEditing}
-                    value={formData?.contactInfo?.phone}
-                    onChange={(e) => handleChange(e, ["contactInfo", "phone"])}
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <label>Landmark</label>
-                  <input
-                    type="text"
-                    readOnly={!isEditing}
-                    value={formData?.contactInfo?.address.street}
-                    onChange={(e) =>
-                      handleChange(e, ["contactInfo", "address", "street"])
-                    }
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <label>City</label>
-                  <input
-                    type="text"
-                    readOnly={!isEditing}
-                    value={formData?.contactInfo?.address.city}
-                    onChange={(e) =>
-                      handleChange(e, ["contactInfo", "address", "city"])
-                    }
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <label>Pincode</label>
-                  <input
-                    type="text"
-                    readOnly={!isEditing}
-                    value={formData?.contactInfo?.address.pinCode}
-                    onChange={(e) =>
-                      handleChange(e, ["contactInfo", "address", "pinCode"])
-                    }
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <label>State</label>
-                  <input
-                    type="text"
-                    readOnly={!isEditing}
-                    value={formData?.contactInfo?.address.state}
-                    onChange={(e) =>
-                      handleChange(e, ["contactInfo", "address", "state"])
-                    }
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <label>Country</label>
-                  <input
-                    type="text"
-                    readOnly={!isEditing}
-                    value={formData?.contactInfo?.address.country}
-                    onChange={(e) =>
-                      handleChange(e, ["contactInfo", "address", "country"])
-                    }
-                  />
-                </div>
-              </div>
-            )}
-
-            {detail === "bank-details" && (
-              <div className={styles.grid}>
-                <div className={styles.inputGroup}>
-                  <label>Bank Name</label>
-                  <input
-                    type="text"
-                    readOnly={!isEditing}
-                    value={formData?.salary.BankName}
-                    onChange={(e) => handleChange(e, ["salary", "BankName"])}
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <label>Account Number</label>
-                  <input
-                    type="text"
-                    readOnly={!isEditing}
-                    value={formData?.salary.AccountNumber}
-                    onChange={(e) =>
-                      handleChange(e, ["salary", "AccountNumber"])
-                    }
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <label>IFSC Code</label>
-                  <input
-                    type="text"
-                    readOnly={!isEditing}
-                    value={formData?.salary.IfscCode}
-                    onChange={(e) => handleChange(e, ["salary", "IfscCode"])}
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <label>Account Type</label>
-                  <input
-                    type="text"
-                    readOnly={!isEditing}
-                    value={formData?.salary.AccountType}
-                    onChange={(e) => handleChange(e, ["salary", "AccountType"])}
-                  />
-                </div>
-              </div>
-            )}
+              ))}
           </div>
         </div>
       ) : (

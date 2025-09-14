@@ -5,10 +5,14 @@ import { enrollmentsTypeList } from "@/constants/app.constants";
 import { useAuth } from "../../contexts/AuthContext";
 import { addStudentService } from "@/services/studentsServices";
 import { apibaseUrl } from "@/utils/utils";
-import { handleFileUpload } from "@/services/teacherServices";
+import { addTeacherService, handleFileUpload } from "@/services/teacherServices";
+import { useAcademicYear } from "@/contexts/academicYearContext";
+import StudentAdmissionForm from "./student";
+import TeacherForm from "./teacher";
 
 const Enrollments = () => {
   const { user } = useAuth();
+  const {academicYearId}=useAcademicYear();
   const schoolId = user?.schoolId;
   const [enrollmentsType, setEnrollmentsType] = useState("Student");
   const [studentImg, setStudentImg] = useState(null);
@@ -89,14 +93,13 @@ const Enrollments = () => {
       },
       basic: "",
     },
-    status: "Active",
-    schoolId: "",
+    status: "Active", 
     name: "",
     dateOfBirth: "",
     gender: "",
-    schedule: [],
-    employeeId: "",
-    departemnt: "",
+    schoolId:"",
+    schedule: [], 
+    department: "",
   });
 
   const [studentImagePreview, setStudentImagePreview] = useState("");
@@ -107,8 +110,6 @@ const Enrollments = () => {
   // Validation function for teacher form
   const validateTeacherForm = () => {
     const errors = {};
-    if (!formDataTeacher.employeeId)
-      errors.employeeId = "Employee ID is required.";
     if (!formDataTeacher.name) errors.name = "Name is required.";
     if (!formDataTeacher.dateOfBirth)
       errors.dateOfBirth = "Date of Birth is required.";
@@ -117,8 +118,8 @@ const Enrollments = () => {
       !["Male", "Female"].includes(formDataTeacher.gender)
     )
       errors.gender = "Gender must be Male or Female.";
-    if (!formDataTeacher.departemnt)
-      errors.departemnt = "Department is required.";
+    if (!formDataTeacher.department)
+      errors.department = "Department is required.";
     if (!formDataTeacher.status) errors.status = "Status is required.";
     // Contact Info
     if (!formDataTeacher.contactInfo.email) errors.email = "Email is required.";
@@ -258,7 +259,7 @@ const Enrollments = () => {
   };
 
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {department:
     e.preventDefault();
     const errors = validateStudentForm();
     setStudentErrors(errors);
@@ -267,13 +268,22 @@ const Enrollments = () => {
       if (studentImg) {
         imageUrl = await handleFileUpload(studentImg);
       }
-      addStudentService({
-        schoolId: schoolId,
-        ...formData,
-        studentImageUrl: imageUrl,
-      });
+      }
+
+      const studentData = {
+      schoolId,
+      studentImageUrl: imageUrl,
+      ...formData,
+    };
+
+     
+    const payload = {
+      academicYearId,   
+      data: studentData
+    };
+ 
+    addStudentService(payload)
     }
-  };
 
   // Handle input changes for nested teacher fields
   const handleChangeTeacher = (e, path) => {
@@ -311,21 +321,30 @@ const Enrollments = () => {
     });
   };
 
-  const handleSubmitTeacher = (e) => {
+  const handleSubmitTeacher =async (e) => {
     e.preventDefault();
     const errors = validateTeacherForm();
     setTeacherErrors(errors);
-    if (Object.keys(errors).length === 0) {
-      // Here you can send formDataTeacher to backend API
-      console.log("Submitted teacher enrollment:", formDataTeacher);
-    }
+     if (Object.keys(errors).length === 0 && schoolId) {
+    // Teacher details
+    const teacherData = {
+      schoolId,
+      ...formDataTeacher,
+    };
+ 
+    const payload = {
+      academicYearId,    
+      data: teacherData 
+    }; 
+    addTeacherService(payload); 
+  }
   };
 
   return (
     <div className={styles.enrollmentsContainer}>
       <div className={styles.topRow}>
         <div className={styles.buttonsFilter}>
-          <div className={`${styles.heading} text-body-m`}>Enrollment:</div>
+          {/* <div className={`${styles.heading} text-body-m`}>Enrollment:</div> */}
           <div className={styles.informationType}>
             {enrollmentsTypeList.map((value) => (
               <button
@@ -338,834 +357,812 @@ const Enrollments = () => {
               </button>
             ))}
           </div>
+          <div className={styles.heading}>{enrollmentsType!=="Student"? "Teacher Information Form": "Student Admission Form"}</div>
         </div>
       </div>
 
       {/* Enrollment Form student */}
       {enrollmentsType === "Student" && (
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <h2>Student Enrollment Form</h2>
-          <div className={styles.formGroup}>
-            <div className={styles.formSection}>
-              <label>Name</label>
-              <input
-                type="text"
-                value={formData.name}
-                onChange={(e) => handleChange(e, ["name"])}
-                required
-              />
-              {studentErrors.name && (
-                <span className={styles.error}>{studentErrors.name}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Roll Number</label>
-              <input
-                type="text"
-                value={formData.rollNumber}
-                onChange={(e) => handleChange(e, ["rollNumber"])}
-                required
-              />
-              {studentErrors.rollNumber && (
-                <span className={styles.error}>{studentErrors.rollNumber}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Class</label>
-              <input
-                type="text"
-                value={formData.class}
-                onChange={(e) => handleChange(e, ["class"])}
-                required
-              />
-              {studentErrors.class && (
-                <span className={styles.error}>{studentErrors.class}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Student Image</label>
-              <input
-                type="file"
-                accept="image/*"
-                className={styles.fileInput}
-                onChange={(e) => setStudentImg(e.target.files[0])}
-              />
-              {studentImagePreview && (
-                <img
-                  src={studentImagePreview}
-                  alt="Preview"
-                  className={styles.imagePreview}
-                />
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Section</label>
-              <input
-                type="text"
-                value={formData.section}
-                onChange={(e) => handleChange(e, ["section"])}
-                required
-              />
-              {studentErrors.section && (
-                <span className={styles.error}>{studentErrors.section}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Date of Birth</label>
-              <input
-                type="date"
-                value={formData.dateOfBirth}
-                onChange={(e) => handleChange(e, ["dateOfBirth"])}
-                required
-              />
-              {studentErrors.dateOfBirth && (
-                <span className={styles.error}>
-                  {studentErrors.dateOfBirth}
-                </span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Gender</label>
-              <select
-                value={formData.gender}
-                onChange={(e) => handleChange(e, ["gender"])}
-                required
-              >
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
-              {studentErrors.gender && (
-                <span className={styles.error}>{studentErrors.gender}</span>
-              )}
-            </div>
-          </div>
+         <StudentAdmissionForm/>
+        // <form className={styles.form} onSubmit={handleSubmit}>
+        //   <h2>Student Enrollment Form</h2>
+        //   <div className={styles.formGroup}>
+        //     <div className={styles.formSection}>
+        //       <label>Name</label>
+        //       <input
+        //         type="text"
+        //         value={formData.name}
+        //         onChange={(e) => handleChange(e, ["name"])}
+        //         required
+        //       />
+        //       {studentErrors.name && (
+        //         <span className={styles.error}>{studentErrors.name}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Roll Number</label>
+        //       <input
+        //         type="text"
+        //         value={formData.rollNumber}
+        //         onChange={(e) => handleChange(e, ["rollNumber"])}
+        //         required
+        //       />
+        //       {studentErrors.rollNumber && (
+        //         <span className={styles.error}>{studentErrors.rollNumber}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Class</label>
+        //       <input
+        //         type="text"
+        //         value={formData.class}
+        //         onChange={(e) => handleChange(e, ["class"])}
+        //         required
+        //       />
+        //       {studentErrors.class && (
+        //         <span className={styles.error}>{studentErrors.class}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Student Image</label>
+        //       <input
+        //         type="file"
+        //         accept="image/*"
+        //         className={styles.fileInput}
+        //         onChange={(e) => setStudentImg(e.target.files[0])}
+        //       />
+        //       {studentImagePreview && (
+        //         <img
+        //           src={studentImagePreview}
+        //           alt="Preview"
+        //           className={styles.imagePreview}
+        //         />
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Section</label>
+        //       <input
+        //         type="text"
+        //         value={formData.section}
+        //         onChange={(e) => handleChange(e, ["section"])}
+        //         required
+        //       />
+        //       {studentErrors.section && (
+        //         <span className={styles.error}>{studentErrors.section}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Date of Birth</label>
+        //       <input
+        //         type="date"
+        //         value={formData.dateOfBirth}
+        //         onChange={(e) => handleChange(e, ["dateOfBirth"])}
+        //         required
+        //       />
+        //       {studentErrors.dateOfBirth && (
+        //         <span className={styles.error}>
+        //           {studentErrors.dateOfBirth}
+        //         </span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Gender</label>
+        //       <select
+        //         value={formData.gender}
+        //         onChange={(e) => handleChange(e, ["gender"])}
+        //         required
+        //       >
+        //         <option value="">Select Gender</option>
+        //         <option value="Male">Male</option>
+        //         <option value="Female">Female</option>
+        //         <option value="Other">Other</option>
+        //       </select>
+        //       {studentErrors.gender && (
+        //         <span className={styles.error}>{studentErrors.gender}</span>
+        //       )}
+        //     </div>
+        //   </div>
 
-          <h3>Contact Information</h3>
-          <div className={styles.formGroup}>
-            <div className={styles.formSection}>
-              <label>Email</label>
-              <input
-                type="email"
-                value={formData.contactInfo.email}
-                onChange={(e) => handleChange(e, ["contactInfo", "email"])}
-                required
-              />
-              {studentErrors.email && (
-                <span className={styles.error}>{studentErrors.email}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Phone</label>
-              <input
-                type="text"
-                value={formData.contactInfo.phone}
-                onChange={(e) => handleChange(e, ["contactInfo", "phone"])}
-                required
-              />
-              {studentErrors.phone && (
-                <span className={styles.error}>{studentErrors.phone}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Street</label>
-              <input
-                type="text"
-                value={formData.contactInfo.address.street}
-                onChange={(e) =>
-                  handleChange(e, ["contactInfo", "address", "street"])
-                }
-                required
-              />
-              {studentErrors.street && (
-                <span className={styles.error}>{studentErrors.street}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>City</label>
-              <input
-                type="text"
-                value={formData.contactInfo.address.city}
-                onChange={(e) =>
-                  handleChange(e, ["contactInfo", "address", "city"])
-                }
-                required
-              />
-              {studentErrors.city && (
-                <span className={styles.error}>{studentErrors.city}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>State</label>
-              <input
-                type="text"
-                value={formData.contactInfo.address.state}
-                onChange={(e) =>
-                  handleChange(e, ["contactInfo", "address", "state"])
-                }
-                required
-              />
-              {studentErrors.state && (
-                <span className={styles.error}>{studentErrors.state}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Pincode</label>
-              <input
-                type="text"
-                value={formData.contactInfo.address.pinCode}
-                onChange={(e) =>
-                  handleChange(e, ["contactInfo", "address", "pinCode"])
-                }
-                required
-              />
-              {studentErrors.pinCode && (
-                <span className={styles.error}>{studentErrors.pinCode}</span>
-              )}
-            </div>
-          </div>
-          <h3>Parent Information</h3>
-          <div className={styles.formGroup}>
-            <div className={styles.formSection}>
-              <label>Father's Name</label>
-              <input
-                type="text"
-                value={formData.parentInfo.fatherName}
-                onChange={(e) => handleChange(e, ["parentInfo", "fatherName"])}
-                required
-              />
-              {studentErrors.fatherName && (
-                <span className={styles.error}>{studentErrors.fatherName}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Mother's Name</label>
-              <input
-                type="text"
-                value={formData.parentInfo.motherName}
-                onChange={(e) => handleChange(e, ["parentInfo", "motherName"])}
-                required
-              />
-              {studentErrors.motherName && (
-                <span className={styles.error}>{studentErrors.motherName}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Guardian Contact</label>
-              <input
-                type="text"
-                value={formData.parentInfo.guardianContact}
-                onChange={(e) =>
-                  handleChange(e, ["parentInfo", "guardianContact"])
-                }
-                required
-              />
-              {studentErrors.guardianContact && (
-                <span className={styles.error}>
-                  {studentErrors.guardianContact}
-                </span>
-              )}
-            </div>
-          </div>
+        //   <h3>Contact Information</h3>
+        //   <div className={styles.formGroup}>
+        //     <div className={styles.formSection}>
+        //       <label>Email</label>
+        //       <input
+        //         type="email"
+        //         value={formData.contactInfo.email}
+        //         onChange={(e) => handleChange(e, ["contactInfo", "email"])}
+        //         required
+        //       />
+        //       {studentErrors.email && (
+        //         <span className={styles.error}>{studentErrors.email}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Phone</label>
+        //       <input
+        //         type="text"
+        //         value={formData.contactInfo.phone}
+        //         onChange={(e) => handleChange(e, ["contactInfo", "phone"])}
+        //         required
+        //       />
+        //       {studentErrors.phone && (
+        //         <span className={styles.error}>{studentErrors.phone}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Street</label>
+        //       <input
+        //         type="text"
+        //         value={formData.contactInfo.address.street}
+        //         onChange={(e) =>
+        //           handleChange(e, ["contactInfo", "address", "street"])
+        //         }
+        //         required
+        //       />
+        //       {studentErrors.street && (
+        //         <span className={styles.error}>{studentErrors.street}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>City</label>
+        //       <input
+        //         type="text"
+        //         value={formData.contactInfo.address.city}
+        //         onChange={(e) =>
+        //           handleChange(e, ["contactInfo", "address", "city"])
+        //         }
+        //         required
+        //       />
+        //       {studentErrors.city && (
+        //         <span className={styles.error}>{studentErrors.city}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>State</label>
+        //       <input
+        //         type="text"
+        //         value={formData.contactInfo.address.state}
+        //         onChange={(e) =>
+        //           handleChange(e, ["contactInfo", "address", "state"])
+        //         }
+        //         required
+        //       />
+        //       {studentErrors.state && (
+        //         <span className={styles.error}>{studentErrors.state}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Pincode</label>
+        //       <input
+        //         type="text"
+        //         value={formData.contactInfo.address.pinCode}
+        //         onChange={(e) =>
+        //           handleChange(e, ["contactInfo", "address", "pinCode"])
+        //         }
+        //         required
+        //       />
+        //       {studentErrors.pinCode && (
+        //         <span className={styles.error}>{studentErrors.pinCode}</span>
+        //       )}
+        //     </div>
+        //   </div>
+        //   <h3>Parent Information</h3>
+        //   <div className={styles.formGroup}>
+        //     <div className={styles.formSection}>
+        //       <label>Father's Name</label>
+        //       <input
+        //         type="text"
+        //         value={formData.parentInfo.fatherName}
+        //         onChange={(e) => handleChange(e, ["parentInfo", "fatherName"])}
+        //         required
+        //       />
+        //       {studentErrors.fatherName && (
+        //         <span className={styles.error}>{studentErrors.fatherName}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Mother's Name</label>
+        //       <input
+        //         type="text"
+        //         value={formData.parentInfo.motherName}
+        //         onChange={(e) => handleChange(e, ["parentInfo", "motherName"])}
+        //         required
+        //       />
+        //       {studentErrors.motherName && (
+        //         <span className={styles.error}>{studentErrors.motherName}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Guardian Contact</label>
+        //       <input
+        //         type="text"
+        //         value={formData.parentInfo.guardianContact}
+        //         onChange={(e) =>
+        //           handleChange(e, ["parentInfo", "guardianContact"])
+        //         }
+        //         required
+        //       />
+        //       {studentErrors.guardianContact && (
+        //         <span className={styles.error}>
+        //           {studentErrors.guardianContact}
+        //         </span>
+        //       )}
+        //     </div>
+        //   </div>
 
-          <h3>Academic Information</h3>
-          <div className={styles.formGroup}>
-            <div className={styles.formSection}>
-              <label>Previous School</label>
-              <input
-                type="text"
-                value={formData.academicInfo.previousSchool}
-                onChange={(e) =>
-                  handleChange(e, ["academicInfo", "previousSchool"])
-                }
-                required
-              />
-            </div>
-            <div className={styles.formSection}>
-              <label>Academic Year</label>
-              <input
-                type="text"
-                value={formData.academicInfo.academicYear}
-                onChange={(e) =>
-                  handleChange(e, ["academicInfo", "academicYear"])
-                }
-                required
-              />
-              {studentErrors.academicYear && (
-                <span className={styles.error}>
-                  {studentErrors.academicYear}
-                </span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Admission Date</label>
-              <input
-                type="date"
-                value={formData.academicInfo.admissionDate}
-                onChange={(e) =>
-                  handleChange(e, ["academicInfo", "admissionDate"])
-                }
-                required
-              />
-              {studentErrors.admissionDate && (
-                <span className={styles.error}>
-                  {studentErrors.admissionDate}
-                </span>
-              )}
-            </div>
-          </div>
-          <button type="submit" className={styles.submitBtn}>
-            Submit
-          </button>
-        </form>
+        //   <h3>Academic Information</h3>
+        //   <div className={styles.formGroup}>
+        //     <div className={styles.formSection}>
+        //       <label>Previous School</label>
+        //       <input
+        //         type="text"
+        //         value={formData.academicInfo.previousSchool}
+        //         onChange={(e) =>
+        //           handleChange(e, ["academicInfo", "previousSchool"])
+        //         }
+        //         required
+        //       />
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Academic Year</label>
+        //       <input
+        //         type="text"
+        //         value={formData.academicInfo.academicYear}
+        //         onChange={(e) =>
+        //           handleChange(e, ["academicInfo", "academicYear"])
+        //         }
+        //         required
+        //       />
+        //       {studentErrors.academicYear && (
+        //         <span className={styles.error}>
+        //           {studentErrors.academicYear}
+        //         </span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Admission Date</label>
+        //       <input
+        //         type="date"
+        //         value={formData.academicInfo.admissionDate}
+        //         onChange={(e) =>
+        //           handleChange(e, ["academicInfo", "admissionDate"])
+        //         }
+        //         required
+        //       />
+        //       {studentErrors.admissionDate && (
+        //         <span className={styles.error}>
+        //           {studentErrors.admissionDate}
+        //         </span>
+        //       )}
+        //     </div>
+        //   </div>
+        //   <button type="submit" className={styles.submitBtn}>
+        //     Submit
+        //   </button>
+        // </form>
       )}
 
       {/* Enrollment Form Teacher */}
-      {enrollmentsType === "Teacher" && (
-        <form className={styles.form} onSubmit={handleSubmitTeacher}>
-          <h2>Teacher Enrollment Form</h2>
-          <div className={styles.formGroup}>
-            <div className={styles.formSection}>
-              <label>School ID</label>
-              <input
-                type="text"
-                value={formDataTeacher.schoolId}
-                onChange={(e) => handleChangeTeacher(e, ["schoolId"])}
-                required
-              />
-              {teacherErrors.schoolId && (
-                <span className={styles.error}>{teacherErrors.schoolId}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Name</label>
-              <input
-                type="text"
-                value={formDataTeacher.name}
-                onChange={(e) => handleChangeTeacher(e, ["name"])}
-                required
-              />
-              {teacherErrors.name && (
-                <span className={styles.error}>{teacherErrors.name}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Employee ID</label>
-              <input
-                type="text"
-                value={formDataTeacher.employeeId}
-                onChange={(e) => handleChangeTeacher(e, ["employeeId"])}
-                required
-              />
-              {teacherErrors.employeeId && (
-                <span className={styles.error}>{teacherErrors.employeeId}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Date of Birth</label>
-              <input
-                type="date"
-                value={formDataTeacher.dateOfBirth}
-                onChange={(e) => handleChangeTeacher(e, ["dateOfBirth"])}
-                required
-              />
-              {teacherErrors.dateOfBirth && (
-                <span className={styles.error}>
-                  {teacherErrors.dateOfBirth}
-                </span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Gender</label>
-              <select
-                value={formDataTeacher.gender}
-                onChange={(e) => handleChangeTeacher(e, ["gender"])}
-                required
-              >
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-              {teacherErrors.gender && (
-                <span className={styles.error}>{teacherErrors.gender}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Department</label>
-              <input
-                type="text"
-                value={formDataTeacher.departemnt}
-                onChange={(e) => handleChangeTeacher(e, ["departemnt"])}
-                required
-              />
-              {teacherErrors.departemnt && (
-                <span className={styles.error}>{teacherErrors.departemnt}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Status</label>
-              <select
-                value={formDataTeacher.status}
-                onChange={(e) => handleChangeTeacher(e, ["status"])}
-                required
-              >
-                <option value="Active">Active</option>
-                <option value="Inactive">Inactive</option>
-              </select>
-              {teacherErrors.status && (
-                <span className={styles.error}>{teacherErrors.status}</span>
-              )}
-            </div>
-          </div>
-          <h3>Contact Information</h3>
-          <div className={styles.formGroup}>
-            <div className={styles.formSection}>
-              <label>Email</label>
-              <input
-                type="email"
-                value={formDataTeacher.contactInfo.email}
-                onChange={(e) =>
-                  handleChangeTeacher(e, ["contactInfo", "email"])
-                }
-                required
-              />
-              {teacherErrors.email && (
-                <span className={styles.error}>{teacherErrors.email}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Phone</label>
-              <input
-                type="text"
-                value={formDataTeacher.contactInfo.phone}
-                onChange={(e) =>
-                  handleChangeTeacher(e, ["contactInfo", "phone"])
-                }
-                required
-              />
-              {teacherErrors.phone && (
-                <span className={styles.error}>{teacherErrors.phone}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Street</label>
-              <input
-                type="text"
-                value={formDataTeacher.contactInfo.address.street}
-                onChange={(e) =>
-                  handleChangeTeacher(e, ["contactInfo", "address", "street"])
-                }
-                required
-              />
-              {teacherErrors.street && (
-                <span className={styles.error}>{teacherErrors.street}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>City</label>
-              <input
-                type="text"
-                value={formDataTeacher.contactInfo.address.city}
-                onChange={(e) =>
-                  handleChangeTeacher(e, ["contactInfo", "address", "city"])
-                }
-                required
-              />
-              {teacherErrors.city && (
-                <span className={styles.error}>{teacherErrors.city}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>State</label>
-              <input
-                type="text"
-                value={formDataTeacher.contactInfo.address.state}
-                onChange={(e) =>
-                  handleChangeTeacher(e, ["contactInfo", "address", "state"])
-                }
-                required
-              />
-              {teacherErrors.state && (
-                <span className={styles.error}>{teacherErrors.state}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Pincode</label>
-              <input
-                type="text"
-                value={formDataTeacher.contactInfo.address.pinCode}
-                onChange={(e) =>
-                  handleChangeTeacher(e, ["contactInfo", "address", "pinCode"])
-                }
-                required
-              />
-              {teacherErrors.pinCode && (
-                <span className={styles.error}>{teacherErrors.pinCode}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Country</label>
-              <input
-                type="text"
-                value={formDataTeacher.contactInfo.address.country}
-                onChange={(e) =>
-                  handleChangeTeacher(e, ["contactInfo", "address", "country"])
-                }
-                required
-              />
-              {teacherErrors.country && (
-                <span className={styles.error}>{teacherErrors.country}</span>
-              )}
-            </div>
-          </div>
-          <h3>Professional Information</h3>
-          <div className={styles.formGroup}>
-            <div className={styles.formSection}>
-              <label>Current Position</label>
-              <input
-                type="text"
-                value={formDataTeacher.professionalInfo.currentPosition}
-                onChange={(e) =>
-                  handleChangeTeacher(e, [
-                    "professionalInfo",
-                    "currentPosition",
-                  ])
-                }
-                required
-              />
-              {teacherErrors.currentPosition && (
-                <span className={styles.error}>
-                  {teacherErrors.currentPosition}
-                </span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Joining Date</label>
-              <input
-                type="date"
-                value={formDataTeacher.professionalInfo.joiningDate}
-                onChange={(e) =>
-                  handleChangeTeacher(e, ["professionalInfo", "joiningDate"])
-                }
-                required
-              />
-              {teacherErrors.joiningDate && (
-                <span className={styles.error}>
-                  {teacherErrors.joiningDate}
-                </span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Experience Institution</label>
-              <input
-                type="text"
-                value={
-                  formDataTeacher.professionalInfo.experience[0].institution
-                }
-                onChange={(e) =>
-                  handleChangeTeacher(e, [
-                    "professionalInfo",
-                    "experience",
-                    "institution",
-                  ])
-                }
-                required
-              />
-              {teacherErrors.expInstitution && (
-                <span className={styles.error}>
-                  {teacherErrors.expInstitution}
-                </span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Experience Position</label>
-              <input
-                type="text"
-                value={formDataTeacher.professionalInfo.experience[0].position}
-                onChange={(e) =>
-                  handleChangeTeacher(e, [
-                    "professionalInfo",
-                    "experience",
-                    "position",
-                  ])
-                }
-                required
-              />
-              {teacherErrors.expPosition && (
-                <span className={styles.error}>
-                  {teacherErrors.expPosition}
-                </span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Experience Subject</label>
-              <input
-                type="text"
-                value={formDataTeacher.professionalInfo.experience[0].subject}
-                onChange={(e) =>
-                  handleChangeTeacher(e, [
-                    "professionalInfo",
-                    "experience",
-                    "subject",
-                  ])
-                }
-                required
-              />
-              {teacherErrors.expSubject && (
-                <span className={styles.error}>{teacherErrors.expSubject}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>From Year</label>
-              <input
-                type="number"
-                value={formDataTeacher.professionalInfo.experience[0].fromYear}
-                onChange={(e) =>
-                  handleChangeTeacher(e, [
-                    "professionalInfo",
-                    "experience",
-                    "fromYear",
-                  ])
-                }
-                required
-              />
-              {teacherErrors.expFromYear && (
-                <span className={styles.error}>
-                  {teacherErrors.expFromYear}
-                </span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>To Year</label>
-              <input
-                type="number"
-                value={formDataTeacher.professionalInfo.experience[0].toYear}
-                onChange={(e) =>
-                  handleChangeTeacher(e, [
-                    "professionalInfo",
-                    "experience",
-                    "toYear",
-                  ])
-                }
-                required
-              />
-              {teacherErrors.expToYear && (
-                <span className={styles.error}>{teacherErrors.expToYear}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Qualification Degree</label>
-              <input
-                type="text"
-                value={formDataTeacher.professionalInfo.qualification[0].degree}
-                onChange={(e) =>
-                  handleChangeTeacher(e, [
-                    "professionalInfo",
-                    "qualification",
-                    "degree",
-                  ])
-                }
-                required
-              />
-              {teacherErrors.qualDegree && (
-                <span className={styles.error}>{teacherErrors.qualDegree}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Qualification Institution</label>
-              <input
-                type="text"
-                value={
-                  formDataTeacher.professionalInfo.qualification[0].institution
-                }
-                onChange={(e) =>
-                  handleChangeTeacher(e, [
-                    "professionalInfo",
-                    "qualification",
-                    "institution",
-                  ])
-                }
-                required
-              />
-              {teacherErrors.qualInstitution && (
-                <span className={styles.error}>
-                  {teacherErrors.qualInstitution}
-                </span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Year Of Completion</label>
-              <input
-                type="number"
-                value={
-                  formDataTeacher.professionalInfo.qualification[0]
-                    .yearOfCompletion
-                }
-                onChange={(e) =>
-                  handleChangeTeacher(e, [
-                    "professionalInfo",
-                    "qualification",
-                    "yearOfCompletion",
-                  ])
-                }
-                required
-              />
-              {teacherErrors.qualYear && (
-                <span className={styles.error}>{teacherErrors.qualYear}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Specialization</label>
-              <input
-                type="text"
-                value={
-                  formDataTeacher.professionalInfo.qualification[0]
-                    .specialization
-                }
-                onChange={(e) =>
-                  handleChangeTeacher(e, [
-                    "professionalInfo",
-                    "qualification",
-                    "specialization",
-                  ])
-                }
-                required
-              />
-              {teacherErrors.qualSpecialization && (
-                <span className={styles.error}>
-                  {teacherErrors.qualSpecialization}
-                </span>
-              )}
-            </div>
-          </div>
-          <h3>Class Teacher Of</h3>
-          <div className={styles.formGroup}>
-            <div className={styles.formSection}>
-              <label>Class</label>
-              <input
-                type="text"
-                value={formDataTeacher.classTeacherOf.class}
-                onChange={(e) =>
-                  handleChangeTeacher(e, ["classTeacherOf", "class"])
-                }
-                required
-              />
-              {teacherErrors.classTeacherClass && (
-                <span className={styles.error}>
-                  {teacherErrors.classTeacherClass}
-                </span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Section</label>
-              <input
-                type="text"
-                value={formDataTeacher.classTeacherOf.section}
-                onChange={(e) =>
-                  handleChangeTeacher(e, ["classTeacherOf", "section"])
-                }
-                required
-              />
-              {teacherErrors.classTeacherSection && (
-                <span className={styles.error}>
-                  {teacherErrors.classTeacherSection}
-                </span>
-              )}
-            </div>
-          </div>
-          <h3>Salary Details</h3>
-          <div className={styles.formGroup}>
-            <div className={styles.formSection}>
-              <label>Basic</label>
-              <input
-                type="number"
-                value={formDataTeacher.salary.basic}
-                onChange={(e) => handleChangeTeacher(e, ["salary", "basic"])}
-                required
-              />
-              {teacherErrors.salaryBasic && (
-                <span className={styles.error}>
-                  {teacherErrors.salaryBasic}
-                </span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Account Number</label>
-              <input
-                type="text"
-                value={formDataTeacher.salary.bankDetails.accountNumber}
-                onChange={(e) =>
-                  handleChangeTeacher(e, [
-                    "salary",
-                    "bankDetails",
-                    "accountNumber",
-                  ])
-                }
-                required
-              />
-              {teacherErrors.accountNumber && (
-                <span className={styles.error}>
-                  {teacherErrors.accountNumber}
-                </span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Bank Name</label>
-              <input
-                type="text"
-                value={formDataTeacher.salary.bankDetails.bankName}
-                onChange={(e) =>
-                  handleChangeTeacher(e, ["salary", "bankDetails", "bankName"])
-                }
-                required
-              />
-              {teacherErrors.bankName && (
-                <span className={styles.error}>{teacherErrors.bankName}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>IFSC Code</label>
-              <input
-                type="text"
-                value={formDataTeacher.salary.bankDetails.ifscCode}
-                onChange={(e) =>
-                  handleChangeTeacher(e, ["salary", "bankDetails", "ifscCode"])
-                }
-                required
-              />
-              {teacherErrors.ifscCode && (
-                <span className={styles.error}>{teacherErrors.ifscCode}</span>
-              )}
-            </div>
-            <div className={styles.formSection}>
-              <label>Account Type</label>
-              <input
-                type="text"
-                value={formDataTeacher.salary.bankDetails.accountType}
-                onChange={(e) =>
-                  handleChangeTeacher(e, [
-                    "salary",
-                    "bankDetails",
-                    "accountType",
-                  ])
-                }
-                required
-              />
-              {teacherErrors.accountType && (
-                <span className={styles.error}>
-                  {teacherErrors.accountType}
-                </span>
-              )}
-            </div>
-          </div>
-          <button type="submit" className={styles.submitBtn}>
-            Submit
-          </button>
-        </form>
+      {enrollmentsType === "Teacher" && ( <TeacherForm/>
+        // <form className={styles.form} onSubmit={handleSubmitTeacher}>
+        //   <h2>Teacher Enrollment Form</h2>
+        //   <div className={styles.formGroup}>
+        //     <div className={styles.formSection}>
+        //       <label>Name</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.name}
+        //         onChange={(e) => handleChangeTeacher(e, ["name"])}
+        //         required
+        //       />
+        //       {teacherErrors.name && (
+        //         <span className={styles.error}>{teacherErrors.name}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Date of Birth</label>
+        //       <input
+        //         type="date"
+        //         value={formDataTeacher.dateOfBirth}
+        //         onChange={(e) => handleChangeTeacher(e, ["dateOfBirth"])}
+        //         required
+        //       />
+        //       {teacherErrors.dateOfBirth && (
+        //         <span className={styles.error}>
+        //           {teacherErrors.dateOfBirth}
+        //         </span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Gender</label>
+        //       <select
+        //         value={formDataTeacher.gender}
+        //         onChange={(e) => handleChangeTeacher(e, ["gender"])}
+        //         required
+        //       >
+        //         <option value="">Select Gender</option>
+        //         <option value="Male">Male</option>
+        //         <option value="Female">Female</option>
+        //       </select>
+        //       {teacherErrors.gender && (
+        //         <span className={styles.error}>{teacherErrors.gender}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Department</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.department}
+        //         onChange={(e) => handleChangeTeacher(e, ["department"])}
+        //         required
+        //       />
+        //       {teacherErrors.department && (
+        //         <span className={styles.error}>{teacherErrors.department}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Status</label>
+        //       <select
+        //         value={formDataTeacher.status}
+        //         onChange={(e) => handleChangeTeacher(e, ["status"])}
+        //         required
+        //       >
+        //         <option value="Active">Active</option>
+        //         <option value="Inactive">Inactive</option>
+        //       </select>
+        //       {teacherErrors.status && (
+        //         <span className={styles.error}>{teacherErrors.status}</span>
+        //       )}
+        //     </div>
+        //   </div>
+        //   <h3>Contact Information</h3>
+        //   <div className={styles.formGroup}>
+        //     <div className={styles.formSection}>
+        //       <label>Email</label>
+        //       <input
+        //         type="email"
+        //         value={formDataTeacher.contactInfo.email}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, ["contactInfo", "email"])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.email && (
+        //         <span className={styles.error}>{teacherErrors.email}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Phone</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.contactInfo.phone}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, ["contactInfo", "phone"])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.phone && (
+        //         <span className={styles.error}>{teacherErrors.phone}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Street</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.contactInfo.address.street}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, ["contactInfo", "address", "street"])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.street && (
+        //         <span className={styles.error}>{teacherErrors.street}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>City</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.contactInfo.address.city}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, ["contactInfo", "address", "city"])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.city && (
+        //         <span className={styles.error}>{teacherErrors.city}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>State</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.contactInfo.address.state}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, ["contactInfo", "address", "state"])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.state && (
+        //         <span className={styles.error}>{teacherErrors.state}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Pincode</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.contactInfo.address.pinCode}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, ["contactInfo", "address", "pinCode"])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.pinCode && (
+        //         <span className={styles.error}>{teacherErrors.pinCode}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Country</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.contactInfo.address.country}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, ["contactInfo", "address", "country"])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.country && (
+        //         <span className={styles.error}>{teacherErrors.country}</span>
+        //       )}
+        //     </div>
+        //   </div>
+        //   <h3>Professional Information</h3>
+        //   <div className={styles.formGroup}>
+        //     <div className={styles.formSection}>
+        //       <label>Current Position</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.professionalInfo.currentPosition}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, [
+        //             "professionalInfo",
+        //             "currentPosition",
+        //           ])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.currentPosition && (
+        //         <span className={styles.error}>
+        //           {teacherErrors.currentPosition}
+        //         </span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Joining Date</label>
+        //       <input
+        //         type="date"
+        //         value={formDataTeacher.professionalInfo.joiningDate}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, ["professionalInfo", "joiningDate"])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.joiningDate && (
+        //         <span className={styles.error}>
+        //           {teacherErrors.joiningDate}
+        //         </span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Experience Institution</label>
+        //       <input
+        //         type="text"
+        //         value={
+        //           formDataTeacher.professionalInfo.experience[0].institution
+        //         }
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, [
+        //             "professionalInfo",
+        //             "experience",
+        //             "institution",
+        //           ])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.expInstitution && (
+        //         <span className={styles.error}>
+        //           {teacherErrors.expInstitution}
+        //         </span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Experience Position</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.professionalInfo.experience[0].position}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, [
+        //             "professionalInfo",
+        //             "experience",
+        //             "position",
+        //           ])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.expPosition && (
+        //         <span className={styles.error}>
+        //           {teacherErrors.expPosition}
+        //         </span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Experience Subject</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.professionalInfo.experience[0].subject}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, [
+        //             "professionalInfo",
+        //             "experience",
+        //             "subject",
+        //           ])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.expSubject && (
+        //         <span className={styles.error}>{teacherErrors.expSubject}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>From Year</label>
+        //       <input
+        //         type="number"
+        //         value={formDataTeacher.professionalInfo.experience[0].fromYear}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, [
+        //             "professionalInfo",
+        //             "experience",
+        //             "fromYear",
+        //           ])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.expFromYear && (
+        //         <span className={styles.error}>
+        //           {teacherErrors.expFromYear}
+        //         </span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>To Year</label>
+        //       <input
+        //         type="number"
+        //         value={formDataTeacher.professionalInfo.experience[0].toYear}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, [
+        //             "professionalInfo",
+        //             "experience",
+        //             "toYear",
+        //           ])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.expToYear && (
+        //         <span className={styles.error}>{teacherErrors.expToYear}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Qualification Degree</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.professionalInfo.qualification[0].degree}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, [
+        //             "professionalInfo",
+        //             "qualification",
+        //             "degree",
+        //           ])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.qualDegree && (
+        //         <span className={styles.error}>{teacherErrors.qualDegree}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Qualification Institution</label>
+        //       <input
+        //         type="text"
+        //         value={
+        //           formDataTeacher.professionalInfo.qualification[0].institution
+        //         }
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, [
+        //             "professionalInfo",
+        //             "qualification",
+        //             "institution",
+        //           ])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.qualInstitution && (
+        //         <span className={styles.error}>
+        //           {teacherErrors.qualInstitution}
+        //         </span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Year Of Completion</label>
+        //       <input
+        //         type="number"
+        //         value={
+        //           formDataTeacher.professionalInfo.qualification[0]
+        //             .yearOfCompletion
+        //         }
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, [
+        //             "professionalInfo",
+        //             "qualification",
+        //             "yearOfCompletion",
+        //           ])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.qualYear && (
+        //         <span className={styles.error}>{teacherErrors.qualYear}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Specialization</label>
+        //       <input
+        //         type="text"
+        //         value={
+        //           formDataTeacher.professionalInfo.qualification[0]
+        //             .specialization
+        //         }
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, [
+        //             "professionalInfo",
+        //             "qualification",
+        //             "specialization",
+        //           ])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.qualSpecialization && (
+        //         <span className={styles.error}>
+        //           {teacherErrors.qualSpecialization}
+        //         </span>
+        //       )}
+        //     </div>
+        //   </div>
+        //   <h3>Class Teacher Of</h3>
+        //   <div className={styles.formGroup}>
+        //     <div className={styles.formSection}>
+        //       <label>Class</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.classTeacherOf.class}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, ["classTeacherOf", "class"])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.classTeacherClass && (
+        //         <span className={styles.error}>
+        //           {teacherErrors.classTeacherClass}
+        //         </span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Section</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.classTeacherOf.section}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, ["classTeacherOf", "section"])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.classTeacherSection && (
+        //         <span className={styles.error}>
+        //           {teacherErrors.classTeacherSection}
+        //         </span>
+        //       )}
+        //     </div>
+        //   </div>
+        //   <h3>Salary Details</h3>
+        //   <div className={styles.formGroup}>
+        //     <div className={styles.formSection}>
+        //       <label>Basic</label>
+        //       <input
+        //         type="number"
+        //         value={formDataTeacher.salary.basic}
+        //         onChange={(e) => handleChangeTeacher(e, ["salary", "basic"])}
+        //         required
+        //       />
+        //       {teacherErrors.salaryBasic && (
+        //         <span className={styles.error}>
+        //           {teacherErrors.salaryBasic}
+        //         </span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Account Number</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.salary.bankDetails.accountNumber}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, [
+        //             "salary",
+        //             "bankDetails",
+        //             "accountNumber",
+        //           ])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.accountNumber && (
+        //         <span className={styles.error}>
+        //           {teacherErrors.accountNumber}
+        //         </span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Bank Name</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.salary.bankDetails.bankName}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, ["salary", "bankDetails", "bankName"])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.bankName && (
+        //         <span className={styles.error}>{teacherErrors.bankName}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>IFSC Code</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.salary.bankDetails.ifscCode}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, ["salary", "bankDetails", "ifscCode"])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.ifscCode && (
+        //         <span className={styles.error}>{teacherErrors.ifscCode}</span>
+        //       )}
+        //     </div>
+        //     <div className={styles.formSection}>
+        //       <label>Account Type</label>
+        //       <input
+        //         type="text"
+        //         value={formDataTeacher.salary.bankDetails.accountType}
+        //         onChange={(e) =>
+        //           handleChangeTeacher(e, [
+        //             "salary",
+        //             "bankDetails",
+        //             "accountType",
+        //           ])
+        //         }
+        //         required
+        //       />
+        //       {teacherErrors.accountType && (
+        //         <span className={styles.error}>
+        //           {teacherErrors.accountType}
+        //         </span>
+        //       )}
+        //     </div>
+        //   </div>
+        //   <button type="submit" className={styles.submitBtn}>
+        //     Submit
+        //   </button>
+        // </form>
       )}
     </div>
   );
-};
 
+}
 export default Enrollments;

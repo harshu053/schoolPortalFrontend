@@ -1,9 +1,7 @@
-@use "../../styles//layout/scrollbar.scss" as *;
+@use "../../styles/layout/scrollbar.scss" as *;
 @import "../../styles/breakpoints";
 
-.studentsContainer {
-  display: flex;
-  flex-wrap: wrap;
+.Container{ 
   gap: 2rem;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -12,7 +10,24 @@
   overflow-y: scroll;
   @include scrollbar-type-2;
   height: 70vh;
+  
 }
+.message{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  color: var(--color-primary-40);
+  font-size: 2rem;
+  height: 70vh;
+}
+.studentsContainer {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 2rem; 
+  justify-content: space-between; 
+}
+
 
 .topRow {
   display: flex;
@@ -55,7 +70,7 @@
   border: 1px solid var(--color-primary-grey-60);
   border-radius: var(--radius-pill);
   background-color: #ffffff;
-  height: 35px; 
+  height: 35px;
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -81,7 +96,7 @@
 
 .dropdownSelect {
   width: 100%;
-   height: 35px;
+  height: 35px;
   border-color: var(--color-primary-30);
   padding: 8px 36px 8px 12px;
   font-size: 14px;
@@ -89,28 +104,27 @@
   border-radius: var(--radius-pill);
   appearance: none; /* Hide default arrow */
   background: white;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .arrowIcon {
   position: absolute;
   top: 50%;
-  right: 10px; 
+  right: 10px;
   transform: translateY(-50%);
   pointer-events: none;
   color: #555;
 
-  svg{
+  svg {
     width: 25px;
     height: 25px;
     color: black;
   }
 }
- 
 
 .clearbtn {
   color: var(--color-primary-60);
-  background-color:  white;
+  background-color: white;
   outline: none;
   border: 0;
   cursor: pointer;
@@ -130,7 +144,6 @@
   border: none;
   width: 100%;
   border-radius: var(--radius-pill);
- 
 
   &:focus {
     outline: none;
@@ -139,8 +152,8 @@
   padding: 0.5rem 0.5rem 0.5rem 0;
 }
 
-.inputsearch {
-}
+// .inputsearch {
+// }
 
 .studentCard {
   background: #fff;
@@ -194,3 +207,76 @@
 .detailsButton:hover {
   background-color: #1d4ed8;
 }
+
+// .message {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 70vh;
+//   margin: auto;
+//   font-size: large;
+// }
+
+ 
+
+.admitCardSection{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.admitCardConatiner{
+  display:grid;
+  // flex-wrap: wrap;
+  grid-template-columns: 1fr 1fr 1fr;
+  // grid-template-columns: auto auto auto;
+  gap: var(--spacing-xs);
+}
+
+.printBtncontianer{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.printBtn{
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: var(--spacing-xs);
+  transition: background 0.2s;
+}
+
+
+.printContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  page-break-inside: avoid;
+}
+
+.cardWrapper {
+  width: 48%;       // 2 per row
+  margin-bottom: 20px;
+  page-break-inside: avoid;
+}
+
+@media print {
+  .printContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .cardWrapper {
+    width: 48% !important;  // force 2 cards per row
+    margin-bottom: 20px !important;
+    page-break-inside: avoid;
+  }
+}
+

@@ -23,7 +23,7 @@ export default function Spinner({ showSpinner }) {
   // }, []);
 
   return (
-    show && (
+    // show && (
       <>
         <div className={styles["spinner-container"]}>
           <div className={styles["j-spinner-circles"]}>
@@ -37,6 +37,6 @@ export default function Spinner({ showSpinner }) {
         </div>
         {/* <div className={styles["spinner-backdrop"]}></div> */}
       </>
-    )
+    // )
   );
 }

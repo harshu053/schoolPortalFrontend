@@ -16,7 +16,9 @@ export function useAuth() {
 // Create the auth provider component
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
+    const [schoolDeatils, setSchoolDeatils] = useState(null);
     const [loading, setLoading] = useState(true);
+    // const permission= ['teacher', 'principal', 'administration','superAdmin','student','staff','admin'];
 
     useEffect(() => {
         const validateToken = async () => {
@@ -25,31 +27,23 @@ export function AuthProvider({ children }) {
                 setLoading(false);
                 return;
             }
-
-            console.log('Validating token:', token);
-
             try {
                 const response = await fetch('http://localhost:5000/api/auth/validate/profile', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 });
-
-                console.log('Token validation response:', response);
-
-                const data = await response.json();
-                console.log('Token validation data:', data);
+                const data = await response.json(); 
 
                 if (!response.ok || data.error) {
                     console.error('Token validation failed:', data.error || 'Unknown error');
-                    localStorage.removeItem('token');
+                    localStorage.removeItem('token'); 
                     setUser(null);
-                } else {
-                    console.log('Token is valid, setting user:', data);
-                    setUser(data);
+                } else {  
+                    setUser(data.user);
+                    setSchoolDeatils(data.schoolDeatils);
                 }
-            } catch (error) {
-                console.error('Token validation error:', error);
+            } catch (error) { 
                 localStorage.removeItem('token');
                 setUser(null);
             } finally {
@@ -64,7 +58,6 @@ export function AuthProvider({ children }) {
     const login = async (schoolEmail, password) => {
 
         try {
-        
             const response = await fetch(`${apibaseUrl}auth/login`, {
                 method: 'POST',
                 headers: {
@@ -75,18 +68,13 @@ export function AuthProvider({ children }) {
 
             const result = await response.json();
 
-            if (response.ok && result.success) {
-                if (!result.data || !result.data.token) {
-                    throw new Error('Invalid response format: Missing token');
-                }
-                localStorage.setItem('token', result.data.token);
+            if (response.ok && result.success) { 
+                localStorage.setItem('token', result.data.token); 
                 setUser(result.data);
                 return result.data;
-            } else {
-                // Handle specific error messages from the backend
+            } else { 
                 const errorMessage = result.message || 'Login failed';
-                console.error('Login error:', errorMessage);
-                throw new Error(errorMessage);
+                console.error('Login error:', errorMessage); 
             }
         } catch (error) {
             // Handle network errors or JSON parsing errors
@@ -110,16 +98,15 @@ export function AuthProvider({ children }) {
     };
 
     // Check if user has a specific permission
-    const hasPermission = (permission) => {
-        return user?.permissions?.includes(permission) || false;
-    };
+    const hasPermission = (permissions) => {return permissions.includes(user?.role);};
 
     const value = {
         user,
         loading,
         login,
         logout,
-        hasPermission
+        hasPermission,
+        schoolDeatils
     };
 
     return (

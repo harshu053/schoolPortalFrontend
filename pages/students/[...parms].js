@@ -5,9 +5,12 @@ import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { apibaseUrl } from '@/utils/utils';
 import StudentDetails from '@/components/students/studentdetails';
+import { getStudentByIdService } from '@/services/studentsServices';
+import { useAcademicYear } from '@/contexts/academicYearContext';
 
 const StudentDeatils = () => {
   const { user } = useAuth();
+  const {academicYearId}=useAcademicYear();
   const params = useParams();
   const studentId = params?.parms?.[0]; 
   const schoolId = user?.schoolId;
@@ -15,22 +18,15 @@ const StudentDeatils = () => {
  
 
   useEffect(()=>{
-    if (!schoolId || !studentId) return; 
+    if (!schoolId || !studentId || !academicYearId) return; 
 
-    const fetchStudentsDetails= async () => {
-      try {
-        const response = await fetch(`${apibaseUrl}students/${schoolId}?studentId=${studentId}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch student details');
-        }
-        const data = await response.json();
-        setStudentData(data); 
-      } catch (error) {
-        console.error("Error fetching student details:", error);
-      }
+    const fetchStudentsDetails= async () => { 
+      const payload={academicYearId,schoolId,studentId};
+      const response = await getStudentByIdService(payload); 
+      setStudentData(response); 
     }
     fetchStudentsDetails();
-  },[schoolId, studentId]);
+  },[schoolId, studentId,academicYearId]);
  
  
   return (

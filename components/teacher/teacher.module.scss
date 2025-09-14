@@ -13,6 +13,15 @@
     // @include scrollbar-type-2;
     // height: 90vh;
 }
+
+.message{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  color: var(--color-primary-40);
+  font-size: 2rem;
+}
 .teacherCard{
     display: flex;
     flex-wrap: wrap;
