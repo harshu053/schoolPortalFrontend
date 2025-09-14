@@ -26,8 +26,8 @@ const handlePrint = useReactToPrint({
     }
   `,
   onAfterPrint: () => {
-    setIsReceiptOpen(false);
-    isSubmissionComplete(false);
+    // setIsReceiptOpen(false);
+    // isSubmissionComplete(false);
   },
 });
 
