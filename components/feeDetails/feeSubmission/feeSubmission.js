@@ -41,7 +41,11 @@ const FeeSubmission = ({ studentData, selectedStudent = null }) => {
     setInvalidAmount(false);
   }
   setamountPaid(value);
-};
+ };
+
+ const handleReceiptClose = (value) => {
+  setIsReceiptOpen(value); 
+ }
 
   const handleSubmit = (e) => { 
     e.preventDefault();
@@ -269,7 +273,7 @@ const FeeSubmission = ({ studentData, selectedStudent = null }) => {
       {isSubmissionComplete && isReceiptOpen && (
         <FeeReceipt
           data={transactionDetails} 
-          setIsReceiptOpen={setIsReceiptOpen}
+          setIsReceiptOpen={handleReceiptClose}
           isSubmissionComplete={setIsSubmissionComplete}
         />
       )}

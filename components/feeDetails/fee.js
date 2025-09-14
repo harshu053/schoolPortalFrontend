@@ -82,7 +82,7 @@ const FeesMainConatiner = () => {
               <option value="Select All">
                 Select All
               </option>
-              {[...new Set(data?.map((student) => student.class))].map(
+              {[...new Set(data?.map((student) => student.className))].map(
                 (className) => (
                   <option key={className} value={className}>
                     class {className}

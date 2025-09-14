@@ -33,7 +33,7 @@ const FullyPaidFees = ({ searchQuery,selectedClass }) => {
         setFilterdData(fullyPaidStudents);
       } else {
         const data = fullyPaidStudents?.filter(
-          (student) => student.class === selectedClass
+          (student) => student.className === selectedClass
         );
         setFilterdData(data);
       }

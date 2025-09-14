@@ -33,7 +33,7 @@ const PendingFees = ({ selectedClass, onEdit, searchQuery }) => {
       setFilterdData(pendingFeesStudent);
     } else {
       const data = pendingFeesStudent?.filter(
-        (student) => student.class === selectedClass
+        (student) => student.className === selectedClass
       ); 
       setFilterdData(data);
     }
