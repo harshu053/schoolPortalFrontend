@@ -67,7 +67,7 @@ export default function Home() {
             <div className={styles.cardIcon}>🏫</div>
             <h2 className={styles.cardTitle}>New School?</h2>
             <p className={styles.cardDescription}>
-              Register your school with us and get access to our comprehensive
+              Register your schools with us and get access to our comprehensive
               school management system.
             </p>
             <button
