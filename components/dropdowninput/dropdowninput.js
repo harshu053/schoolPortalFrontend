@@ -106,7 +106,7 @@ useEffect(() => {
                   className={styles.menublockItem}
                   onClick={() => setValue(item)}
                 >
-                  {item?.[displayName]}
+                  {item?.[displayName] || item}
                 </div>
               );
             })}

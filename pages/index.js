@@ -39,8 +39,8 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus(null);
-
     setIsFormVisible(prev=>!prev);
+    alert("Query submitted");
   };
 
   // ✅ conditional rendering should be *after* hooks

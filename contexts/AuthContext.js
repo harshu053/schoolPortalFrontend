@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { apibaseUrl } from '@/utils/utils';
+import { useRouter } from 'next/router';
 
 // Create the authentication context
 export const AuthContext = createContext();
@@ -18,6 +19,7 @@ export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [schoolDeatils, setSchoolDeatils] = useState(null);
     const [loading, setLoading] = useState(true);
+    const router=useRouter();
     // const permission= ['teacher', 'principal', 'administration','superAdmin','student','staff','admin'];
 
     useEffect(() => {
@@ -95,6 +97,7 @@ export function AuthProvider({ children }) {
     const logout = () => {
         localStorage.removeItem('token');
         setUser(null);
+        router.push('/login');
     };
 
     // Check if user has a specific permission

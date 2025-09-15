@@ -3,6 +3,8 @@ import styles from "./studentEnrollment.module.scss";
 import { useAcademicYear } from "@/contexts/academicYearContext";
 import { addStudentService } from "@/services/studentsServices";
 import { useAuth } from "@/contexts/AuthContext";
+import DropdownInput from "@/components/dropdowninput/dropdowninput";
+import { classesList } from "@/constants/app.constants";
 
 export default function StudentAdmissionForm() {
   const {academicYearId}=useAcademicYear();
@@ -52,6 +54,7 @@ export default function StudentAdmissionForm() {
   // Handle normal input updates
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(name, value);
     setFormData({ ...formData, [name]: value });
   };
 
@@ -96,8 +99,20 @@ export default function StudentAdmissionForm() {
             <input type="text" name="gender" value={formData.gender} onChange={handleChange} />
           </label>
           <label>Class:
-            <input type="text" name="className" value={formData.className} onChange={handleChange} />
+            {/* <input type="text" name="className" value={formData.className} onChange={handleChange} /> */}
+           <select
+             name="className"
+             value={formData.className}
+             onChange={handleChange}
+             required
+           >
+            {
+              classesList.map((cls)=><option key={cls} value={cls}>{cls}</option>)
+            }
+             {/* <option value="">Select Gender</option> */}
+           </select>
           </label>
+          {/* <DropdownInput inputValues={classesList} labelName={"Class"} required={false}/> */}
           <label>Section:
             <input type="text" name="section" value={formData.section} onChange={handleChange} />
           </label>

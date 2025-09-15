@@ -36,8 +36,8 @@ export default function SchoolDashboard() {
     fetchTeachers();
   },[user?.schoolId, academicYearId]);
 
-  const totalStudents =useMemo(()=>students.length,[students]);
-  const totalTeacher=useMemo(()=>teachers.length,[ teachers ]);
+  const totalStudents =useMemo(()=>students?.length || 0,[students]);
+  const totalTeacher=useMemo(()=>teachers?.length || 0,[ teachers ]);
   
   const events = [
     {
