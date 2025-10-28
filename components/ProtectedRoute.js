@@ -3,29 +3,37 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../contexts/AuthContext';
 import Spinner from './spinner/spinner';
 
-export default function ProtectedRoute({ children }) { 
+export default function ProtectedRoute({ children }) {
+  const { user, loading } = useAuth();
+  const router = useRouter();
 
-    const { user, loading } = useAuth();
-    const router = useRouter();
-
-    useEffect(() => {
-        if (!loading && !user) {
-            router.push('/login');
-        } 
-    }, [user, loading]);
-
-    if (loading) {
-        return <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh'
-        }}><Spinner/></div>;
+  useEffect(() => {
+    // ✅ Only redirect when loading is done AND user is definitely null
+    if (!loading && user === null) {
+      router.replace('/login'); // use replace() to prevent back navigation loop
     }
+  }, [user, loading, router]);
 
-    if (!user) {
-        return  <div>user is not present</div>; // Prevent flashing content
-    }
+  // ✅ While loading, show spinner
+  if (loading || user === undefined) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh'
+        }}
+      >
+        <Spinner />
+      </div>
+    );
+  }
 
-    return children;
+  // ✅ If user is not found even after loading
+  if (!user) {
+    return null; // avoid flashing "user is not present"
+  }
+
+  return children;
 }

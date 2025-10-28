@@ -7,7 +7,7 @@ import styles from "../styles/Landing.module.scss";
 
 export default function Home() {
   const router = useRouter();
-  const { user, loading } = useAuth();
+  const { user, loading, handleDemoLogin } = useAuth();
 
   // ✅ all hooks must be at the top
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -28,6 +28,12 @@ export default function Home() {
     setForm((s) => ({ ...s, [e.target.name]: e.target.value }));
   };
 
+  const handleDemoUser = async () => {
+    const demoLogin = await handleDemoLogin();
+    if (!demoLogin) return <Spinner />;
+    router.push("/dashboard");
+  };
+
   const validate = () => {
     if (!form.schoolName.trim()) return "School name is required";
     if (!form.email.trim()) return "Email is required";
@@ -39,7 +45,7 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus(null);
-    setIsFormVisible(prev=>!prev);
+    setIsFormVisible((prev) => !prev);
     alert("Query submitted");
   };
 
@@ -70,12 +76,20 @@ export default function Home() {
               Register your school with us and get access to our comprehensive
               school management system.
             </p>
-            <button
-              className={`${styles.button} ${styles.primaryButton}`}
-              onClick={() => setIsFormVisible(true)}
-            >
-              Contact Us / Try Demo
-            </button>
+            <div className={styles.buttonsContainer}>
+              <button
+                className={`${styles.button} ${styles.primaryButton}`}
+                onClick={() => setIsFormVisible(true)}
+              >
+                Contact Us
+              </button>
+              <button
+                onClick={() => handleDemoUser()}
+                className={`${styles.button} ${styles.secondaryButton}`}
+              >
+                Try Demo
+              </button>
+            </div>
           </div>
 
           <div className={styles.card}>

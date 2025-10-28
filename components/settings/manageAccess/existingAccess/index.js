@@ -8,6 +8,7 @@ import { getAllStudentsService } from "@/services/studentsServices";
 
 export default function ExistingRolesPanel() {
   const { user } = useAuth();
+  console.log("user in existing access panel:", user);
   const schoolId = user?.schoolId;
   const { academicYearId, academicYear, years, switchYear,addAcademicYear }=useAcademicYear();
 
@@ -76,7 +77,7 @@ export default function ExistingRolesPanel() {
         </thead>
         <tbody>
           {users?.map(u => (
-            <tr key={u._id}>
+            u.role!=="superAdmin" &&<tr key={u._id}>
               <td>{u.name}</td>
               <td>{u.email}</td>
               <td>
@@ -90,11 +91,11 @@ export default function ExistingRolesPanel() {
                   value={u.role}
                   onChange={e => handleRoleChange(u._id, e.target.value)}
                 >
-                  <option value="teacher">Teacher</option>
-                  <option value="administration">Administration</option>
-                  {u.role=="superAdmin" && <option value="principal">Principal</option>} 
-                  <option value="principal">student</option>
-                  <option value="principal">staff</option> 
+                  {(user.role=="superAdmin" ||user.role=="principal" ||user.role=="administration") &&<option value="teacher">Teacher</option>}
+                  {(user.role=="superAdmin" || user.role=="principal") &&<option value="administration">Administration</option>}
+                  {user.role=="superAdmin" && <option value="principal">Principal</option>} 
+                  {(user.role=="superAdmin" ||user.role=="principal" ||user.role=="administration" || user.role=="teacher") &&<option  value="student">student</option>}
+                  {(user.role=="superAdmin" ||user.role=="principal" ||user.role=="administration") &&<option value="staff">staff</option>} 
                 </select>
               </td>
               <td>
