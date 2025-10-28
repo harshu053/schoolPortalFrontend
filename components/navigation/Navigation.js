@@ -79,6 +79,7 @@ export default function Navigation({ text }) {
               required={false}
               selectedValue={selectedAcademicYear?.year}
               displayName="year"
+              // type="date"
             />
           </div>
           <div className={styles.actionsContainer}>
