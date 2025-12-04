@@ -16,7 +16,7 @@ export default function DashboardPage() {
   return (
     <ProtectedRoute>
       <div className={styles.container}>  
-        <Navigation text={user?.role === "admin"? user?.name: schoolDeatils?.schoolName} />
+        <Navigation text={user?.role === "admin"? user?.name: schoolDeatils?.schoolName || "LITTLE ANGELS SCHOOL"} />
         <div className={styles.content}> 
           <SchoolDashboard  />
         </div>
