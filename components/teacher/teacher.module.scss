@@ -30,7 +30,7 @@
     padding-right: 2rem;
     padding-bottom: 2rem;
     padding-top: 2rem;
-    justify-content: space-between;
+    justify-content: space-around;
     overflow-y: scroll;
     @include scrollbar-type-2;
     height: 70vh;
@@ -159,4 +159,28 @@
   }
 
   padding: 0.5rem 0.5rem 0.5rem 0;
+}
+
+
+@media (max-width: 767px) {
+  .Container{
+    height: 76vh;
+  }
+  .topRow{
+    flex-direction: column;
+    gap: var(--spacing-s);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .informationType {
+    button{
+      font-size: 10px;
+    }
+  }
+  .classDropdown{
+    width: 100%;
+  }
+  .teacherCard{
+    height: 76vh;
+  }
 }

@@ -1,6 +1,6 @@
 import styles from "./modal.module.scss";
 import { useEffect, useState } from "react";
-import { messageBus } from "@/utils/pubsub";
+import { messageBus } from "@/utils/utils.js";
 import Icon from "../icon/icon";
 
 export default function Modal() {

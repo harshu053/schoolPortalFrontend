@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Icon from "@/components/icon/icon";
+import Modal from "@/components/modal/modal";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useAuth } from "../contexts/AuthContext";
@@ -6,6 +8,20 @@ import Spinner from "@/components/spinner/spinner";
 import styles from "../styles/Landing.module.scss";
 
 export default function Home() {
+  // For mobile menu
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Navigation options for modal
+  const navOptions = [
+    { label: "Dashboard", href: "/dashboard", icon: "IcHome" },
+    { label: "Enrollments", href: "/enrollments", icon: "IcAdd" },
+    { label: "Students", href: "/students", icon: "IcStudent" },
+    { label: "Teachers", href: "/teachers", icon: "IcTeacher" },
+    { label: "Fee Details", href: "/fee-details", icon: "IcRupee" },
+    { label: "Calendar", href: "/calendar", icon: "IcHome" },
+    { label: "Payrolls", href: "/payrolls", icon: "IcPayroll" },
+    { label: "Settings", href: "/settings", icon: "IcSetting" },
+  ];
   const router = useRouter();
   const { user, loading, handleDemoLogin } = useAuth();
 
@@ -62,6 +78,35 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
+      {/* Mobile menu icon and modal */}
+      <div className={styles.mobileHeader}>
+        <span className={styles.schoolName}>School Portal</span>
+        <button
+          className={styles.menuButton}
+          onClick={() => setMenuOpen(true)}
+          aria-label="Open menu"
+        >
+          <Icon iconName="IcMenu" />
+        </button>
+      </div>
+      {menuOpen && (
+        <Modal>
+          <div className={styles.menuModalContent}>
+            <button className={styles.menuClose} onClick={() => setMenuOpen(false)}>
+              <Icon iconName="IcClose" />
+            </button>
+            <nav className={styles.menuNav}>
+              {navOptions.map((opt) => (
+                <a key={opt.href} href={opt.href} className={styles.menuNavItem} onClick={() => setMenuOpen(false)}>
+                  <Icon iconName={opt.icon} />
+                  <span>{opt.label}</span>
+                </a>
+              ))}
+            </nav>
+          </div>
+        </Modal>
+      )}
+
       <h1 className={styles.title}>Welcome to School Portal</h1>
       <p className={styles.subtitle}>
         A comprehensive solution for managing your educational institution

@@ -10,8 +10,9 @@
   overflow-y: scroll;
   @include scrollbar-type-2;
   height: 70vh;
-  
 }
+
+
 .message{
   display: flex;
   justify-content: center;
@@ -36,18 +37,46 @@
   padding-left: 2rem;
   padding-right: 2rem;
   padding-top: 2rem;
-  padding-bottom: 2rem;
-  // height: 35px;
+  padding-bottom: 2rem; 
 }
 
 .informationType {
   border-radius: var(--radius-pill);
   background-color: var(--color-primary-20);
-  width: fit-content;
+  // width: fit-content;
   height: 35px;
   margin-top: auto;
   margin-bottom: auto;
   display: flex;
+}
+
+.classDropdown {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+}
+
+@media (max-width: 767px) {
+  .Container{
+    height: 76vh;
+  }
+  .topRow{
+    flex-direction: column;
+    gap: var(--spacing-s);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .informationType {
+    button{
+      font-size: 10px;
+    }
+  }
+  .classDropdown{
+    width: 100%;
+  }
+  .studentsContainer{
+    justify-content: center;
+  }
 }
 
 .buttons {
@@ -88,11 +117,6 @@
   }
 }
 
-.classDropdown {
-  position: relative;
-  display: inline-block;
-  width: 200px;
-}
 
 .dropdownSelect {
   width: 100%;

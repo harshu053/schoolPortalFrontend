@@ -1,6 +1,6 @@
 import { useAuth } from "../../contexts/AuthContext";
 import ProtectedRoute from "../ProtectedRoute";
-import Sidebar from "@/components/sidebar/sideBar";
+import Sidebar from "@/components/sidebar/sideBar"; 
 import styles from "./dashboard.module.scss"; // CSS module
 import ProfileCard from "@/components/profilecard/profileCard";
 import { apibaseUrl } from "@/utils/utils";
@@ -14,9 +14,10 @@ import { useEffect,useMemo,useState } from "react";
 import { getAllStudentsService } from "@/services/studentsServices";
 import { getAllTeachers } from "@/services/teacherServices";
 
+
 export default function SchoolDashboard() { 
   const { user ,schoolDeatils } = useAuth();  
-  const { academicYearId,academicYear, years, switchYear }=useAcademicYear();
+  const { academicYearId,academicYear, years, switchYear,isDesktop }=useAcademicYear();
   const [students, setStudents]=useState([]);
   const [teachers, setTeachers]=useState([]);
 
@@ -69,12 +70,12 @@ export default function SchoolDashboard() {
         "Exams will begin for all classes. Detailed schedule to be shared soon.",
     },
   ];
+  console.log("isDesktop:", isDesktop);
 
   return (
     <ProtectedRoute>
       <div className={styles.dashboardContainer}>
-        <Sidebar />
-
+        {isDesktop && <Sidebar />}
         <div className={styles.mainContent}>
           <main className={styles.dashboardMain}>
             <div className={styles.cardGrid}>
@@ -85,7 +86,6 @@ export default function SchoolDashboard() {
                   <p className={styles.cardValue}>{totalStudents}</p>
                 </div>
               </div>
-
               <div className={`${styles.dashboardCard} ${styles.green}`}>
                 <div className={styles.icon}>👩‍🏫</div>
                 <div>
@@ -93,7 +93,6 @@ export default function SchoolDashboard() {
                   <p className={styles.cardValue}>{totalTeacher}</p>
                 </div>
               </div>
-
               <div className={`${styles.dashboardCard} ${styles.yellow}`}>
                 <div className={styles.icon}>📅</div>
                 <div>
@@ -102,11 +101,9 @@ export default function SchoolDashboard() {
                 </div>
               </div>
             </div>
-
             {/* <div style={{ marginTop: '2rem', marginBottom: '2rem' }}>
               <TeacherDetail teacher={user?.teachers?.[0]} />
             </div> */}
-
             <div className={styles.event_distibution_Container}>
               <div className={styles.eventContainer}>
                 <UpcomingEvents events={events} />
@@ -116,9 +113,11 @@ export default function SchoolDashboard() {
               </div>
             </div>
 
+
             <div className={styles.barChartContainer}>
               <ClassWiseBarChart />
             </div>
+
           </main>
         </div>
       </div>

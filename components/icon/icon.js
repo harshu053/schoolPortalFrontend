@@ -1,6 +1,34 @@
+
 export default function Icon({ iconName }) {
   const renderIcons = () => {
     switch (iconName) {
+      case "IcMenu":
+        return (
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h16a1 1 0 100-2H4a1 1 0 000 2zm16 10H4a1 1 0 000 2h16a1 1 0 000-2zm0-6H4a1 1 0 000 2h16a1 1 0 000-2z" fill="currentColor"></path></svg>
+        ); 
+      case "IcStudent":
+        return (
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.29 4.71A1 1 0 008 5h8a1 1 0 00.71-.29l1-1a1 1 0 00.21-1.09A1 1 0 0017 2H7a1 1 0 00-.92.62 1 1 0 00.21 1.09l1 1zm7.18 7.68l-1.9 1.41a1 1 0 01-1.2 0l-1.88-1.39A8 8 0 004 20a2 2 0 002 2h12a2 2 0 002-2 8 8 0 00-5.53-7.61zM17 18.5a.469.469 0 01-.15.35l-1 1a.48.48 0 01-.7 0l-1-1a.47.47 0 01-.15-.35v-2a.5.5 0 01.5-.5h2a.5.5 0 01.5.5v2zM12 11a4.48 4.48 0 004.45-4h-8.9A4.48 4.48 0 0012 11z" fill="currentColor"></path></svg>
+        );
+      case "IcSetting":
+        return (
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.43 13.4L19 12.58v-1.16l1.43-.82a2 2 0 00.73-2.73l-1-1.74a2 2 0 00-2.73-.73l-1.18.68-.25.15-1-.58V4a2 2 0 00-2-2h-2a2 2 0 00-2 2v1.65l-.25.14-.75.44-.25-.15-1.18-.68a2 2 0 00-2.73.73l-1 1.74a2 2 0 00.73 2.73l1.43.82v1.16l-1.43.82a2 2 0 00-.73 2.73l1 1.74a2 2 0 002.73.73L8 17.77l1 .58V20a2 2 0 002 2h2a2 2 0 002-2v-1.65l1-.58 1.43.83a2 2 0 002.73-.73l1-1.74a2 2 0 00-.73-2.73zM12 15a3 3 0 110-6 3 3 0 010 6z" fill="currentColor"></path></svg>
+        );
+      case "IcPayroll":
+        return (
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 17a5 5 0 01-2-9.57V2.2A10 10 0 1021.8 14h-5.23A5 5 0 0112 17zm2-5h8A9.999 9.999 0 0012 2v8a2 2 0 002 2z" fill="currentColor"></path></svg>
+        );
+      case "IcHome":
+        return (
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.47 9.31L13.85 2.7a2.8 2.8 0 00-3.7 0L2.53 9.31A1.53 1.53 0 003.45 12H4v7a3 3 0 003 3h3v-6h4v6h3a3 3 0 003-3v-7h.55a1.53 1.53 0 00.92-2.69z" fill="currentColor"></path></svg>
+        );
+      case "IcRupee":
+        return (
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 8h-2.1c-.15-.74-.47-1.42-.91-2H17c.55 0 1-.45 1-1s-.45-1-1-1H7c-.55 0-1 .45-1 1s.45 1 1 1h3a3 3 0 012.82 2H7c-.55 0-1 .45-1 1s.45 1 1 1h5.83a3.001 3.001 0 01-2.81 2H7s-.07 0-.11.01h-.05c-.05 0-.09.02-.14.03-.02 0-.03 0-.05.01-.04.02-.09.04-.13.06-.02 0-.03.02-.05.03-.04.02-.08.05-.11.08-.02.01-.03.02-.05.04l-.1.1c0 .01-.02.02-.03.03v.01c-.03.04-.05.08-.07.12l-.03.06c-.01.03-.03.07-.04.1 0 .03-.02.06-.03.09 0 .03 0 .05-.01.08 0 .04-.01.08-.01.12v.07c0 .04 0 .09.01.13 0 .02.01.04.02.06.01.04.02.08.04.13 0 .02.02.04.02.05.02.04.04.08.07.12 0 .01.02.03.03.04.03.04.06.08.09.11.01.01.02.02.04.03.03.02.05.05.08.07l8 6c.18.14.39.2.6.2.3 0 .6-.14.8-.4.33-.44.24-1.07-.2-1.4l-5.6-4.2c2.41 0 4.43-1.72 4.9-4h2.1c.55 0 1-.45 1-1s-.45-1-1-1L17 8z" fill="currentColor"></path></svg>
+        );
+      case "IcTeacher":
+        return (
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.78 10.84a4.51 4.51 0 005.56-5.56 4.46 4.46 0 00-3.12-3.12 4.51 4.51 0 00-5.56 5.56 4.46 4.46 0 003.12 3.12zm4.49 1.86l-.38.75a1 1 0 01-.73.54H14a1 1 0 01-.71-.29L12 12.41l-1.29 1.3A1 1 0 0110 14h-.16a1 1 0 01-.73-.54l-.38-.75A8 8 0 004 20a2 2 0 002 2h12a2 2 0 002-2 8 8 0 00-4.73-7.3zM10 20H8a1 1 0 010-2h2a1 1 0 010 2z" fill="currentColor"></path></svg>);
       case "IcArrowback":
         return (
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 640 640">
@@ -396,16 +424,7 @@ export default function Icon({ iconName }) {
         );
       case "IcAdd":
         return (
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M20 11h-7V4a1 1 0 00-2 0v7H4a1 1 0 000 2h7v7a1 1 0 002 0v-7h7a1 1 0 000-2z"
-              fill="currentColor"
-            ></path>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 11c1.93 0 3.5-1.57 3.5-3.5S9.93 4 8 4 4.5 5.57 4.5 7.5 6.07 11 8 11zm0 1c-3.31 0-6 2.69-6 6 0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2 0-3.31-2.69-6-6-6zm13-2h-2V8c0-.55-.45-1-1-1s-1 .45-1 1v2h-2c-.55 0-1 .45-1 1s.45 1 1 1h2v2c0 .55.45 1 1 1s1-.45 1-1v-2h2c.55 0 1-.45 1-1s-.45-1-1-1z" fill="currentColor"></path></svg>
         );
       case "IcError":
         return (

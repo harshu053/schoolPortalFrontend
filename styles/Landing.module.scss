@@ -1,4 +1,77 @@
+
 @use "../styles/layout/scrollbar.scss" as *;
+.mobileHeader {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.schoolName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a365d;
+}
+
+.menuButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.menuModalContent {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem 1rem 1rem 1rem;
+  max-width: 320px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  position: relative;
+}
+
+.menuClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menuNav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.menuNavItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.1rem;
+  color: #1a365d;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+  transition: background 0.2s;
+}
+.menuNavItem:hover {
+  background: #f3f4f6;
+}
+
+@media (max-width: 767px) {
+  .mobileHeader {
+    display: flex;
+  }
+  .title, .subtitle, .optionsContainer, .wrapper {
+    margin-top: 2.5rem;
+  }
+}
 @import "../styles/breakpoints";
 
 .container {

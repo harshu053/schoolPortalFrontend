@@ -11,16 +11,11 @@ import {
   Settings,
 } from "react-feather";
 import { Router, useRouter } from "next/router";
+import Icon from "../icon/icon";
 
 const Sidebar = () => {
   const [component, setComponent] = useState("Dashboard");
   const router = useRouter();
-
-  // const handleNavigation = (componentName) => {
-  //   setComponent(componentName);
-  //   // router.push(`/${componentName.toLowerCase()}`);
-  // };
-
   return (
     <div className={styles.sidebar}>
       <div className={styles.section}>
@@ -31,8 +26,9 @@ const Sidebar = () => {
             component === "Dashboard" ? styles.active : ""
           }`}
         >
-          <Home className={styles.icon} />
-          <span>Dashboard</span>
+          {/* <Home className={styles.icon} /> */}
+          <Icon iconName={"IcHome"} className={styles.icon} />
+          <span className={styles.label}>Dashboard</span>
         </div>
         </Link>
         
@@ -43,8 +39,8 @@ const Sidebar = () => {
             component === "Enrollments" ? styles.active : ""
           }`}
         >
-          <Users className={styles.icon} />
-          <span>Enrollments</span>
+          <Icon iconName={"IcAdd"} className={styles.icon} />
+          <span className={styles.label}>Enrollments</span>
         </div>
         </Link>
         
@@ -55,8 +51,8 @@ const Sidebar = () => {
             component === "Students" ? styles.active : ""
           }`}
         >
-          <Users className={styles.icon} />
-          <span>Students</span>
+          <Icon iconName={"IcStudent"} className={styles.icon} />
+          <span className={styles.label}>Students</span>
         </div>
         </Link>
 
@@ -67,8 +63,9 @@ const Sidebar = () => {
             component === "Teachers" ? styles.active : ""
           }`}
         >
-          <Folder className={styles.icon} />
-          <span>Teachers</span>
+           
+           <Icon iconName={"IcTeacher"} className={styles.icon} />
+          <span className={styles.label}>Teachers</span>
         </div>
         </Link>
 
@@ -79,8 +76,8 @@ const Sidebar = () => {
             component === "Fee-Details" ? styles.active : ""
           }`}
         >
-          <Folder className={styles.icon} />
-          <span>Fee Details</span>
+           <Icon iconName={"IcRupee"} className={styles.icon} />
+          <span className={styles.label}>Fee Details</span>
         </div>
         </Link>
 
@@ -91,14 +88,10 @@ const Sidebar = () => {
             component === "Calendar" ? styles.active : ""
           }`}
         >
-          <Calendar className={styles.icon} />
-          <span>Calendar</span>
+           <Icon iconName={"IcHome"} className={styles.icon} />
+          <span className={styles.label}>Calendar</span>
         </div>
         </Link>
-        {/* <div className={styles.link}>
-          <FileText className={styles.icon} />
-          <span>Documents</span>
-        </div> */}
 
         <Link href={`/${"payrolls"}`}>  
         <div
@@ -107,23 +100,11 @@ const Sidebar = () => {
             component === "Payrolls" ? styles.active : ""
           }`}
         >
-          <PieChart className={styles.icon} />
-          <span>Payrolls</span>
+           <Icon iconName={"IcPayroll"} className={styles.icon} />
+          <span className={styles.label}>Payrolls</span>
         </div>
         </Link>
       </div>
-
-      {/* <div className={styles.section}>
-        <p className={styles.heading}>Your teams</p>
-        {["Heroicons", "Tailwind Labs", "Workcation"].map((team) => (
-          <div key={team} className={styles.team}>
-            <span className={styles.teamInitial}>{team.charAt(0)}</span>
-            <span>{team}</span>
-          </div>
-        ))}
-      </div> */}
-
-
       <Link href={`/${"settings"}`}>
       <div className={styles.section}>
         <div
@@ -132,8 +113,8 @@ const Sidebar = () => {
             component === "settings" ? styles.active : ""
           }`}
         >
-          <Settings className={styles.icon} />
-          <span>Settings</span>
+           <Icon iconName={"IcSetting"} className={styles.icon} />
+          <span className={styles.label}>Settings</span>
         </div>
       </div>
       </Link>

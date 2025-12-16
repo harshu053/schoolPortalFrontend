@@ -1,7 +1,11 @@
+// 
+.label {
+  // display: none;
+}
+
+ 
+// Responsive sidebar width: narrow on mobile, wide on desktop
 .sidebar {
-  width: 185px;
-//   height: 100vh;
-  /* background-color: white; */
   border-right: 1px solid black;
   display: flex;
   flex-direction: column;
@@ -9,6 +13,7 @@
   padding: 1rem;
   font-family: sans-serif;
 }
+
 
 .section {
   margin-bottom: 1.5rem;
@@ -25,16 +30,25 @@
   margin-bottom: 2rem;
 }
 
+// Responsive link style: compact on mobile
 .link {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem 1rem;
+  justify-content: flex-start;
+  gap: 0.25rem;
+  padding: 0.5rem 0.5rem;
   border-radius: 0.375rem;
   color: #374151;
   cursor: pointer;
   transition: background-color 0.2s;
+  svg {
+    width: 20px;
+    height: 20px;
+    // display: block;
+    // margin: 0 auto;
+  }
 }
+ 
 
 .link:hover {
   background-color: var(--color-primary-50);
@@ -46,10 +60,6 @@
   color: #f5f5f5;
 }
 
-.icon {
-  width: 20px;
-  height: 20px;
-}
 
 .heading {
   color: #9ca3af;

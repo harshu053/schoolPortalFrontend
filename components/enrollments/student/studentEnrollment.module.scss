@@ -18,6 +18,13 @@
   }
 }
 
+@media (max-width: 647px) {
+  .formContainer{
+    height: 80vh;
+    padding-top: 2rem;
+  }
+}
+
 // .detailsContainer{
 //     display: grid;
 //     grid-template-columns: auto auto;

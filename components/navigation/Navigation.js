@@ -3,15 +3,18 @@ import Link from "next/link";
 import styles from "./Navigation.module.scss";
 import Icon from "../icon/icon";
 import DropdownInput from "../dropdowninput/dropdowninput";
-import { useAcademicYear } from "@/contexts/academicYearContext";
+import { useAcademicYear,isDesktop } from "@/contexts/academicYearContext";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router"; // <-- add this
+import { useRouter } from "next/router";  
+import Menu from "../menuMobile/menu";
+
 
 export default function Navigation({ text }) {
   const router = useRouter(); // <-- router instance
   const { user, hasPermission, logout, schoolDeatils } = useAuth();
   const { academicYearId, academicYear, years, switchYear } = useAcademicYear();
   const [selectedAcademicYear, setSelectedAcademicYear] = useState(academicYear);
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => { setSelectedAcademicYear(academicYear); }, [academicYear]);
 
@@ -29,6 +32,7 @@ export default function Navigation({ text }) {
   };
 
   if (!user) return null;
+   console.log(router,router)
 
   // go back one step; if there's no history, go to dashboard
   const handleBack = () => {
@@ -39,19 +43,34 @@ export default function Navigation({ text }) {
     }
   };
 
+  const handleMenuToggle = () => {
+    setShowMenu(prev=>!prev)
+  };
+ 
   return (
     <nav className={styles.nav}>
       <div className={styles.container}>
         <div className={styles.navLinks}>
           {/* Back arrow: use a button that navigates back step-by-step */}
-          <button
+          {(router.asPath!="/dashboard")&&<button
             onClick={handleBack}
             className={styles.backIcon}
             aria-label="Go back"
             type="button"
           >
             <Icon iconName="IcArrowback" />
-          </button>
+          </button>}
+
+          {(router.asPath=="/dashboard" && !isDesktop) &&<button
+            onClick={handleMenuToggle}
+            className={styles.backIcon}
+            aria-label="Go back"
+            type="button"
+          >
+            <Icon iconName="IcMenu" />
+          </button>}
+
+          {showMenu && <Menu setShowMenu={setShowMenu}/>}
 
           <Link href="/dashboard">
             <span className={styles.navLink}>{text?.toUpperCase()}</span>

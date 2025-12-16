@@ -1,0 +1,57 @@
+.continerMenu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    z-index: 1000;
+    align-items: flex-end;
+    flex-direction: row;
+    // padding-left: 2rem;
+    // padding-top: 2rem;
+}
+
+.closeBtn{
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    display: flex; 
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: white;
+    svg{
+        width: 32px;
+        height: 32px;
+        color: black;
+    }
+}
+
+.menuNav{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute; 
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 1rem;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.menuNavItem{
+    display: flex;
+    padding: 0.5rem 1rem;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.1rem;
+    color: #1a365d;
+    text-decoration: none; 
+    border-radius: 0.5rem;   
+
+    svg{
+        width: 24px;
+        height: 24px;
+    }
+}

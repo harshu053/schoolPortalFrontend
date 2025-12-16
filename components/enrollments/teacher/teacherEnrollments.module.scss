@@ -8,8 +8,15 @@
   overflow-y: scroll;
   @include scrollbar-type-2;
   height: 70vh;
-//   background: #fff;
   border-radius: 12px; 
+  background-color: white;
+}
+
+@media (max-width: 647px) {
+  .container{
+    height: 80vh;
+    padding-top: 2rem;
+  }
 }
 
 .header {

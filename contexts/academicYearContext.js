@@ -15,6 +15,13 @@ export const AcademicYearProvider = ({ children }) => {
   const [academicYearId, setAcademicYearId] = useState(null);
   const [academicYear, setAcademicYear] = useState(null);
   const [years, setYears] = useState([]);
+  const [isDesktop, setIsDesktop] = useState(true);
+  useEffect(() => {
+    const check = () => setIsDesktop(window.innerWidth >= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useEffect(() => {
     if (!schoolId) return;
@@ -62,7 +69,7 @@ export const AcademicYearProvider = ({ children }) => {
 
   return (
     <AcademicYearContext.Provider
-      value={{ academicYearId, academicYear, years, switchYear,addAcademicYear }}
+      value={{ academicYearId, academicYear, years, switchYear,addAcademicYear,isDesktop }}
     >
       {children}
     </AcademicYearContext.Provider>

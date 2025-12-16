@@ -19,7 +19,7 @@ const StudentsMain = () => {
   const { user } = useAuth();
   const { academicYearId } = useAcademicYear();
   const schoolId = user?.schoolId;
-  const [activeButton, setActiveButton] = useState("All Students");
+  const [activeButton, setActiveButton] = useState("All");
   const [data, setData] = useState([]);
   const [showBtn, setShowBtn] = useState(false);
   const [showClassList, setShowClassList] = useState(false);
@@ -49,7 +49,7 @@ const StudentsMain = () => {
 
   const handleInformationSection = (value) => {
     setActiveButton(value);
-    if (value === "All Students") {
+    if (value === "All") {
       setShowClassList(false);
     } else {
       setShowClassList(true);
@@ -82,14 +82,14 @@ const StudentsMain = () => {
     fetchStudents();
   }, [schoolId, academicYearId]);
 
-  useEffect(() => {
+  useEffect(() => { 
     if (
-      activeButton === "Class Wise Students" ||
-      activeButton === "Generate Admit Cards"
+      activeButton === "Class Wise" ||
+      activeButton === "Admit Cards"
     ) {
       const filterData = data?.filter(
         (student) => student.className == selectedClass
-      );
+      ); 
       setSelectedClassData(filterData);
     }
   }, [selectedClass, data, activeButton]);
@@ -180,7 +180,7 @@ const StudentsMain = () => {
       <div className={styles.Container}>
         {/* Show all students if 'All Students' is selected */}
         <div className={styles.studentsContainer}>
-          {activeButton === "All Students" &&
+          {activeButton === "All" &&
             (data?.length === 0 ? (
               <div className={styles.message}>No students found.</div>
             ) : (
@@ -197,11 +197,11 @@ const StudentsMain = () => {
 
         {/* Show students of selected class if 'Class Wise' is selected and a class is chosen */}
         <div className={styles.studentsContainer}>
-          {activeButton === "Class Wise Students" &&
+          {activeButton === "Class Wise" &&
             (selectedClass && selectedClassData ? (
               selectedClassData?.length === 0 ? (
                 <div className={styles.message}>
-                  No students found in class {selectedClass}th.
+                  No students found in class {selectedClass}.
                 </div>
               ) : (
                 selectedClassData?.map((student) => (
@@ -221,7 +221,7 @@ const StudentsMain = () => {
 
         {/* show admit card of all the student by selecting class */}
         <div className={styles.admitCardSection}>
-          {activeButton == "Generate Admit Cards" &&
+          {activeButton == "Admit Cards" &&
             (selectedClass && selectedClassData ? (
               selectedClassData.length > 0 ? (
                 <>
@@ -251,7 +251,7 @@ const StudentsMain = () => {
         </div>
 
         {/* Generate Grade Cards of all the selected students */}
-        {activeButton === "Generate Grade Cards" && (
+        {activeButton === "Grade Cards" && (
           <div className={styles.gradeCardSection}>Working in progress</div>
         )}
       </div>
