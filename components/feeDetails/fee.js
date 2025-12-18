@@ -1,4 +1,4 @@
-import React , {useEffect, useState, useRef}from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./fee.module.scss";
 import { feesDetailsTabs } from "@/constants/app.constants";
 import Icon from "@/components/icon/icon";
@@ -11,21 +11,21 @@ import FeeSubmission from "./feeSubmission/feeSubmission";
 import TransactionsHistory from "./transactionHistory/transactionsHistory";
 import { searchFeeTransactions } from "@/services/feesSevices";
 import FullyPaidFees from "./noPendingFees/fullyPaidFees";
-import { useAcademicYear } from "@/contexts/academicYearContext";
+import { useAcademicYear} from "@/contexts/academicYearContext";
 
 const FeesMainConatiner = () => {
-  const [activeButton, setActiveButton] = useState("Fee Submission");
+  const [activeButton, setActiveButton] = useState("Fee Submission"); 
   const [data, setData] = useState([]);
   const [showBtn, setShowBtn] = useState(false);
   const [showClassList, setShowClassList] = useState(false);
   const [selectedClass, setSelectedClass] = useState("Select All");
   const [selectedClassData, setSelectedClassData] = useState([]);
-  const [selectedStudent,setSelectedStudent]=useState([]);
+  const [selectedStudent, setSelectedStudent] = useState([]);
   const inputRef = useRef();
   const router = useRouter();
-  const {user}=useAuth();
-  const {academicYearId}=useAcademicYear();
-  const [searchQuery,setSearchQuery]=useState("");
+  const { user } = useAuth();
+  const { academicYearId,isDesktop } = useAcademicYear();
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleInformationSection = (value) => {
     setActiveButton(value);
@@ -36,43 +36,42 @@ const FeesMainConatiner = () => {
     }
   };
 
-  const handleFeeSubmissionCall=(studentData)=>{ 
-    setSelectedStudent(studentData); 
+  const handleFeeSubmissionCall = (studentData) => {
+    setSelectedStudent(studentData);
     setActiveButton("Fee Submission");
   }
 
-  const handleSearch=(query)=>{
+  const handleSearch = (query) => {
     setSearchQuery(query);
   }
 
-  useEffect(()=>{
-    if(!user?.schoolId || !academicYearId)return;
-    const fetchStudentData=async()=>{
-      const payload={schoolId:user?.schoolId,academicYearId};
-     const data=await getAllStudentsService(payload);
-     setData(data);
+  useEffect(() => {
+    if (!user?.schoolId || !academicYearId) return;
+    const fetchStudentData = async () => {
+      const payload = { schoolId: user?.schoolId, academicYearId };
+      const data = await getAllStudentsService(payload);
+      setData(data);
     }
     fetchStudentData();
-  },[user?.schoolId,academicYearId])
- 
+  }, [user?.schoolId, academicYearId]) 
+
 
   return (
     <div className={styles.mainConatiner}>
-      <div className={styles.topRow}>
+      {isDesktop?(<div className={styles.topRow}>
         <div className={styles.informationType}>
           {feesDetailsTabs.map((value) => (
             <button
               onClick={() => handleInformationSection(value)}
-              className={`${styles.buttons} ${
-                activeButton === value ? styles.active : ""
-              } text-button`}
+              className={`${styles.buttons} ${activeButton === value ? styles.active : ""
+                } text-button`}
             >
               {value}
             </button>
           ))}
         </div>
 
-        {((activeButton=="Pending Fees" || activeButton=="Payment History" || activeButton=="Fully Paid Students") && showClassList) && (
+        {((activeButton == "Pending Fees" || activeButton == "Payment History" || activeButton == "Fully Paid Students") && showClassList) && (
           <div className={styles.classDropdown}>
             <select
               value={selectedClass || ""}
@@ -97,7 +96,7 @@ const FeesMainConatiner = () => {
           </div>
         )}
 
-        {(activeButton=="Pending Fees" || activeButton=="Payment History" ||activeButton=="Fully Paid Students" )&& <div className={styles.search}>
+        {(activeButton == "Pending Fees" || activeButton == "Payment History" || activeButton == "Fully Paid Students") && <div className={styles.search}>
           <div className={styles.icon}>
             <Icon iconName="IcSearch" />
           </div>
@@ -137,29 +136,44 @@ const FeesMainConatiner = () => {
             </button>
           )}
         </div>}
-      </div>
+      </div>):
+
+      (<div className={styles.inputGroup}>
+        <label>Select Entity</label>
+        <select
+          value={activeButton}
+          onChange={(e) => handleInformationSection(e.target.value)}
+        >
+          {
+            feesDetailsTabs.map((value) => (
+              <option key={value} value={value}>{value}</option>
+            ))
+          }
+        </select>
+      </div>)}
 
       {
-        activeButton=="Fee Structure" && 
+        activeButton == "Fee Structure" &&
         <div>
-            <ClassWiseFeeForm/>
+          <ClassWiseFeeForm />
         </div>
       }
+
       {
-        activeButton=="Pending Fees" &&
-        <div><PendingFees   selectedClass={selectedClass}onEdit={handleFeeSubmissionCall} searchQuery={searchQuery}/></div>
+        activeButton == "Pending Fees" &&
+        <div><PendingFees selectedClass={selectedClass} onEdit={handleFeeSubmissionCall} searchQuery={searchQuery} /></div>
       }
 
       {
-        activeButton=="Fully Paid Students" && <FullyPaidFees selectedClass={selectedClass} searchQuery={searchQuery}/>
+        activeButton == "Fully Paid Students" && <FullyPaidFees selectedClass={selectedClass} searchQuery={searchQuery} />
       }
       {
-        activeButton=="Fee Submission" && 
+        activeButton == "Fee Submission" &&
         <div><FeeSubmission studentData={data} selectedStudent={selectedStudent} /></div>
       }
       {
-        activeButton=="Payment History" && 
-        <div><TransactionsHistory selectedClass={selectedClass} searchQuery={searchQuery}/></div>
+        activeButton == "Payment History" &&
+        <div><TransactionsHistory selectedClass={selectedClass} searchQuery={searchQuery} /></div>
       }
     </div>
   );
