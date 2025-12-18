@@ -58,7 +58,8 @@ export default function Navigation({ text }) {
             aria-label="Go back"
             type="button"
           >
-            <Icon iconName="IcArrowback" />
+            {/* <Icon iconName="IcArrowback" /> */}
+            <Icon iconName="IcMenu" />
           </button>}
 
           {(router.asPath=="/dashboard" && !isDesktop) &&<button

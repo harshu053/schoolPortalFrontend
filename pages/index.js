@@ -79,7 +79,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       {/* Mobile menu icon and modal */}
-      <div className={styles.mobileHeader}>
+      {/* <div className={styles.mobileHeader}>
         <span className={styles.schoolName}>School Portal</span>
         <button
           className={styles.menuButton}
@@ -105,11 +105,11 @@ export default function Home() {
             </nav>
           </div>
         </Modal>
-      )}
+      )} */}
 
       <h1 className={styles.title}>Welcome to School Portal</h1>
       <p className={styles.subtitle}>
-        A comprehensive solution for managing your educational institution
+        {/* A comprehensive solution for managing your educational institution */}
       </p>
 
       {!isFormVisible && (

@@ -345,55 +345,54 @@ const Enrollments = () => {
   return (
     <div className={styles.enrollmentsContainer}>
 
-      {isDesktop?(<div className={styles.topRow}>
-        <div className={styles.buttonsFilter}>
-          {/* <div className={`${styles.heading} text-body-m`}>Enrollment:</div> */}
-          <div className={styles.informationType}>
-            {enrollmentsTypeList.map((value) => (
-              <button
-                onClick={() => setEnrollmentsType(value)}
-                className={`${styles.buttons} ${enrollmentsType === value ? styles.active : ""
-                  } text-button`}
-              >
-                {value}
-              </button>
-            ))}
+      {isDesktop ?
+        (<div className={styles.topRow}>
+          <div className={styles.buttonsFilter}>
+            {/* <div className={`${styles.heading} text-body-m`}>Enrollment:</div> */}
+            <div className={styles.informationType}>
+              {enrollmentsTypeList.map((value) => (
+                <button
+                  onClick={() => setEnrollmentsType(value)}
+                  className={`${styles.buttons} ${enrollmentsType === value ? styles.active : ""
+                    } text-button`}
+                >
+                  {value}
+                </button>
+              ))}
+            </div>
+            {/* <div className={styles.heading}>{enrollmentsType !== "Student" ? "Teacher Information Form" : "Student Admission Form"}</div> */}
           </div>
+        </div>) :
+        (<div className={styles.inputGroup}>
+          <label>Select Enrollment Type</label>
+          <select
+            value={enrollmentsType}
+            onChange={(e) => setEnrollmentsType(e.target.value)}
+          >
+            {
+              enrollmentsTypeList.map((value) => (
+                <option key={value} value={value}>{value}</option>
+              ))
+            }
+          </select>
+        </div>)}
 
-          <div className={styles.inputGroup}>
-            <label>Select Enrollment Type</label>
-            <select
-              value={enrollmentsType}
-              onChange={(e) => setEnrollmentsType(e.target.value)}
-            >
-              {
-                enrollmentsTypeList.map((value) => (
-                  <option key={value} value={value}>{value}</option>
-                ))
-              }
-            </select>
-          </div>
-          {/* <div className={styles.heading}>{enrollmentsType !== "Student" ? "Teacher Information Form" : "Student Admission Form"}</div> */}
-        </div>
-      </div>):
-
-      (<div className={styles.inputGroup}>
-            <label>Select Enrollment Type</label>
-            <select
-              value={enrollmentsType}
-              onChange={(e) => setEnrollmentsType(e.target.value)}
-            >
-              {
-                enrollmentsTypeList.map((value) => (
-                  <option key={value} value={value}>{value}</option>
-                ))
-              }
-            </select>
-      </div>)}
+      {/* <div className={styles.inputGroup}>
+        <label>Select Enrollment Type</label>
+        <select value={enrollmentsType}
+          onChange={(e) => setEnrollmentsType(e.target.value)}
+        >
+          {
+            enrollmentsTypeList.map((value) => (
+              <option key={value} value={value}>{value}</option>
+            ))
+          }
+        </select>
+      </div> */}
 
       {/* Enrollment Form student */}
       {enrollmentsType === "Student" && (
-        <StudentAdmissionForm /> 
+        <StudentAdmissionForm />
       )}
 
       {/* Enrollment Form Teacher */}

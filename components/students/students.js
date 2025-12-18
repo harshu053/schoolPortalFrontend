@@ -191,7 +191,7 @@ const StudentsMain = () => {
             </select>
       </div>)}
 
-      {showClassList && (
+      {showClassList && !isDesktop && (
           <div className={styles.inputGroup}>
             <label>Select Class</label>
             <select
