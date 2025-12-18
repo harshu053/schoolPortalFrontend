@@ -69,7 +69,7 @@ export default function SettingsPage() {
         </div>)}
 
         {activeButton == "Manage Access" &&!isDesktop &&<div className={styles.inputGroup}>
-          <label>Select Entity</label>
+          <label>Access Types</label>
           <select
             value={childButton}
             onChange={(e) => setChildButton(e.target.value)}
