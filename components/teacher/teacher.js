@@ -8,33 +8,33 @@ import { useAuth } from "@/contexts/AuthContext";
 import { getAllTeachers, searchTeachersService } from "@/services/teacherServices";
 import { useAcademicYear } from "@/contexts/academicYearContext";
 
-const Teacher = () => { 
+const Teacher = () => {
   const { user } = useAuth();
-  const {academicYearId}=useAcademicYear();
+  const { academicYearId, isDesktop } = useAcademicYear();
   const schoolId = user?.schoolId;
   const [activeButton, setActiveButton] = useState("All Teachers");
   const [data, setData] = useState(null);
   const [showBtn, setShowBtn] = useState(false);
   const [showDepartment, setShowDepartment] = useState(false);
   const [selecteddepartment, setSelecteddepartment] = useState("Mathematics");
-  const [selecteddepartmentData, setSelecteddepartmentData] =useState([]);
-  const [teacherdata,setTeacherdata]=useState();
+  const [selecteddepartmentData, setSelecteddepartmentData] = useState([]);
+  const [teacherdata, setTeacherdata] = useState();
   const [searchQuery, setSearchQuery] = useState("");
   const inputRef = useRef();
   const router = useRouter();
 
   useEffect(() => {
-    if(!schoolId || !academicYearId)return
+    if (!schoolId || !academicYearId) return
     const fetchTeachers = async () => {
-      const payload={academicYearId,schoolId};
+      const payload = { academicYearId, schoolId };
       const data = await getAllTeachers(payload);
       setData(data.data);
       setTeacherdata(data.data);
     };
-    fetchTeachers(); 
-  }, [schoolId,academicYearId]);
+    fetchTeachers();
+  }, [schoolId, academicYearId]);
 
- 
+
 
   const handleInformationSection = (value) => {
     setActiveButton(value);
@@ -45,16 +45,16 @@ const Teacher = () => {
     }
   };
 
-  const handleSearch=async(query)=>{
-     if (!query || query.trim() === "") {
+  const handleSearch = async (query) => {
+    if (!query || query.trim() === "") {
       setData(teacherdata);
       return;
     }
-    query=query.trim();
-     if(!schoolId || !query || !academicYearId)return;
-     const payload={schoolId, searchQuery:query,academicYearId}
-     const response=await searchTeachersService(payload); 
-     setData(response.data);
+    query = query.trim();
+    if (!schoolId || !query || !academicYearId) return;
+    const payload = { schoolId, searchQuery: query, academicYearId }
+    const response = await searchTeachersService(payload);
+    setData(response.data);
   }
 
   const handleChange = (e) => {
@@ -66,7 +66,7 @@ const Teacher = () => {
     router.push(`/teachers/${employeeId}`);
   };
 
-  useEffect(() => { 
+  useEffect(() => {
     if (activeButton === "Department Wise") {
       const filterData = data?.filter(
         (teacher) => teacher.department == selecteddepartment
@@ -77,86 +77,101 @@ const Teacher = () => {
 
   return (
     <div className={styles.teacherContainer}>
-      <div className={styles.topRow}>
+      {isDesktop ? (<div className={styles.topRow}>
         <div className={styles.informationType}>
           {teacherInformationTypeList.map((value) => (
             <button
               onClick={() => handleInformationSection(value)}
-              className={`${styles.buttons} ${
-                activeButton === value ? styles.active : ""
-              } text-button`}
+              className={`${styles.buttons} ${activeButton === value ? styles.active : ""
+                } text-button`}
             >
               {value}
             </button>
           ))}
         </div>
+      </div>) :
 
-        {showDepartment && (
-          <div className={styles.classDropdown}>
-            <select
-              value={selecteddepartment || ""}
-              onChange={(e) => setSelecteddepartment(e.target.value)}
-              className={styles.dropdownSelect}
-            >
-              <option value="" disabled>
-                Select department
-              </option>
-              {[...new Set(data?.map((teacher) => teacher.department))].map(
-                (department) => (
-                  <option key={department} value={department}>
-                    {department}
-                  </option>
-                )
-              )}
-            </select>
+        (<div className={styles.inputGroup}>
+          <label>Select Entity</label>
+          <select
+            value={activeButton}
+            onChange={(e) => handleInformationSection(e.target.value)}
+          >
+            {
+              teacherInformationTypeList.map((value) => (
+                <option key={value} value={value}>{value}</option>
+              ))
+            }
+          </select>
+        </div>)}
 
-            <div className={styles.arrowIcon}>
-              <Icon iconName="IcChevronDown" />
-            </div>
-          </div>
-        )}
+      <div className={styles.inputGroup}>
+        {/* <div className={styles.icon}>
+          Enter Name 
+        </div> */}
+        <label>Search Teachers</label>
 
-        <div className={styles.search}>
-          <div className={styles.icon}>
-            <Icon iconName="IcSearch" />
-          </div>
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Search"
+          className={`${styles.text} text-body-s`}
+          onChange={handleChange}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              handleSearch(event.target.value);
+              setShowBtn(false);
+            }
+          }}
+          onFocus={(event) => {
+            event.target.placeholder = ""; // Clear placeholder on focus
+          }}
+          onBlur={(event) => {
+            event.target.placeholder = "Search";
+          }}
+        />
 
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Search"
-            className={`${styles.text} text-body-s`}
-            onChange={handleChange}
-            onKeyDown={(event) => {
-              if (event.key === "Enter") {
-                handleSearch(event.target.value);
+        {showBtn && isDesktop && (
+          <button
+            type="button"
+            className={styles.clearbtn}
+            onClick={() => {
+              if (inputRef.current) {
+                inputRef.current.value = "";
                 setShowBtn(false);
               }
             }}
-            onFocus={(event) => {
-              event.target.placeholder = ""; // Clear placeholder on focus
-            }}
-            onBlur={(event) => {
-              event.target.placeholder = "Search";
-            }}
-          />
-
-          {showBtn && (
-            <button
-              type="button"
-              className={styles.clearbtn}
-              onClick={() => {
-                if (inputRef.current) {
-                  inputRef.current.value = "";
-                  setShowBtn(false);
-                }
-              }}
-            >
-              <Icon iconName="IcCloseRemove" />
-            </button>
-          )}
-        </div>
+          >
+            <Icon iconName="IcCloseRemove" />
+          </button>
+        )}
       </div>
+
+      {showDepartment && (
+        <div className={styles.inputGroup}>
+          <label>Select Department</label>
+          <select
+            value={selecteddepartment || ""}
+            onChange={(e) => setSelecteddepartment(e.target.value)}
+            className={styles.dropdownSelect}
+          >
+            <option value="" disabled>
+              Select department
+            </option>
+            {[...new Set(data?.map((teacher) => teacher.department))].map(
+              (department) => (
+                <option key={department} value={department}>
+                  {department}
+                </option>
+              )
+            )}
+          </select>
+
+          <div className={styles.arrowIcon}>
+            <Icon iconName="IcChevronDown" />
+          </div>
+        </div>
+      )}
 
       {activeButton === "All Teachers" && (
         <div className={styles.teacherCard}>

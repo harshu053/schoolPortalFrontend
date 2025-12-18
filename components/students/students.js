@@ -17,9 +17,9 @@ import { useReactToPrint } from "react-to-print";
 
 const StudentsMain = () => {
   const { user } = useAuth();
-  const { academicYearId } = useAcademicYear();
+  const { academicYearId,isDesktop } = useAcademicYear();
   const schoolId = user?.schoolId;
-  const [activeButton, setActiveButton] = useState("All");
+  const [activeButton, setActiveButton] = useState("All Students");
   const [data, setData] = useState([]);
   const [showBtn, setShowBtn] = useState(false);
   const [showClassList, setShowClassList] = useState(false);
@@ -49,7 +49,7 @@ const StudentsMain = () => {
 
   const handleInformationSection = (value) => {
     setActiveButton(value);
-    if (value === "All") {
+    if (value === "All Students") {
       setShowClassList(false);
     } else {
       setShowClassList(true);
@@ -84,8 +84,8 @@ const StudentsMain = () => {
 
   useEffect(() => { 
     if (
-      activeButton === "Class Wise" ||
-      activeButton === "Admit Cards"
+      activeButton === "Class Wise Students" ||
+      activeButton === "generate Admit Cards"
     ) {
       const filterData = data?.filter(
         (student) => student.className == selectedClass
@@ -96,7 +96,7 @@ const StudentsMain = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.topRow}>
+      {isDesktop?(<div className={styles.topRow}>
         <div className={styles.informationType}>
           {informationTypeList.map((value) => (
             <button
@@ -175,12 +175,52 @@ const StudentsMain = () => {
             </button>
           )}
         </div>
-      </div>
+      </div>):
+
+      (<div className={styles.inputGroup}>
+            <label>Select Action</label>
+            <select
+              value={activeButton}
+              onChange={(e) => handleInformationSection(e.target.value)}
+            >
+              {
+                informationTypeList.map((value) => (
+                  <option key={value} value={value}>{value}</option>
+                ))
+              }
+            </select>
+      </div>)}
+
+      {showClassList && (
+          <div className={styles.inputGroup}>
+            <label>Select Class</label>
+            <select
+              value={selectedClass || ""}
+              onChange={(e) => setSelectedClass(e.target.value)}
+              className={styles.dropdownSelect}
+            >
+              <option value="" disabled>
+                Select Class
+              </option>
+              {[...new Set(data?.map((student) => student.className))].map(
+                (className) => (
+                  <option key={className} value={className}>
+                    class {className}
+                  </option>
+                )
+              )}
+            </select>
+
+            {/* <div className={styles.arrowIcon}>
+              <Icon iconName="IcChevronDown" />
+            </div> */}
+          </div>
+        )}
 
       <div className={styles.Container}>
         {/* Show all students if 'All Students' is selected */}
         <div className={styles.studentsContainer}>
-          {activeButton === "All" &&
+          {activeButton === "All Students" &&
             (data?.length === 0 ? (
               <div className={styles.message}>No students found.</div>
             ) : (
@@ -197,7 +237,7 @@ const StudentsMain = () => {
 
         {/* Show students of selected class if 'Class Wise' is selected and a class is chosen */}
         <div className={styles.studentsContainer}>
-          {activeButton === "Class Wise" &&
+          {activeButton === "Class Wise Students" &&
             (selectedClass && selectedClassData ? (
               selectedClassData?.length === 0 ? (
                 <div className={styles.message}>
@@ -221,7 +261,7 @@ const StudentsMain = () => {
 
         {/* show admit card of all the student by selecting class */}
         <div className={styles.admitCardSection}>
-          {activeButton == "Admit Cards" &&
+          {activeButton == "generate Admit Cards" &&
             (selectedClass && selectedClassData ? (
               selectedClassData.length > 0 ? (
                 <>
@@ -251,7 +291,7 @@ const StudentsMain = () => {
         </div>
 
         {/* Generate Grade Cards of all the selected students */}
-        {activeButton === "Grade Cards" && (
+        {activeButton === "generate Grade Cards" && (
           <div className={styles.gradeCardSection}>Working in progress</div>
         )}
       </div>

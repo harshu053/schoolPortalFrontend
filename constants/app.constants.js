@@ -1,8 +1,8 @@
 export const informationTypeList = [
-  "All",
-  "Class Wise",
-  "Admit Cards",
-  "Grade Cards",
+  "All Students",
+  "Class Wise Students",
+  "generate Admit Cards",
+  "generate Grade Cards",
 ];
 export const teacherInformationTypeList = ["All Teachers", "Department Wise"];
 export const enrollmentsTypeList = ["Student", "Teacher", "Staff"];
