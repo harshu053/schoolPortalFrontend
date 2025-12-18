@@ -2,10 +2,14 @@
 export default function Icon({ iconName }) {
   const renderIcons = () => {
     switch (iconName) {
+      case "IcBack":
+        return (
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 20a1.003 1.003 0 01-.71-.29l-7-7a1 1 0 010-1.42l7-7a1.005 1.005 0 011.42 1.42L9.41 12l6.3 6.29a.997.997 0 01.219 1.095.999.999 0 01-.93.615z" fill="currentColor"></path></svg>
+        );
       case "IcMenu":
         return (
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h16a1 1 0 100-2H4a1 1 0 000 2zm16 10H4a1 1 0 000 2h16a1 1 0 000-2zm0-6H4a1 1 0 000 2h16a1 1 0 000-2z" fill="currentColor"></path></svg>
-        ); 
+        );
       case "IcStudent":
         return (
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.29 4.71A1 1 0 008 5h8a1 1 0 00.71-.29l1-1a1 1 0 00.21-1.09A1 1 0 0017 2H7a1 1 0 00-.92.62 1 1 0 00.21 1.09l1 1zm7.18 7.68l-1.9 1.41a1 1 0 01-1.2 0l-1.88-1.39A8 8 0 004 20a2 2 0 002 2h12a2 2 0 002-2 8 8 0 00-5.53-7.61zM17 18.5a.469.469 0 01-.15.35l-1 1a.48.48 0 01-.7 0l-1-1a.47.47 0 01-.15-.35v-2a.5.5 0 01.5-.5h2a.5.5 0 01.5.5v2zM12 11a4.48 4.48 0 004.45-4h-8.9A4.48 4.48 0 0012 11z" fill="currentColor"></path></svg>
@@ -28,7 +32,8 @@ export default function Icon({ iconName }) {
         );
       case "IcTeacher":
         return (
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.78 10.84a4.51 4.51 0 005.56-5.56 4.46 4.46 0 00-3.12-3.12 4.51 4.51 0 00-5.56 5.56 4.46 4.46 0 003.12 3.12zm4.49 1.86l-.38.75a1 1 0 01-.73.54H14a1 1 0 01-.71-.29L12 12.41l-1.29 1.3A1 1 0 0110 14h-.16a1 1 0 01-.73-.54l-.38-.75A8 8 0 004 20a2 2 0 002 2h12a2 2 0 002-2 8 8 0 00-4.73-7.3zM10 20H8a1 1 0 010-2h2a1 1 0 010 2z" fill="currentColor"></path></svg>);
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.78 10.84a4.51 4.51 0 005.56-5.56 4.46 4.46 0 00-3.12-3.12 4.51 4.51 0 00-5.56 5.56 4.46 4.46 0 003.12 3.12zm4.49 1.86l-.38.75a1 1 0 01-.73.54H14a1 1 0 01-.71-.29L12 12.41l-1.29 1.3A1 1 0 0110 14h-.16a1 1 0 01-.73-.54l-.38-.75A8 8 0 004 20a2 2 0 002 2h12a2 2 0 002-2 8 8 0 00-4.73-7.3zM10 20H8a1 1 0 010-2h2a1 1 0 010 2z" fill="currentColor"></path></svg>
+        );
       case "IcArrowback":
         return (
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 640 640">
