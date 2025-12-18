@@ -23,6 +23,11 @@ export const AcademicYearProvider = ({ children }) => {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  useEffect(()=>{
+    if(!schoolId)return;
+    switchYear("68bbdb16e86c9cee680517bc");
+  },[])
+
   useEffect(() => {
     if (!schoolId) return;
     const fetchYears = async () => {
@@ -40,8 +45,10 @@ export const AcademicYearProvider = ({ children }) => {
     };
     fetchYears();
   }, [schoolId]);
+  // 68bbdb16e86c9cee680517bc
 
   const switchYear = async (yearId) => {
+    console.log("Switching to yearId:", yearId);
     if (!schoolId || !yearId) return;
     try {
       const payload = { schoolId, yearId }; 

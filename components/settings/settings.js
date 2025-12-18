@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./settings.module.scss";
-import { settingsTypeList,manageAccessList } from "@/constants/app.constants";
+import { settingsTypeList, manageAccessList } from "@/constants/app.constants";
 import { useAuth } from "@/contexts/AuthContext";
 import { createAcademicYear } from "@/services/academicYearServices";
 import { useAcademicYear } from "@/contexts/academicYearContext";
@@ -10,7 +10,7 @@ import ManageRolesPanel from "./manageAccess";
 export default function SettingsPage() {
   const { user } = useAuth();
   const schoolId = user?.schoolId;
-  const { academicYearId, academicYear, years, switchYear, addAcademicYear } =
+  const { isDesktop, years, switchYear, addAcademicYear } =
     useAcademicYear();
   const [activeButton, setActiveButton] = useState("Manage Access");
   const [childButton, setChildButton] = useState("Existing Access");
@@ -20,46 +20,72 @@ export default function SettingsPage() {
   const handleNewAcademicYear = async (e) => {
     if (!schoolId || !year) return;
     const payload = { schoolId, year };
-    const response = await createAcademicYear(payload); 
+    const response = await createAcademicYear(payload);
     setNewAcademicYear(response);
   };
- 
+
 
   return (
     <div className={styles.settingsContainer}>
-      <div className={styles.topRow}>
+      {isDesktop ? (<div className={styles.topRow}>
         <div className={styles.informationType}>
           {settingsTypeList?.map((value) => (
             <button
               onClick={() => setActiveButton(value)}
-              className={`${styles.buttons} ${
-                activeButton === value ? styles.active : ""
-              } text-button`}
+              className={`${styles.buttons} ${activeButton === value ? styles.active : ""
+                } text-button`}
             >
               {value}
             </button>
           ))}
         </div>
 
-        { activeButton=="Manage Access" &&
+        {activeButton == "Manage Access" &&
           <div className={styles.informationType}>
-          {manageAccessList?.map((value) => (
-            <button
-              onClick={() => setChildButton(value)}
-              className={`${styles.buttons} ${
-                childButton === value ? styles.active : ""
-              } text-button`}
-            >
-              {value}
-            </button>
-          ))}
+            {manageAccessList?.map((value) => (
+              <button
+                onClick={() => setChildButton(value)}
+                className={`${styles.buttons} ${childButton === value ? styles.active : ""
+                  } text-button`}
+              >
+                {value}
+              </button>
+            ))}
+          </div>}
+      </div>)
+        :
+        (<div className={styles.inputGroup}>
+          <label>Select Entity</label>
+          <select
+            value={activeButton}
+            onChange={(e) => setActiveButton(e.target.value)}
+          >
+            {
+              settingsTypeList.map((value) => (
+                <option key={value} value={value}>{value}</option>
+              ))
+            }
+          </select>
+        </div>)}
+
+        {activeButton == "Manage Access" &&!isDesktop &&<div className={styles.inputGroup}>
+          <label>Select Entity</label>
+          <select
+            value={childButton}
+            onChange={(e) => setChildButton(e.target.value)}
+          >
+            {
+              manageAccessList.map((value) => (
+                <option key={value} value={value}>{value}</option>
+              ))
+            }
+          </select>
         </div>}
-      </div>
 
       {/* Panels */}
       <div className={styles.panel}>
         {activeButton === "Manage Access" && (
-          <ManageRolesPanel actionType={childButton}/>
+          <ManageRolesPanel actionType={childButton} />
         )}
 
         {activeButton === "Academic Year" && (
