@@ -182,6 +182,10 @@
   transition: background-color 0.2s;
 }
 
+.button:hover{
+  background-color: red;
+}
+
 .primaryButton {
   background-color: var(--color-primary-40);
   color: white;

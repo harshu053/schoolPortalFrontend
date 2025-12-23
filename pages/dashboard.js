@@ -12,6 +12,10 @@ export default function DashboardPage() {
   const { user,schoolDeatils } = useAuth();
   const router=useRouter();
 
+  useEffect(()=>{
+    alert("The data shown here is for demo purposes only. Actual school data will be accessible once you log in using your credentials.")
+  },[])
+
 
   return (
     <ProtectedRoute>
